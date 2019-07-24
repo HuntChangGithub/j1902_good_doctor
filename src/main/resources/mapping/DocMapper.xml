@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.apache.ibatis.submitted.rounding.Mapper">
+
+
+    <select id="getUser" resultMap="usermap">
+    SELECT
+        doctorid,
+        username,
+        telphone,
+        depid,
+        jobtitle,
+        doctorinfo,
+        hpid,
+        if_valid
+    FROM
+    user ,
+    doctor
+    WHERE
+    user.userid=doctor.doctorid
+    AND
+    user.username=#{username}
+	</select>
+
+
+
+
+    <!--<insert id="insert">-->
+	    <!--insert into users (id, name, funkyNumber, roundingMode) values (-->
+	    	<!--#{id}, #{name}, #{funkyNumber}, #{roundingMode}-->
+	    <!--)-->
+	<!--</insert>-->
+
+
+</mapper>
