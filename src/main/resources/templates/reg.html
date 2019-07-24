@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="layer/layer.js" merge="true"></script>
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="layer/theme/default/layer.css"  media="all">
+</head>
+<style>
+    #div1{
+        position: relative;
+        top: 150px;
+        left: 240px;
+    }
+    #reg{
+        position: relative;
+        left: 40px;
+    }
+    #bigimg{
+        position: relative;
+        top: 100px;
+        left: 200px;
+    }
+    #sendmessage{
+        position: absolute;
+        top: 0px;
+        left: 240px;
+    }
+    #accDiv{
+        position: absolute;
+        left: 300px;
+        top: 10px;
+    }
+    #compareUpw{
+        position: absolute;
+        left: 300px;
+        top: 10px;
+    }
+    #compareYzm{
+        position: absolute;
+        left: 350px;
+        top: 0px;
+    }
+</style>
+<script>
+    //判断用户名是否存在
+    function loadXMLDoc() {
+        if (document.getElementById("account").value == "") {
+            return document.getElementById("accDiv").innerHTML = "用户名不能为空";
+        }
+        //创建xmlhttprequest对象
+        var xmlHttp;
+        if (window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        //设置回调函数
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                if (xmlHttp.responseText == "true"){
+                    return document.getElementById("accDiv").innerHTML = "用户名已存在";
+                }else {
+                    return document.getElementById("accDiv").innerHTML = "√";
+                }
+            }
+        }
+        var username = document.getElementById("account").value;
+        xmlHttp.open("GET","/reg/fetchuname?username="+username,true);
+        xmlHttp.send();
+    }
+    function delData() {
+        document.getElementById("account").value = "";
+        document.getElementById("accDiv").innerHTML = "";
+    }
+    //判断两次密码是否一致
+    function compareUpw() {
+        var upw = document.getElementById("upassword").value;
+        var upw1 = document.getElementById("upassword1").value;
+        if ( upw != upw1 ) {
+            return document.getElementById("compareUpw").innerHTML = "两次密码不一致,请重输";
+        }else {
+            return document.getElementById("compareUpw").innerHTML = "两次输入密码一致";
+        }
+    }
+    function clearData() {
+        document.getElementById("compareUpw").value = "";
+        document.getElementById("compareUpw").innerHTML = "";
+    }
+
+    //发送手机验证码
+    $(function ( ) {
+        $("#sendmessage").on('click',function ( ) {
+            if (document.getElementById("telphone").value == "") {
+
+
+
+                layer.open({
+                    title: '提示',
+                    content: '请输入手机号',
+                    time: 10000,
+                    closeBtn: 1,
+                    shade: [0.8, '#393D49'],
+                    fixed: false,
+                    maxHeight:260,
+                    moveOut:true,
+                    skin: 'layui-layer-molv'
+
+                });
+
+            }else {
+                var telphone = document.getElementById("telphone").value;
+                $.ajax({
+                    type:'GET',
+                    url: '/reg/sendyzm',
+                    data:{"telphone":telphone},
+                    dataType:'json',
+                    success:function (data) {
+                        layer.open({
+                            title: '提示',
+                            content: '验证码发送成功',
+                            time: 10000,
+                            closeBtn: 1,
+                            shade: [0.8, '#393D49'],
+                            fixed: false,
+                            maxHeight:260,
+                            moveOut:true,
+                            skin: 'layui-layer-molv'
+
+                        });
+                    }
+                })
+            }
+        })
+    })
+</script>
+<body style="background-color: #e6e6e6">
+<div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd>< a href="">会议</a></dd>
+                    <dd>< a href="">用药助手</a></dd>
+                    <dd>< a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div style="float: left" align="center">
+    <img id="bigimg" src="imgs/healthfood.jpg" style="width: 600px;height: 450px"/>
+</div>
+<div id="div1" style="height: 500px;width: 500px;float: left" align="center">
+    <div align="center">
+        <span style="font-size: 26px;color: #9F9F9F">注册用户</span>
+    </div>
+    <br>
+    <br>
+    <form action="/doreg" method="post" >
+        <div class="layui-inline">
+            <label class="layui-form-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+            <div class="layui-input-inline">
+                <input type="tel" style="width: 220px" id="account" onblur="loadXMLDoc()" onfocus="delData()" name="username" lay-verify="required|phone" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+            </div>
+            <div id="accDiv" style="width: 200px;height: 38px;color: #FD482C" class="layui-input-inline">
+
+            </div>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label">&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;</label>
+            <div class="layui-input-inline">
+                <input type="password" style="width: 220px" id="upassword" name="upassword" lay-verify="email" autocomplete="off" placeholder="请设置密码" class="layui-input">
+            </div>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label">确认密码</label>
+            <div class="layui-input-inline">
+                <input type="password" style="width: 220px" id="upassword1" onblur="compareUpw()" onfocus="clearData()" lay-verify="email" autocomplete="off" placeholder="请确认密码" class="layui-input">
+            </div>
+            <div id="compareUpw" style="width: 200px;height: 38px;color: #FD482C" class="layui-input-inline">
+
+            </div>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+            <div class="layui-input-inline">
+                <input type="text" style="width: 220px" id="telphone" name="telphone" lay-verify="email" autocomplete="off"placeholder="请输入手机号" class="layui-input">
+                <button type="button" id="sendmessage" click="sendmessage()" class="layui-btn layui-btn-primary">发送验证码</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="layui-inline">
+            <label class="layui-form-label">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label>
+            <div class="layui-input-inline">
+                <input type="password" style="width: 220px" name="yzm" lay-verify="email" autocomplete="off" placeholder="请输入您手机收到的6位验证码" class="layui-input">
+            </div>
+            <div id="compareYzm" style="width: 200px;height: 38px;color: #FD482C" class="layui-input-inline">
+                <span th:text="${string}"></span>
+            </div>
+        </div>
+        <br><br>
+        <div class="layui-inline" id="reg" >
+            <button type="submit" class="layui-btn layui-btn-normal">注册</button>
+            <span style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我有账户，<a href="login" style="color: #FF00FF">去登陆</a></span>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

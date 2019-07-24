@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+</head>
+<style>
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1250px;
+    }
+    .layui-carousel{
+        position: relative;
+        left: 190px;
+    }
+    #bigimg{
+        position: relative;
+        top:40px;
+        left: 190px;
+    }
+    #teachdiv{
+        position: absolute;
+        top:630px;
+        left: 152px;
+    }
+    #gooddoctor{
+        position: absolute;
+        top: 880px;
+        left: 152px;
+    }
+    #hospital{
+        position: absolute;
+        top: 1450px;
+        left: 152px;
+    }
+    #bottomdiv{
+        position: absolute;
+        top: 2100px;
+    }
+    .ul1{
+        position: relative;
+        left: 152px;
+    }
+</style>
+<body>
+        <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+            <div class="ly-inner pg-inner">
+                <ul class="topline-list fl clearfix">
+                    <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">更多</a>
+                    <dl class="layui-nav-child">
+                        <dd>< a href="">会议</a></dd>
+                        <dd>< a href="">用药助手</a></dd>
+                        <dd>< a href="">叮当铺</a></dd>
+                    </dl>
+                    </li>
+                </ul>
+                <a class="loginandreg" href="login" style="background-color: transparent;">登录</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" href="reg" style="background-color: transparent;">注册</a>
+            </div>
+
+        </div>
+
+    <br>
+    <br>
+    <div style="width: 100%;height: 60px" align="center">
+        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+        <input style="height: 38px;width: 450px" type="text"placeholder="请输入疾病名/药品名"/>
+        <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+    </div>
+
+    <div class="ul1" align="center" style="width: 80%" >
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="onlinedoctory">在线问诊</a></li>
+            <li class="layui-nav-item"><a href="questionandanswer">名医问答</a></li>
+            <li class="layui-nav-item"><a href="diseaseencyclopedia">疾病百科</a></li>
+            <li class="layui-nav-item"><a href="healthscience">健康科普</a></li>
+            <li class="layui-nav-item"><a href="featuredtopics">精选专题</a></li>
+            <li class="layui-nav-item"><a href="allhospital">全国医院</a></li>
+            <li class="layui-nav-item"><a href="familymedication">家庭用药</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-carousel" id="bigimg" lay-filter="test1" style="float: left;width: 80%;height: 350px" align="center">
+        <div carousel-item="" style="width: 1150px;height: 350px">
+            <div><img src="/imgs/bigimg1.jpg" style="width:1150px;height: 350px" /></div>
+            <div><img src="/imgs/bigimg2.jpg" style="width:1150px;height: 350px" /></div>
+            <div><img src="/imgs/bigimg1.jpg" style="width:1150px;height: 350px" /></div>
+            <div><img src="/imgs/bigimg2.jpg" style="width:1150px;height: 350px" /></div>
+        </div>
+    </div>
+    <div id="teachdiv" style="width: 100%;height: 180px">
+        <div  style="width: 100%">
+            <div id="doctorclass" style="margin-left: 20px">
+                <span style="font-size: 18px;color: #666666">医师讲堂</span>
+            </div>
+            <br><br>
+            <div style="width: 100%;height: 170px" >
+
+                <div style="width: 280px;height: 170px;float: left;margin-left: 17px">
+
+                    <div style="width: 150px;height: 125px;float: left">
+                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
+                    </div>
+                    <div style="width: 120px;height: 125px;float: left">
+                        <span>****10节课</span><br><br>
+                        <span> 某某</span>
+                        <span>主治医师</span><br><br><br>
+                        <span>37人购买</span>
+                    </div>
+                </div>
+                <div style="width: 280px;height: 170px;float: left;margin-left: 17px">
+
+                    <div style="width: 150px;height: 125px;float: left">
+                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
+                    </div>
+                    <div style="width: 120px;height: 125px;float: left">
+                        <span>****10节课</span><br><br>
+                        <span> 某某</span>
+                        <span>主治医师</span><br><br><br>
+                        <span>37人购买</span>
+                    </div>
+                </div>
+                <div style="width: 280px;height: 170px;float: left;margin-left: 17px">
+
+                    <div style="width: 150px;height: 125px;float: left">
+                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
+                    </div>
+                    <div style="width: 120px;height: 125px;float: left">
+                        <span>****10节课</span><br><br>
+                        <span> 某某</span>
+                        <span>主治医师</span><br><br><br>
+                        <span>37人购买</span>
+                    </div>
+                </div>
+                <div style="width: 280px;height: 170px;float: left;margin-left: 17px">
+
+                    <div style="width: 150px;height: 125px;float: left">
+                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
+                    </div>
+                    <div style="width: 120px;height: 125px;float: left">
+                        <span>****10节课</span><br><br>
+                        <span> 某某</span>
+                        <span>主治医师</span><br><br><br>
+                        <span>37人购买</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-tab layui-tab-card" id="gooddoctor" style="width: 80%" >
+        <br>
+        <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;推荐医生</span>
+        <br><br><br>
+        <ul class="layui-tab-title">
+            <li class="layui-this">儿科</li>
+            <li>皮肤性病科</li>
+            <li>消化内科</li>
+            <li>泌尿外科</li>
+            <li>骨科</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 380px;">
+            <div class="layui-tab-item layui-show">
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="hospital">
+        <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;就医推荐</span>
+        <br><br>
+        <ul class="layui-tab-title">
+            <li class="layui-this">按省市</li>
+            <li>按科室</li>
+            <li>按疾病</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">
+                <div  style="float: left;margin-top: 40px;margin-left: 50px;margin-right: 50px">
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px" >
+                        <a href="" style="font-size: 20px;color: #5FB878">北京</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="https://www.pumch.cn/index" style="font-size: 16px">北京协和医院</a></li><br>
+                            <li><a href="http://www.301hospital.com.cn" style="font-size: 16px">中国人民解放军总医院</a></li><br>
+                            <li><a href="https://www.pkufh.com" style="font-size: 16px">北京大学第一医院</a></li><br>
+                            <li><a href="http://www.cicams.ac.cn" style="font-size: 16px">中国医学科学院肿瘤医院</a></li><br>
+                        </ul>
+                    </div>
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px">
+                        <a href="" style="font-size: 20px;color: #5FB878">上海</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://1071439.m.1024sj.com" style="font-size: 16px">上海交通大学医学院附属瑞金医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 16px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.chhospital.com.cn/html" style="font-size: 16px">上海长海医院</a></li><br>
+                            <li><a href="http://www.fdeent.org" style="font-size: 16px">复旦大学附属眼耳鼻喉科医院</a></li><br>
+                        </ul>
+                    </div>
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px">
+                        <a href="" style="font-size: 20px;color: #5FB878">广东</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.gzsums.net/" style="font-size: 16px">中山大学附属第一医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 16px">广东省人民医院</a></li><br>
+                            <li><a href="http://www.nfyy.com/" style="font-size: 16px">南方医科大学南方医院</a></li><br>
+                            <li><a href="https://www.zssy.com.cn/" style="font-size: 16px">中山大学附属第三医院</a></li><br>
+                        </ul>
+                    </div>
+                    <br>
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px">
+                        <a href="" style="font-size: 20px;color: #5FB878">浙江</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.z2hospital.com/cms/default.aspx" style="font-size: 16px">浙江大学医学院附属第二医院</a></li><br>
+                            <li><a href="http://www.zy91.com/" style="font-size: 16px">浙江大学附属第一医院</a></li><br>
+                            <li><a href="http://www.srrsh.com/" style="font-size: 16px">浙江大学医学院附属邵逸夫医院</a></li><br>
+                            <li><a href="http://www.hospitalstar.com/" style="font-size: 16px">浙江省人民医院</a></li><br>
+                        </ul>
+                    </div>
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px">
+                        <a href="" style="font-size: 20px;color: #5FB878">江苏</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.jsph.org.cn/" style="font-size: 16px">江苏省人民医院</a></li><br>
+                            <li><a href="http://www.njzy666.com/homepage1/index" style="font-size: 16px">南京军区南京总医院</a></li><br>
+                            <li><a href="http://fyy.sdfyy.cn/" style="font-size: 16px">苏州大学附属第一医院</a></li><br>
+                            <li><a href="http://www.ahnmc.com/" style="font-size: 16px">南通大学第一附属医院</a></li><br>
+                        </ul>
+                    </div>
+                    <div style="height: 260px;width: 240px;float: left;margin-left: 20px">
+                        <a href="" style="font-size: 20px;color: #5FB878">湖北</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="https://www.tjh.com.cn/" style="font-size: 16px">华中科大同济医学院附属同济医院</a></li><br>
+                            <li><a href="http://www.whuh.com/" style="font-size: 16px">华中科大同济医学院附属协和医院</a></li><br>
+                            <li><a href="http://www.rmhospital.com/" style="font-size: 16px">武汉大学人民医院</a></li><br>
+                            <li><a href="http://www.wahh.com.cn/" style="font-size: 16px">武汉亚洲心脏病医院</a></li><br>
+                        </ul>
+                    </div>
+                </div>
+                <div style="float: left;margin-top: 40px">
+                    <span align="left" style="font-size: 18px;color: #666666">更多地区</span>
+                    <br><br>
+                    <div  style="width: 280px;height: 400px;">
+                        <a href="">天津</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">河北</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">山西</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">内蒙古</a><br><br><br>
+                        <a href="">辽宁</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">吉林</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">黑龙江</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">安徽</a><br><br><br>
+                        <a href="">福建</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">江西</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">山东</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">河南</a><br><br><br>
+                        <a href="">湖南</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">广西</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">海南</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">重庆</a><br><br><br>
+                        <a href="">四川</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">贵州</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">云南</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">西藏</a><br><br><br>
+                        <a href="">陕西</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">甘肃</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">青海</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">宁夏</a><br><br><br>
+                        <a href="">新疆</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">台湾</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">香港</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="">澳门</a><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div style="margin-top: 40px;margin-left: 50px" >
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <br>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">心血管内科</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div style="margin-top: 40px;margin-left: 50px" >
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+                    </div>
+                    <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+                    </div><div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                    <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                    <br><br>
+                    <ul>
+                        <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                        <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                        <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                        <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                    </ul>
+                </div><div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                    <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                    <br><br>
+                    <ul>
+                        <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                        <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                        <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                        <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                    </ul>
+                </div>
+                <br>
+                <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                        <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                        <br><br>
+                        <ul>
+                            <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                            <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                            <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                            <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                        </ul>
+                    </div>
+                <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                    <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                    <br><br>
+                    <ul>
+                        <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                        <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                        <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                        <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                    </ul>
+                </div>
+                <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                    <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                    <br><br>
+                    <ul>
+                        <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                        <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                        <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                        <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                    </ul>
+                </div>
+                <div style="width: 220px;height: 260px;float: left;margin-right: 90px">
+                    <a href="" style="font-size: 20px;color: #5FB878">病毒性肝炎</a>
+                    <br><br>
+                    <ul>
+                        <li><a href="http://www.zs-hospital.sh.cn" style="font-size: 14px">复旦大学附属中山医院</a></li><br>
+                        <li><a href="http://www.anzhen.org" style="font-size: 14px">首都医科大学附属北京安贞医院</a></li><br>
+                        <li><a href="http://www.fuwaihospital.org/Hospitals/Main" style="font-size: 14px">中国医学科学院阜外心血管病医院</a></li><br>
+                        <li><a href="http://www.gdghospital.org.cn/" style="font-size: 14px">广东省人民医院</a></li><br>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+        <br><br>
+        <span style="font-size: 16px;color: #4E5465">Copyright © 2000-2019DXY All Rights Reserved</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+        <br><br>
+        <img src="imgs/img2.png">
+        <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+        <br><br>
+        <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+        <br>
+        <br>
+    </div>
+</body>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+    //轮播图JS
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#bigimg'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test10'
+            ,width: '778px'
+            ,height: '440px'
+            ,interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+
+
+
+    //导航JS
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            //layer.msg(elem.text());
+        });
+    });
+</script>
+</html>

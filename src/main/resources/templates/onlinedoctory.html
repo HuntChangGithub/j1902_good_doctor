@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+</head>
+<style>
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1250px;
+    }
+    .ul1{
+        position: relative;
+        left: 152px;
+    }
+    #recommenddoctor{
+        position: absolute;
+        left: 152px;
+    }
+    #department{
+        position: relative;
+        top: 550px;
+        left: 152px;
+    }
+    #bottomdiv1{
+        position: absolute;
+        top: 1230px;
+    }
+</style>
+<body>
+    <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+        <div class="ly-inner pg-inner">
+            <ul class="topline-list fl clearfix">
+                <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">更多</a>
+                    <dl class="layui-nav-child">
+                        <dd>< a href="">会议</a></dd>
+                        <dd>< a href="">用药助手</a></dd>
+                        <dd>< a href="">叮当铺</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <a class="loginandreg" href="login" style="background-color: transparent;">登录</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" href="reg" style="background-color: transparent;">注册</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div style="width: 100%;height: 60px" align="center">
+        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+        <input style="height: 38px;width: 450px" type="text"placeholder="请输入您想咨询的医生"/>
+        <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+    </div>
+    <div class="ul1" align="center" style="width: 80%" >
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="onlinedoctory">在线问诊</a></li>
+            <li class="layui-nav-item"><a href="questionandanswer">名医问答</a></li>
+            <li class="layui-nav-item"><a href="diseaseencyclopedia">疾病百科</a></li>
+            <li class="layui-nav-item"><a href="healthscience">健康科普</a></li>
+            <li class="layui-nav-item"><a href="featuredtopics">精选专题</a></li>
+            <li class="layui-nav-item"><a href="allhospital">全国医院</a></li>
+            <li class="layui-nav-item"><a href="familymedication">家庭用药</a></li>
+        </ul>
+    </div>
+    <br><br>
+    <div class="layui-tab layui-tab-card" id="recommenddoctor" style="width: 1190px" >
+        <br>
+        <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;推荐医生</span>
+        <br><br><br>
+        <ul class="layui-tab-title">
+            <li class="layui-this">儿科</li>
+            <li>皮肤性病科</li>
+            <li>消化内科</li>
+            <li>泌尿外科</li>
+            <li>骨科</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 380px;">
+            <div class="layui-tab-item layui-show">
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                    <div align="center" style="height: 320px;width: 260px">
+                        <br>
+                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                            <span> 西京医院</span><br><br>
+                            <span>86个回答</span><br><br>
+                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>96个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-tab-item layui-show">
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
+                        <div align="center" style="height: 320px;width: 260px">
+                            <br>
+                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
+                            <div style="width: 230px">
+                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
+                                <span> 西京医院</span><br><br>
+                                <span>86个回答</span><br><br>
+                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 80%"  id="department">
+        <br>
+        <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;科室分类</span>
+        <br><br>
+        <div align="center">
+            <div  align="center">
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <br>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+                <div style="float: left;width: 200px;height: 200px">
+                    <img src="imgs/user.jpg" style="width: 100px;height: 100px;">
+                    <br>
+                    <span style="font-size: 18px;color: #2D93CA">内科</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div align="center" id="bottomdiv1" style="width: 100%;height: auto;background-color: #e6e6e6">
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+        <br><br>
+        <span style="font-size: 16px;color: #4E5465">Copyright © 2000-2019DXY All Rights Reserved</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+        <br><br>
+        <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+        <br><br>
+        <img src="imgs/img2.png">
+        <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+        <br><br>
+        <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+        <br>
+        <br>
+    </div>
+</body>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function(elem){
+            location.hash = 'test='+ $(this).attr('lay-id');
+        });
+
+    });
+</script>
+</html>

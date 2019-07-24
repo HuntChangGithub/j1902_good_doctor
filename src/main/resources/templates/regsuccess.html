@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+</head>
+<style>
+    #div1{
+        position: relative;
+        top: 150px;
+        left: 240px;
+    }
+
+    #bigimg{
+        position: relative;
+        top: 100px;
+        left: 200px;
+    }
+</style>
+<script>
+    var time = 5; //时间,秒
+    function Redirect(){
+        window.location.href = "login";
+    }
+    var i = 0;
+    function dis(){
+        document.all.s.innerHTML = "即将前往登录页面，还剩" + (time - i) + "秒";
+        i++;
+    }
+    timer=setInterval('dis()', 1000);//显示时间
+    timer=setTimeout('Redirect()',time * 1000); //跳转
+</script>
+<body>
+<div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd>< a href="">会议</a></dd>
+                    <dd>< a href="">用药助手</a></dd>
+                    <dd>< a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div style="float: left" align="center">
+    <img id="bigimg" src="imgs/regsuccess.jpg" style="width: 600px;height: 450px"/>
+</div>
+
+<div id="div1" style="height: 500px;width: 500px;float: left" align="center">
+    <div align="center">
+        <br><br><br><br><br><br><br><br><br>
+        <span style="font-size: 30px;color: #9F9F9F">恭喜你，注册成功！<a id="Timedtrigger" href="login" style="color: #FFB800">去登陆</a></span><br>
+        <span id="s" style="font-size: 30px;color: #9F9F9F"></span>
+    </div>
+</div>
+</body>
+</html>
