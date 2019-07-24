@@ -16,5 +16,4 @@ public class Doctor {
     private String jobtitle;
     private String doctorinfo;
     private Integer hpid;
-    private Integer ifValid;
 }
