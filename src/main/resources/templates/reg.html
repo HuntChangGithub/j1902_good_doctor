@@ -30,21 +30,27 @@
         position: absolute;
         top: 0px;
         left: 240px;
+        background-color: #5FB878;
     }
     #accDiv{
         position: absolute;
-        left: 300px;
+        left: 290px;
         top: 10px;
     }
     #compareUpw{
         position: absolute;
-        left: 300px;
+        left: 320px;
         top: 10px;
     }
     #compareYzm{
         position: absolute;
-        left: 350px;
+        left: 300px;
         top: 0px;
+    }
+    #zhengZeUpw{
+        position: absolute;
+        left: 300px;
+        top: 10px;
     }
 </style>
 <script>
@@ -78,8 +84,21 @@
         document.getElementById("account").value = "";
         document.getElementById("accDiv").innerHTML = "";
     }
+    //用正则表达式判断密码的有效性
+    function zhengZePw() {
+        var zc = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/;
+        var upw = document.getElementById("upassword").value;
+        if (zc.test(upw) == false){
+            return document.getElementById("zhengZeUpw").innerHTML = "请输入有效密码！";
+        }
+    }
+    function clearPwData() {
+        document.getElementById("zhengZeUpw").value = "";
+        document.getElementById("zhengZeUpw").innerHTML = "";
+    }
     //判断两次密码是否一致
     function compareUpw() {
+        var zc = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
         var upw = document.getElementById("upassword").value;
         var upw1 = document.getElementById("upassword1").value;
         if ( upw != upw1 ) {
@@ -92,17 +111,15 @@
         document.getElementById("compareUpw").value = "";
         document.getElementById("compareUpw").innerHTML = "";
     }
-
     //发送手机验证码
     $(function ( ) {
         $("#sendmessage").on('click',function ( ) {
-            if (document.getElementById("telphone").value == "") {
-
-
-
+            var re = /^1\d{10}$/;
+            var telphone = document.getElementById("telphone").value;
+            if(re.test(telphone) == false){
                 layer.open({
                     title: '提示',
-                    content: '请输入手机号',
+                    content: '请输入正确手机号',
                     time: 10000,
                     closeBtn: 1,
                     shade: [0.8, '#393D49'],
@@ -110,32 +127,45 @@
                     maxHeight:260,
                     moveOut:true,
                     skin: 'layui-layer-molv'
-
                 });
-
             }else {
-                var telphone = document.getElementById("telphone").value;
-                $.ajax({
-                    type:'GET',
-                    url: '/reg/sendyzm',
-                    data:{"telphone":telphone},
-                    dataType:'json',
-                    success:function (data) {
-                        layer.open({
-                            title: '提示',
-                            content: '验证码发送成功',
-                            time: 10000,
-                            closeBtn: 1,
-                            shade: [0.8, '#393D49'],
-                            fixed: false,
-                            maxHeight:260,
-                            moveOut:true,
-                            skin: 'layui-layer-molv'
+                if (document.getElementById("telphone").value == "") {
+                    layer.open({
+                        title: '提示',
+                        content: '请输入手机号',
+                        time: 10000,
+                        closeBtn: 1,
+                        shade: [0.8, '#393D49'],
+                        fixed: false,
+                        maxHeight:260,
+                        moveOut:true,
+                        skin: 'layui-layer-molv'
+                    });
 
-                        });
-                    }
-                })
+                }else {
+
+                    $.ajax({
+                        type:'GET',
+                        url: '/reg/sendyzm',
+                        data:{"telphone":telphone},
+                        dataType:'json',
+                        success:function (data) {
+                            layer.open({
+                                title: '提示',
+                                content: '验证码发送成功',
+                                time: 10000,
+                                closeBtn: 1,
+                                shade: [0.8, '#393D49'],
+                                fixed: false,
+                                maxHeight:260,
+                                moveOut:true,
+                                skin: 'layui-layer-molv'
+                            });
+                        }
+                    })
+                }
             }
+
         })
     })
 </script>
@@ -184,7 +214,10 @@
         <div class="layui-inline">
             <label class="layui-form-label">&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;</label>
             <div class="layui-input-inline">
-                <input type="password" style="width: 220px" id="upassword" name="upassword" lay-verify="email" autocomplete="off" placeholder="请设置密码" class="layui-input">
+                <input type="password" style="width: 220px" id="upassword" onblur="zhengZePw()" onfocus="clearPwData()" name="upassword" lay-verify="email" autocomplete="off" placeholder="密码应由6-10位数字或字母组成" class="layui-input">
+            </div>
+            <div id="zhengZeUpw" style="width: 200px;height: 38px;color: #FD482C" class="layui-input-inline" align="center">
+
             </div>
         </div>
         <br><br>
@@ -209,7 +242,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label>
             <div class="layui-input-inline">
-                <input type="password" style="width: 220px" name="yzm" lay-verify="email" autocomplete="off" placeholder="请输入您手机收到的6位验证码" class="layui-input">
+                <input type="text" style="width: 220px" name="yzm" lay-verify="email" autocomplete="off" placeholder="请输入您手机收到的6位验证码" class="layui-input">
             </div>
             <div id="compareYzm" style="width: 200px;height: 38px;color: #FD482C" class="layui-input-inline">
                 <span th:text="${string}"></span>
