@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping(value = "/reg/sendyzm" , method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Boolean> sendmessage(@RequestParam("telphone") String telphone , HttpSession session){
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI50OiPXnu9r7M", "xxvzB7ukfABXay5CQqdGWzd5jbKwbu");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIP4Ha77WeoXTA", "xm8qYmLjYQBu4Tei9nPgnq05eIkYP4");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -78,8 +78,8 @@ public class UserController {
 
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", str);
-        request.putQueryParameter("SignName", "伴我汽车");
-        request.putQueryParameter("TemplateCode", "SMS_169101820");
+        request.putQueryParameter("SignName", "健康医生平台");
+        request.putQueryParameter("TemplateCode", "SMS_171191648");
         request.putQueryParameter("TemplateParam", json);
         try {
             CommonResponse response = client.getCommonResponse(request);
