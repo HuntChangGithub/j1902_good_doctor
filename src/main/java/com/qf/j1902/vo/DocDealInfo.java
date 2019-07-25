@@ -1,19 +1,22 @@
-package com.qf.j1902.pojo;
+package com.qf.j1902.vo;
 
 import lombok.Data;
 
 /**
  * @auther mengyuan
  * @desc
- * @date 2019/7/24 17:25
+ * @date 2019/7/25 10:41
  */
 @Data
-public class Doctor {
+public class DocDealInfo {
     private Integer doctorid;
     private String username;
     private String telphone;
+    private Integer hpid;
     private Integer depid;
     private String jobtitle;
     private String doctorinfo;
-    private Integer hpid;
+    private String diplomaimg;
+    private String certificateimg;
+    private Integer ifValid;
 }
