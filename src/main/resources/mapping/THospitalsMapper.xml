@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.j1902.mapper.THospitalsMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.j1902.pojo.THospitals" >
+    <id column="hpId" property="hpid" jdbcType="INTEGER" />
+    <result column="hpName" property="hpname" jdbcType="VARCHAR" />
+    <result column="hpAddress" property="hpaddress" jdbcType="VARCHAR" />
+    <result column="provId" property="provid" jdbcType="INTEGER" />
+    <result column="cityId" property="cityid" jdbcType="INTEGER" />
+    <result column="hpTel" property="hptel" jdbcType="VARCHAR" />
+    <result column="hpInfo" property="hpinfo" jdbcType="VARCHAR" />
+    <result column="hpGrade" property="hpgrade" jdbcType="VARCHAR" />
+    <result column="hpskill" property="hpskill" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    hpId, hpName, hpAddress, provId, cityId, hpTel, hpInfo, hpGrade, hpskill
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.j1902.pojo.THospitalsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_hospitals
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_hospitals
+    where hpId = #{hpid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_hospitals
+    where hpId = #{hpid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.j1902.pojo.THospitalsExample" >
+    delete from t_hospitals
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.j1902.pojo.THospitals" >
+    insert into t_hospitals (hpId, hpName, hpAddress, 
+      provId, cityId, hpTel, 
+      hpInfo, hpGrade, hpskill
+      )
+    values (#{hpid,jdbcType=INTEGER}, #{hpname,jdbcType=VARCHAR}, #{hpaddress,jdbcType=VARCHAR}, 
+      #{provid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{hptel,jdbcType=VARCHAR}, 
+      #{hpinfo,jdbcType=VARCHAR}, #{hpgrade,jdbcType=VARCHAR}, #{hpskill,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.j1902.pojo.THospitals" >
+    insert into t_hospitals
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hpid != null" >
+        hpId,
+      </if>
+      <if test="hpname != null" >
+        hpName,
+      </if>
+      <if test="hpaddress != null" >
+        hpAddress,
+      </if>
+      <if test="provid != null" >
+        provId,
+      </if>
+      <if test="cityid != null" >
+        cityId,
+      </if>
+      <if test="hptel != null" >
+        hpTel,
+      </if>
+      <if test="hpinfo != null" >
+        hpInfo,
+      </if>
+      <if test="hpgrade != null" >
+        hpGrade,
+      </if>
+      <if test="hpskill != null" >
+        hpskill,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hpid != null" >
+        #{hpid,jdbcType=INTEGER},
+      </if>
+      <if test="hpname != null" >
+        #{hpname,jdbcType=VARCHAR},
+      </if>
+      <if test="hpaddress != null" >
+        #{hpaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="provid != null" >
+        #{provid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="hptel != null" >
+        #{hptel,jdbcType=VARCHAR},
+      </if>
+      <if test="hpinfo != null" >
+        #{hpinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hpgrade != null" >
+        #{hpgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="hpskill != null" >
+        #{hpskill,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.j1902.pojo.THospitalsExample" resultType="java.lang.Integer" >
+    select count(*) from t_hospitals
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_hospitals
+    <set >
+      <if test="record.hpid != null" >
+        hpId = #{record.hpid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hpname != null" >
+        hpName = #{record.hpname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpaddress != null" >
+        hpAddress = #{record.hpaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provid != null" >
+        provId = #{record.provid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityid != null" >
+        cityId = #{record.cityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hptel != null" >
+        hpTel = #{record.hptel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpinfo != null" >
+        hpInfo = #{record.hpinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpgrade != null" >
+        hpGrade = #{record.hpgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpskill != null" >
+        hpskill = #{record.hpskill,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_hospitals
+    set hpId = #{record.hpid,jdbcType=INTEGER},
+      hpName = #{record.hpname,jdbcType=VARCHAR},
+      hpAddress = #{record.hpaddress,jdbcType=VARCHAR},
+      provId = #{record.provid,jdbcType=INTEGER},
+      cityId = #{record.cityid,jdbcType=INTEGER},
+      hpTel = #{record.hptel,jdbcType=VARCHAR},
+      hpInfo = #{record.hpinfo,jdbcType=VARCHAR},
+      hpGrade = #{record.hpgrade,jdbcType=VARCHAR},
+      hpskill = #{record.hpskill,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.j1902.pojo.THospitals" >
+    update t_hospitals
+    <set >
+      <if test="hpname != null" >
+        hpName = #{hpname,jdbcType=VARCHAR},
+      </if>
+      <if test="hpaddress != null" >
+        hpAddress = #{hpaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="provid != null" >
+        provId = #{provid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="hptel != null" >
+        hpTel = #{hptel,jdbcType=VARCHAR},
+      </if>
+      <if test="hpinfo != null" >
+        hpInfo = #{hpinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hpgrade != null" >
+        hpGrade = #{hpgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="hpskill != null" >
+        hpskill = #{hpskill,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hpId = #{hpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.j1902.pojo.THospitals" >
+    update t_hospitals
+    set hpName = #{hpname,jdbcType=VARCHAR},
+      hpAddress = #{hpaddress,jdbcType=VARCHAR},
+      provId = #{provid,jdbcType=INTEGER},
+      cityId = #{cityid,jdbcType=INTEGER},
+      hpTel = #{hptel,jdbcType=VARCHAR},
+      hpInfo = #{hpinfo,jdbcType=VARCHAR},
+      hpGrade = #{hpgrade,jdbcType=VARCHAR},
+      hpskill = #{hpskill,jdbcType=VARCHAR}
+    where hpId = #{hpid,jdbcType=INTEGER}
+  </update>
+</mapper>
