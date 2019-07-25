@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class UserInfo {
-    private String uname; //登录用户名
-    private String upw;  //登录密码
+    private String username; //登录用户名
+    private String upassword;  //登录密码
     private String verifyCode;   //登录验证码
 }
