@@ -6,27 +6,26 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
 </head>
 <body>
 <div style="margin-bottom: 5px;">
     医生资质审核
 </div>
-<table class="layui-table" lay-data="{width: 892, height:330,url:'/demo/table/user/', page:true, id:'idTest'}" lay-filter="demo">
+<table class="layui-table" lay-data="{width: 892, height:330,url:'/main/dealdoctor/data', page:true, id:'idTest'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'doctorid', width:80, sort: true, fixed: true}">ID</th>
         <th lay-data="{field:'username', width:80}">用户名</th>
-        <th lay-data="{field:'realname', width:80, sort: true}">姓名</th>
-        <th lay-data="{field:'gender', width:80}">性别</th>
-        <th lay-data="{field:'city', width:160}">所属城市</th>
-        <th lay-data="{field:'hospital', width:80, sort: true}">所属医院</th>
-        <th lay-data="{field:'departments', width:80}">所属科室</th>
-        <th lay-data="{field:'answersum', width:135, sort: true}">累积回答</th>
-        <th lay-data="{field:'qualifications', width:135, sort: true}">资格证</th>
-        <th lay-data="{field:'idcardnum', width:135, sort: true}">身份证号</th>
-        <th lay-data="{field:'idcard', width:135, sort: true}">身份证</th>
+        <th lay-data="{field:'telphone', width:160}">电话</th>
+        <th lay-data="{field:'hpid', width:80, sort: true}">所属医院</th>
+        <th lay-data="{field:'depid', width:80}">所属科室</th>
+        <th lay-data="{field:'jobtitle', width:135, sort: true}">职称</th>
+        <th lay-data="{field:'doctorinfo', width:135, sort: true}">医生信息</th>
+        <th lay-data="{field:'diplomaimg', width:135, sort: true}">文凭</th>
+        <th lay-data="{field:'certificateimg', width:135, sort: true}">资格证</th>
+        <th lay-data="{field:'ifValid', width:135, sort: true}">审核完成否</th>
         <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>
@@ -39,7 +38,7 @@
 </script>
 
 
-<script src="/layui-v2.5.4/layui/layui.js" charset="utf-8"></script>
+<script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('table', function(){

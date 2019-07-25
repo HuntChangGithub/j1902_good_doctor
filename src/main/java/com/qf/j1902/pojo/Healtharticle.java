@@ -4,19 +4,19 @@ import lombok.Data;
 
 @Data
 public class Healtharticle {
-    private Integer pscienceid;
+    private Integer pscienceid;//文章id
 
-    private String pstitle;
+    private String pstitle;//文章标题
 
-    private String psintroduce;
+    private String psintroduce;//文章介绍
 
-    private String psauthor;
+    private String psauthor;//文章作者
 
-    private String psimage;
+    private String psimage;//文章图片
 
-    private String fenlei;
+    private String fenlei;//分类
 
-    private String pscontent;
+    private String pscontent;//文章内容
 
     public Integer getPscienceid() {
         return pscienceid;
