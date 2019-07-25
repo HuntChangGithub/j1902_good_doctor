@@ -8,5 +8,6 @@ import java.util.List;
  * Created by Administrator on 2019/7/24.
  */
 public interface HealthyService {
-    public List<Healtharticle> getHealthyArticles();
+    List<Healtharticle> getHealthyArticles();
+    Healtharticle getHealthyArticleByID(Integer pscienceid);
 }
