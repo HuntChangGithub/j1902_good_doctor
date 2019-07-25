@@ -4,7 +4,6 @@
 
 <mapper namespace="com.qf.j1902.mapper.DocDealMapper">
 
-
     <select id="getAllDocDealInfo" resultType="com.qf.j1902.vo.DocDealInfo">
     SELECT
         doctorid,
