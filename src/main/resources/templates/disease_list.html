@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疾病百科</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body  style="background-color: #e2e2e2">
+<div id="bigdiv">
+    <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
+        <h2 style="margin-left: 100px;color: darkorange">疾病百科</h2>
+    </div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href=" ">在线问诊</a></li>
+        <li class="layui-nav-item"><a href="questionandanswer.html">名医问答</a></li>
+        <li class="layui-nav-item"><a href="diseaseencyclopedia.html">疾病百科</a></li>
+        <li class="layui-nav-item"><a href="healthscience.html">健康科普</a></li>
+        <li class="layui-nav-item"><a href="featuredtopics.html">精选专题</a></li>
+        <li class="layui-nav-item"><a href="allhospital.html">全国医院</a></li>
+        <li class="layui-nav-item"><a href="familymedication.html">家庭用药</a></li>
+    </ul>
+    <div id="daohang" style="margin-top: 50px">
+        <li style="margin-left: 150px"><a href="">&nbsp;首页</a>&gt;<a href="">&nbsp;疾病百科</a>&gt;</li>
+    </div>
+    <div id="keshi" style="margin-left: 150px;margin-top: 30px;width: 65%;height: 220px;background-color: #eeeeee">
+        <button type="button" class="layui-btn" style="margin-left: 15px;margin-top: 10px">不限</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">内分泌科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">儿科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">皮肤病科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">消化内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">神经内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">妇产科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">心血管内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">普通内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">普外科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">感染科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">传染科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">骨科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">呼吸内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">肾脏内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">耳鼻咽喉科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">口腔科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">泌尿外科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">肿瘤科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">眼科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">神经外科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">心胸外科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">肾脏内科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">肝胆胰腺外科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">精神心理科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">风湿免疫科</button>
+        <button type="button" class="layui-btn" style="margin-top: 10px">其他</button>
+    </div>
+</div>
+<div id="baike" style="margin-left: 150px;margin-top: 30px;width: 65%;height: 220px;background-color: #eeeeee">
+    <h3>标题</h3>
+    <p>简介：</p>
+    <pre>           ........................................
+                .............................................
+                .............................................
+                .............................................</pre>
+
+    <span>编审专家：</span><a>姓名</a><a>所在医院</a><a >科室</a>
+</div>
+
+<ul class="flow-default" id="LAY_demo1"></ul>
+<ul class="flow-default" style="height: 300px;" id="demo"></ul>
+<div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
+    <br><br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+<br><br>
+<span style="font-size: 16px;color: #4E5465">Copyright  2000-2019DXY All Rights Reserved</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+<br><br>
+<a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+<br><br>
+<a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+<br><br>
+<img src="imgs/img2.png">
+<a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+<br><br>
+<img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+</div>
+<script>
+    layui.use('flow', function(){
+        var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+        var flow = layui.flow;
+        flow.load({
+            elem: '#demo', //指定列表容器
+            done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+                var lis = [];
+                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                $.get('/disease/list?page='+page, function(res){
+                    //假设你的列表返回在data集合中
+                    layui.each(res.data, function(index, item){
+                        lis.push('<li>'+ item.title +'</li>');
+                    });
+
+                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                    next(lis.join(''), page < res.pages);
+                });
+            }
+        });
+    });
+</script>
+<script src="layui/layui.js"></script>
+<script src="layui/layui.all.js"></script>
+</body>
+</html>

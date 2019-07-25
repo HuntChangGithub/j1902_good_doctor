@@ -9,11 +9,11 @@ import lombok.Data;
  */
 @Data
 public class Doctor {
-    private Integer doctorid;
-    private String username;
-    private String telphone;
-    private Integer depid;
-    private String jobtitle;
-    private String doctorinfo;
-    private Integer hpid;
+    private Integer doctorid;  //医生id
+    private String username;   //用户名
+    private String telphone;   //电话
+    private Integer depid;     //部门id
+    private String jobtitle;   //职称
+    private String doctorinfo; //医生信息
+    private Integer hpid;      //医院id
 }
