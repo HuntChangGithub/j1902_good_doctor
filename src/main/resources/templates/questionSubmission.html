@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css"/>
+    <meta charset="utf-8"><title>问医生</title>
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/chunk-vendors.ccb39f4a.css" rel="preload" as="style">
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/main.ff172381.css" rel="preload" as="style">
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/chunk-vendors.52e74da8.js" rel="preload" as="script">
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/main.ec031b77.js" rel="preload" as="script">
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/chunk-vendors.ccb39f4a.css" rel="stylesheet">
+    <link href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/main.ff172381.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/manifest.json">
+    <link rel="apple-touch-icon" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/img/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/img/icons/safari-pinned-tab.svg" color="#4DBA87">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/question~user.profile.2f25fd4d.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/user.profile.856f3a22.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/expert.examine~question~question.detail~quick.ask.1e2ac261.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/question~question.detail~quick.ask.9d76a665.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/question.811a1727.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/disease~doctor.profile.question~list~me~me.coupon~me.followed~me.question.answered~me.question.presc~13e9ce86.e2c46959.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/me.4c14a0e3.css">
+    <link rel="stylesheet" type="text/css" href="//assets.dxycdn.com/gitrepo/ask_v2/dist/css/quick.ask.c5ff2fd1.css">
+</head>
+<body>
+    <div class="question" style="width: 800px;margin-left: 350px">
+        <div data-v-6b4b3715="" class="cell cell-doctor_avatar cell_access">
+            <div class="cell__hd">
+                <div data-v-6b4b3715="" class="avatar">
+                    <div class="img-wp avatar__img">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="cell__bd">
+                <div data-v-6b4b3715="" class="doctor">
+                    <h3 data-v-6b4b3715="" class="doctor__name">麦伟虎</h3>
+                    <div data-v-6b4b3715="" class="doctor__work">
+                        <p data-v-6b4b3715="">
+                            <span data-v-6b4b3715="">副主任医师</span>
+                        </p>
+                        <p data-v-6b4b3715="">
+                            <span data-v-6b4b3715="">小儿眼科</span>
+                            <span data-v-6b4b3715="">海南省妇幼保健院</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="cell__ft">
+                <span data-v-6b4b3715="" class="c-primary">￥29</span>
+            </div>
+        </div>
+        <div class="group">
+            <div class="group__hd">
+                <p>向麦伟虎医生提问（症状、部位、持续时间等）</p>
+            </div>
+            <div class="group__cells">
+                <div class="editor cells">
+                    <div class="cell editor__textarea">
+                        <div class="cell__bd">
+                            <div class="textarea">
+                                <textarea id="body" name="textInput" placeholder="请描述你的年龄、性别、症状及就诊经历，便于医生进行准确分析，我们会确保你的隐私安全" rows="7" required="required" class="textarea__input needsclick" style="height: auto; color: rgb(32, 32, 32); max-height: 500px;"></textarea>
+                                <div class="textarea__tip"><!---->
+                                    <div class="textarea__counter">
+                                        <span class="">0/500</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell__ft"></div>
+                    </div>
+                    <div class="cell editor__upload"><!---->
+                        <div class="cell__bd">
+                            <div class="upload">
+                                <div id="fileList" class="preview upload-preview">
+                                    <div class="preview__file">
+                                        <div class="upload__btn ">
+                                            <a id="filePicker" class="webuploader-container">
+                                                <div class="webuploader-pick"></div>
+                                                <div id="rt_rt_1dgi2j67b1rle1lahclm1gddnjj1" style="position: absolute; inset: 0px auto auto 0px; width: 229.317px; height: 229.317px; overflow: hidden;">
+                                                    <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/gif,image/jpeg,image/jpg,image/png">
+                                                    <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255) none repeat scroll 0% 0%;"></label>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upload__txt">上传图片辅助说明病情<br>可上传 9 张</div>
+                            </div>
+                        </div>
+                        <div class="cell__ft"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group"><!---->
+            <div class="group__cells">
+                <div class="price-selector__content">
+                    <div class="price-selector__text">医生将在 <b>24</b> 小时内回复你，若超时未回复，系统将关闭问题，你所支付的费用将会全额退回</div>
+                    <button class="button button_primary">支付 ￥29 提问</button><!---->
+                </div>
+            </div>
+        </div>
+        <div class="question__tip">
+            <svg aria-hidden="true" class="icon-font icon-infofill">
+                <use xlink:href="#icon-infofill"></use>
+            </svg>注：医生的回答只作为健康咨询类建议，不作为诊断和治疗依据，咨询建议不能代替医生面诊。如不适感严重，请立即就医。
+        </div>
+        <div class="modal follow-model" style="display: none;">
+            <div class="mask"></div>
+            <div class="modal__dialog">
+                <div class="modal__header">
+                    <h3 class="modal__title"></h3>
+                </div>
+                <div class="modal__body">
+                    <div class="follow-model__body">
+                        <div class="follow-model__close">
+                            <svg aria-hidden="true" class="icon-font icon-close">
+                                <use xlink:href="#icon-close"></use>
+                            </svg>
+                        </div>
+                        <div class="follow-model__doctor">
+                            <h3>麦伟虎<span> 副主任医师</span></h3>
+                            <p class="follow-model__doctor-desc">海南省妇幼保健院, 小儿眼科</p>
+                        </div>
+                        <div class="follow-model__qrcode img-wp">
+                            <img src="http://api.dxy.cn/qr-code/?alpha=true&amp;size=8&amp;margin=1&amp;format=png&amp;url=http://weixin.qq.com/q/02y4cMhw9rcq310000g036"></div>
+                        <div class="follow-model__bottom">
+                            <h3>微信扫一扫加关注，来问丁香医生</h3>
+                            <p>丁香医生 | 就这么简单<br>丁香医生荣誉出品</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__footer"></div>
+            </div>
+        </div>
+    </div>
+
+<script src="layui/layui.js"></script>
+<script src="layer/layer.js"></script>
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/question~user.profile.a5ae5de0.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/user.profile.0cdd63a4.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/expert.examine~question~question.detail~quick.ask.f252790e.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/question~question.detail~quick.ask.22d5b21b.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/question.75b039b6.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/upload.image.c8abb87e.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/disease~doctor.profile.question~list~me~me.coupon~me.followed~me.question.answered~me.question.presc~13e9ce86.cf3e286f.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/me.fc2ce04b.js"></script>-->
+    <!--<script charset="utf-8" src="//assets.dxycdn.com/gitrepo/ask_v2/dist/js/quick.ask.53d0a342.js"></script>-->
+</body>
+</html>
