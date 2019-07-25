@@ -1,16 +1,45 @@
 package com.qf.j1902.controller;
 
+import com.qf.j1902.pojo.Healtharticle;
+import com.qf.j1902.service.HealthyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by Administrator on 2019/7/24.
  */
 @Controller
 public class HealthyController {
+    @Autowired
+    private HealthyService healthyService;
+
     @RequestMapping(value = "liangxing",method = RequestMethod.GET)
-    public String liangxing(){
+    public String liangxing(Model model){
+        List<Healtharticle> articles = healthyService.getHealthyArticles();
+        List<Healtharticle> articles2=new ArrayList<>();
+        Map<Integer,List<Healtharticle>> map=new TreeMap<>();
+        for (int i=0;i<articles.size()/3;i++){
+            articles2 = new ArrayList<>();
+            for(int j=0;j<3;j++){
+                articles2.add(articles.get(i*2+j+i));
+            }
+            map.put(i+1,articles2);
+        }
+        System.out.println("value:"+map.get(1));
+        System.out.println("value:"+map.get(2));
+        System.out.println("value:"+map.get(3));
+        System.out.println("value:"+map.get(4));
+        System.out.println(map.values());
+        System.out.println(map.keySet());
+        model.addAttribute("map",map);
         return "liangxing";
     }
     @RequestMapping(value = "manbing",method = RequestMethod.GET)
@@ -32,7 +61,7 @@ public class HealthyController {
 
     @RequestMapping(value = "zhongliu",method = RequestMethod.GET)
     public String zhongliu(){
-        return "liangxing";
+        return "zhongliu";
     }
     @RequestMapping(value = "zuixin",method = RequestMethod.GET)
     public String zuixin(){
