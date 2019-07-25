@@ -1,6 +1,6 @@
 ﻿
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>推荐科普 - 丁香医生</title>
@@ -116,112 +116,19 @@
 	</div>
 	<div id="tbalediv">
 		<table>
-			<tr>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image15.jpg"/>
+			<tr th:each="articles:${map}">
+				<td th:each="article:${articles.value}">
+				<div class="divaa" >
+					<img class="imgxx"   th:src="'images/'+${article.getPsimage()}" src="images/推荐/image15.jpg"/>
 					<div class="smalldiv">
-						<a href="健康科普详情页面.html" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
+						<a href="健康科普详情页面.html" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​" th:text="${article.getPstitle()}">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
 						<span>作者：</span>
-						<a href="健康科普详情页面.html" target="_blank">丁香医生</a><br/><br/>
-						<a href="健康科普详情页面.html" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
+						<a href="健康科普详情页面.html" target="_blank"  th:text="${article.getPsauthor()}">丁香医生</a><br/><br/>
+						<a href="健康科普详情页面.html" target="_blank"  th:text="${article.getPsintroduce()}">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
 					</div>
 				</div> 
 				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image14.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image13.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>			
 			</tr>
-			<tr>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image12.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image11.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div>
-				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image10.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div>		
-				</td>			
-			</tr>
-			<tr>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image15.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image14.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>
-				<td>
-				<div class="divaa">
-					<img class="imgxx" src="images/推荐/image13.jpg"/>
-					<div class="smalldiv">
-						<a href="/column/21995" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
-						<span>作者：</span>
-						<a href="/column/author/dingxiangyisheng" target="_blank">丁香医生</a><br/><br/>
-						<a href="/column/21995" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
-					</div>
-				</div> 
-				</td>			
-			</tr>
-			
 		</table>
 	</div>
 	<div id="fenyediv">
@@ -302,7 +209,7 @@
 			var idss=$(this).attr("id");
 			console.log(idss+":ss");;	
 			$("#"+idss).css("background-color","#FDA100");
-			 window.location.href="zhenxing"
+			 window.location.href="zhenxiang"
 			
 		});
 		$("#div6").click(function(){
