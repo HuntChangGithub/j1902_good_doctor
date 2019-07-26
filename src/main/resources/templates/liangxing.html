@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="layui/css/layui.css"  media="all">
 	<script src="layui/layui.js" charset="utf-8"></script>
 	<script src="layui/lay/modules/jquery.js" charset="utf-8"></script>
+	<script src="layer/layer.js" merge="true"></script>
+	<link rel="stylesheet" href="layer/theme/default/layer.css"  media="all">
 	<style>
 		#imgss{
 			width:120px;
@@ -62,10 +64,15 @@
 			margin-left:500px;
 			
 		}
+		.loginandreg{
+			position: relative;
+			top: -40px;
+			left: 1000px;
+		}
 	</style>
 </head>
 <body>
-	<div class="layui-nav">
+	<div class="layui-nav layui-bg-green">
 		<div class="ly-inner pg-inner">
 			<ul class="topline-list fl clearfix">
 				<li class="layui-nav-item"><a target="_blank" href="http://www.dxy.cn/">丁香园</a></li>
@@ -83,6 +90,16 @@
 					</dl>
 				  </li>
 			</ul>
+			<div>
+				<a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+				<span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.user.username}" ></span>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+			</div>
 		</div>
 	</div>
 	<div style="width:100%;height:60px" align="center">

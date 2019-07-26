@@ -108,5 +108,21 @@ public class HospitalController {
         }
         return "error";
     }
-
+    @RequestMapping("/echarts")
+    public String echarts(){
+        return "hospitals_echarts";
+    }
+    @RequestMapping("/detail")
+    @ResponseBody
+    public Integer detail(@RequestParam(value = "name",defaultValue = "")String provName){
+        if (!"".equals(provName)){
+            //获取provinceid；
+            Province province = provinceService.getProvByName(provName);
+            Integer provinceid = Integer.parseInt(province.getProvinceid());
+            //查询数据条数
+            int i = hospitalService.countHospitalsByProvince(provinceid);
+            return i;
+        }
+        return 0;
+    }
 }

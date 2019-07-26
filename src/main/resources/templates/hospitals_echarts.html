@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE"><!--添加浏览器支持，此处可不要-->
+    <title>ECharts</title>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="echarts/echarts.js"></script>
+    <script src="echarts/china.js"></script>
+    <style>#china-map {width:800px;height: 800px;margin: auto;}</style>
+</head>
+<body>
+
+<div id="china-map"></div>
+
+<script>
+    var myChart = echarts.init(document.getElementById('china-map'));
+    var option = {
+        tooltip: {
+//          show: false //不显示提示标签'{b}'
+            formatter: function (b){
+                var obj=JSON.stringify(b);
+                var json=JSON.parse(obj);
+                var data=json.data;
+                var count=0;
+                $.ajax({
+                    async: false,//设置为同步方法，必须回调函数执行完再往下执行；
+                    type: 'post',
+                    url: 'detail',
+                    data: data,
+                    success: function (result) {
+                        count=result;
+                    }
+                })
+                return '<div>'+JSON.stringify(data.name)+'地区有医院：'+count+'家</div>';
+            }, //提示标签格式
+            backgroundColor:"#ff7f50",//提示标签背景颜色
+            textStyle:{color:"#fff"} //提示标签字体颜色
+        },
+        series: [{
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true,//显示省份标签
+                    textStyle:{color:"#c71585"}//省份标签字体颜色
+                },
+                emphasis: {//对应的鼠标悬浮效果
+                    show: true,
+                    textStyle:{color:"#800080"}
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderWidth: .5,//区域边框宽度
+                    borderColor: '#009fe8',//区域边框颜色
+                    areaColor:"#ffefd5",//区域颜色
+                },
+                emphasis: {
+                    borderWidth: .5,
+                    borderColor: '#4b0082',
+                    areaColor:"#ffdead",
+                }
+            },
+            data:[
+                {name:'北京', selected:true}//定义为选中状态
+            ]
+        }],
+    };
+
+    myChart.setOption(option);
+    /*myChart.on('mouseover', function (params) {
+        var dataIndex = params.dataIndex;
+        var data = params.data;
+        console.log(data);
+        /!*$.ajax({
+            type:'post',
+            url: 'detail',
+            data: data,
+            success: function (result) {
+                //console.log(result);
+            }
+        })*!/
+    });*/
+</script>
+
+</body>
+</html>

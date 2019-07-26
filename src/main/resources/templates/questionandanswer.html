@@ -9,7 +9,44 @@
         .bq:hover{
             background-color: #5FB878;
         }
+        .loginandreg{
+            position: relative;
+            top: -40px;
+            left: 1080px;
+        }
     </style>
+    <script>
+        //通过判断session的值是否为空，改变五个标签的hidden属性
+        function searchSession() {
+            var username = document.getElementById("uname").innerHTML;
+            //获取五个标签对应的对象
+            var logina = document.getElementById("logina");
+            var rega = document.getElementById("rega");
+            var helloa = document.getElementById("helloa");
+            var uname = document.getElementById("uname");
+            var logouta = document.getElementById("logouta");
+
+            if (username != ""){
+                //如果不为空，说明已登录
+                logina.setAttribute("hidden",true);
+                rega.setAttribute("hidden",true);
+                helloa.removeAttribute("hidden");
+                uname.removeAttribute("hidden");
+                logouta.removeAttribute("hidden");
+            }else {
+                //否则说明未登录或已退出
+                logina.removeAttribute("hidden");
+                rega.removeAttribute("hidden");
+                helloa.setAttribute("hidden",true);
+                logouta.setAttribute("hidden",true);
+                uname.setAttribute("hidden",true);
+
+            }
+        }
+        window.onload=function () {
+            searchSession();
+        }
+    </script>
 </head>
 <body style="min-width: 1200px;overflow-x: hidden;overflow-y: auto">
     <div>
@@ -31,6 +68,18 @@
                     </dl>
                 </li>
             </ul>
+
+            <div>
+                <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+                <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+            </div>
+
         </div>
         <div style="position:absolute;top: 100px; width: 100%;height: 60px" align="center" >
             <a href="questionandanswer.html"><img src="imgs/jxys.jpg" style="width: 120px;height: 60px"></a>
@@ -38,7 +87,7 @@
             <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
         </div>
         <div style="position: absolute;top: 185px;left: 400px; font-size: 17px">
-            <a href="detailedquestions">在线问诊</a>
+            <a href="onlinedoctory">在线问诊</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="questionandanswer">名医问答</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

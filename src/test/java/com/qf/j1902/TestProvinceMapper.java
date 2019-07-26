@@ -28,4 +28,11 @@ public class TestProvinceMapper {
         List<Province> provinces = provinceMapper.findAll();
         System.out.println(provinces);
     }
+    @Test
+    public void Testoneee(){
+        Province province = provinceMapper.getProvByName("陕西");
+        System.out.println(province);
+        Integer i = Integer.parseInt(province.getProvinceid());
+        System.out.println(i);
+    }
 }
