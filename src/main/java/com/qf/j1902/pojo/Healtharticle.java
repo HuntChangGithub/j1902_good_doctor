@@ -2,21 +2,26 @@ package com.qf.j1902.pojo;
 
 import lombok.Data;
 
+import java.util.Date;
 @Data
 public class Healtharticle {
-    private Integer pscienceid;//文章id
+    private Integer pscienceid;
 
-    private String pstitle;//文章标题
+    private String pstitle;
 
-    private String psintroduce;//文章介绍
+    private String psintroduce;
 
-    private String psauthor;//文章作者
+    private String psauthor;
 
-    private String psimage;//文章图片
+    private String psimage;
 
-    private String fenlei;//分类
+    private String fenlei;
 
-    private String pscontent;//文章内容
+    private Byte ifValid;
+
+    private Date createtime;
+
+    private String pscontent;
 
     public Integer getPscienceid() {
         return pscienceid;
@@ -64,6 +69,22 @@ public class Healtharticle {
 
     public void setFenlei(String fenlei) {
         this.fenlei = fenlei == null ? null : fenlei.trim();
+    }
+
+    public Byte getIfValid() {
+        return ifValid;
+    }
+
+    public void setIfValid(Byte ifValid) {
+        this.ifValid = ifValid;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     public String getPscontent() {
