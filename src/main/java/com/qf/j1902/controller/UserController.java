@@ -160,7 +160,7 @@ public class UserController {
                     subject.login(token);
                     if (subject.isAuthenticated()) {
                         if (roleName.equals("doctor") || roleName.equals("member")){
-                            session.setAttribute("username", userInfo.getUsername());
+                            session.setAttribute("user", userInfo);
                             if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")){
                                 return "index";
                             }else {
