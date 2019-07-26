@@ -22,12 +22,11 @@ public class DealDoctorController {
 
     @RequestMapping("/main/dealdoctor")
     public String delDoctor(){
-
         return "docDeal";
     }
     @ResponseBody
     @RequestMapping("/main/dealdoctor/data")
-    public Object delDoctorData(){
+    public Object dealDoctorData(){
         List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
         DataVo infoVo = new DataVo();
         infoVo.setCount(allDocDealInfo.size());

@@ -39,6 +39,8 @@ public class TestDoc {
     @Test
     public void DocInfoTest1(){
         List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
+        List<Doctor> allDoc = doctorService.getAllDoc();
+        System.out.println(allDoc);
         System.out.println(allDocDealInfo);
     }
 }
