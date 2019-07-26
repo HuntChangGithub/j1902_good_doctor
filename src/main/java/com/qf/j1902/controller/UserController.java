@@ -6,11 +6,19 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
+import com.aliyuncs.http.HttpRequest;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.google.gson.Gson;
 import com.qf.j1902.pojo.User;
 import com.qf.j1902.service.UserService;
+import com.qf.j1902.utils.ImgCode;
+import com.qf.j1902.vo.UserInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +26,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,16 +103,21 @@ public class UserController {
         }
             return new ResponseEntity<Boolean>(false, HttpStatus.FAILED_DEPENDENCY);
     }
+    //用户注册
     @RequestMapping(value = "/doreg" , method = RequestMethod.POST)
     public String doReg(@RequestParam("username") String username,
                         @RequestParam("upassword") String upassword,
                         @RequestParam("telphone") String telphone,
                         @RequestParam("yzm") String yzm,
                         HttpSession session , Model model){
+        Md5Hash md5Hash = new Md5Hash(upassword,null,1024);
+        String md5str = md5Hash.toString();
         User user = new User();
         user.setUsername(username);
-        user.setUpassword(upassword);
+        user.setUpassword(md5str);
         user.setTelphone(telphone);
+        Date date = new Date();
+        user.setRegtime(date);
         String string;
         String sendcode = (String) session.getAttribute("sendyzm");
         if (yzm.equals(sendcode)){
@@ -116,9 +132,70 @@ public class UserController {
         }
 
     }
+    //生成登录时验证码
+    @RequestMapping(value="/getImage" ,method=RequestMethod.GET)
+    public void getVerifyImage(HttpServletRequest request, HttpServletResponse response){
+        ImgCode imgCode = new ImgCode();
+        imgCode.getRandcode(request,response);
+
+    }
+    //用户登录
+    @RequestMapping(value = "/dologin" , method = RequestMethod.POST)
+    public String dologin(UserInfo userInfo , Model model , HttpSession session ,String url){
+        //解析进入登录页前的页面全路径，获取路径以便动态返回登录前的页面
+        int i = url.lastIndexOf("/");
+        int length = url.length();
+        String substring = url.substring(i, length);
+        //从session中获取存储的验证码
+        String verify = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
+        List<User> users = userService.getUserByName(userInfo.getUsername());
+        //检验登录验证码
+        if (StringUtils.startsWithIgnoreCase(verify,userInfo.getVerifyCode())){
+            if (users.size() != 0) {
+                Integer userid = users.get(0).getUserid();
+                String roleName = userService.getRoleNameByUid(userid);
+                try {
+                    Subject subject = SecurityUtils.getSubject();
+                    UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getUpassword());
+                    subject.login(token);
+                    if (subject.isAuthenticated()) {
+                        if (roleName.equals("doctor") || roleName.equals("member")){
+                            session.setAttribute("user", userInfo);
+                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")){
+                                return "index";
+                            }else {
+                                return substring;
+                            }
+                        }else {
+                            return "main";
+                        }
+                    }
+                } catch (Exception e) {
+                    String string1 = "用户名或密码错误";
+                    model.addAttribute("string1", string1);
+                }
+            }else {
+                String string3 = "用户名不存在";
+                model.addAttribute("string3", string3);
+            }
+        }else {
+            String string2 = "验证码错误";
+            model.addAttribute("string2", string2);
+        }
+        return "login";
+    }
     @RequestMapping(value = "login")
     public String login(){
         return "login";
     }
-
+    @RequestMapping(value = "onlinedoctory")
+    public String toOnlinedoctory(){
+        return "onlinedoctory";
+    }
+    //退出
+    @RequestMapping(value = "logout")
+    public String logout(HttpSession session){
+        session.setAttribute("username","");
+        return "index";
+    }
 }

@@ -67,7 +67,44 @@
 			margin-left:500px;
 			
 		}
+		.loginandreg{
+			position: relative;
+			top: -40px;
+			left: 1080px;
+		}
 	</style>
+	<script>
+        //通过判断session的值是否为空，改变五个标签的hidden属性
+        function searchSession() {
+            var username = document.getElementById("uname").innerHTML;
+            //获取五个标签对应的对象
+            var logina = document.getElementById("logina");
+            var rega = document.getElementById("rega");
+            var helloa = document.getElementById("helloa");
+            var uname = document.getElementById("uname");
+            var logouta = document.getElementById("logouta");
+
+            if (username != ""){
+                //如果不为空，说明已登录
+                logina.setAttribute("hidden",true);
+                rega.setAttribute("hidden",true);
+                helloa.removeAttribute("hidden");
+                uname.removeAttribute("hidden");
+                logouta.removeAttribute("hidden");
+            }else {
+                //否则说明未登录或已退出
+                logina.removeAttribute("hidden");
+                rega.removeAttribute("hidden");
+                helloa.setAttribute("hidden",true);
+                logouta.setAttribute("hidden",true);
+                uname.setAttribute("hidden",true);
+
+            }
+        }
+        window.onload=function () {
+            searchSession();
+        }
+	</script>
 </head>
 <body>
 <div class="layui-nav">
@@ -88,6 +125,16 @@
 				</dl>
 			  </li>
 		</ul>
+		<div>
+			<a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+			<span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+		</div>
 	</div>
 </div>
 	<div style="width:100%;height:60px" align="center">
@@ -121,10 +168,10 @@
 				<div class="divaa">
 					<img class="imgxx" src="images/推荐/image15.jpg"/>
 					<div class="smalldiv">
-						<a href="健康科普详情页面.html" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
+						<a href="healthyXiangQing.html" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
 						<span>作者：</span>
-						<a href="健康科普详情页面.html" target="_blank">丁香医生</a><br/><br/>
-						<a href="健康科普详情页面.html" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
+						<a href="healthyXiangQing.html" target="_blank">丁香医生</a><br/><br/>
+						<a href="healthyXiangQing.html" target="_blank">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
 					</div>
 				</div> 
 				</td>
@@ -272,7 +319,7 @@
 		//后面就跟你平时使用jQuery一样
 		$=layui.jquery;
 		$(".divaa").click(function(){
-			window.location.href="健康科普详情页面.html"			
+			window.location.href="healthyXiangQing.html"
 		});
 		window.onload=function(){		
 			$("#div2").css("background-color","#FDA100");	

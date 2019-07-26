@@ -13,4 +13,9 @@ public interface UserService {
 
     //添加用户
     public boolean addUser(User user);
+
+    //通过用户名查user对象
+    public List<User> getUserByName(String username);
+
+    public String getRoleNameByUid(Integer userid);
 }

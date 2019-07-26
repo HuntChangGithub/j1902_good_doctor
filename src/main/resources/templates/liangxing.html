@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="layui/css/layui.css"  media="all">
 	<script src="layui/layui.js" charset="utf-8"></script>
 	<script src="layui/lay/modules/jquery.js" charset="utf-8"></script>
+	<script src="layer/layer.js" merge="true"></script>
+	<link rel="stylesheet" href="layer/theme/default/layer.css"  media="all">
 	<style>
 		#imgss{
 			width:120px;
@@ -22,20 +24,18 @@
 			text-align: center;
 		}
 		#divgg{
-			position:absolute;
-			top:190px;
-			left:230px;
+			margin-top: 20px;
+			margin-left: 230px;
 			
 		}
-	    #tbalediv{
-			position:absolute;
-			top:250px;
-			left:200px;
+	   #tbalediv{
+		   margin-top: 20px;
+		   margin-left: 200px;
 			
 		}
 		.divaa{
 			width:300px;
-			height:360px;
+			height:380px;
 			border:1px solid black;
 			margin-left:20px;
 			margin-top:20px;
@@ -53,43 +53,55 @@
 			margin-left:12px;
 		}
 		#bottomdiv{
-			position:absolute;
-			top:1500px;
-			left:0px;
+			margin-top: 20px;
 		
 		}
-		#fenyediv{
+		/*#fenyediv{
 			position:absolute;
 			top:1400px;
-		
-		}
+		}*/
 		#demo1{
 			margin-left:500px;
 			
 		}
+		.loginandreg{
+			position: relative;
+			top: -40px;
+			left: 1000px;
+		}
 	</style>
 </head>
 <body>
-<div class="layui-nav">
-	<div class="ly-inner pg-inner">
-		<ul class="topline-list fl clearfix">
-            <li class="layui-nav-item"><a target="_blank" href="http://www.dxy.cn/">丁香园</a></li>
-            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
-            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
-            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
-            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
-            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
-            <li class="layui-nav-item">
-				<a href="javascript:;">更多</a>
-				<dl class="layui-nav-child">
-				  <dd><a href="">会议</a></dd>
-				  <dd><a href="">用药助手</a></dd>
-				  <dd><a href="">叮当铺</a></dd>
-				</dl>
-			  </li>
-		</ul>
+	<div class="layui-nav layui-bg-green">
+		<div class="ly-inner pg-inner">
+			<ul class="topline-list fl clearfix">
+				<li class="layui-nav-item"><a target="_blank" href="http://www.dxy.cn/">丁香园</a></li>
+				<li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+				<li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+				<li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+				<li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+				<li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">更多</a>
+					<dl class="layui-nav-child">
+					  <dd><a href="">会议</a></dd>
+					  <dd><a href="">用药助手</a></dd>
+					  <dd><a href="">叮当铺</a></dd>
+					</dl>
+				  </li>
+			</ul>
+			<div>
+				<a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+				<span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.user.username}" ></span>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+			</div>
+		</div>
 	</div>
-</div>
 	<div style="width:100%;height:60px" align="center">
 		<a href="index.html"><img  id="imgss" src="logo/logo.jpg" /></a>
 		<input style="width:450px;height:35px"/>
@@ -118,23 +130,18 @@
 		<table>
 			<tr th:each="articles:${map}">
 				<td th:each="article:${articles.value}">
-				<div class="divaa" >
+				<div class="divaa" th:id="${article.getPscienceid()}">
 					<img class="imgxx"   th:src="'images/'+${article.getPsimage()}" src="images/推荐/image15.jpg"/>
 					<div class="smalldiv">
-						<a href="健康科普详情页面.html" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​" th:text="${article.getPstitle()}">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
+						<a href="healthyXiangQing" target="_blank" title="多喝牛奶能长高？这么多年你可能都错了！​" th:text="${article.getPstitle()}">多喝牛奶能长高？这么多年你可能都错了！​</a><br/><br/>
 						<span>作者：</span>
-						<a href="健康科普详情页面.html" target="_blank"  th:text="${article.getPsauthor()}">丁香医生</a><br/><br/>
-						<a href="健康科普详情页面.html" target="_blank"  th:text="${article.getPsintroduce()}">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
+						<a href="healthyXiangQing" target="_blank" th:text="${article.getPsauthor()}">丁香医生</a><br/><br/>
+						<a href="healthyXiangQing" target="_blank" th:text="${article.getPsintroduce()}">我是周倩，中南大学湘雅二医院神经外科主治医生，神经外科学博士、康复与理疗学硕士。</a>
 					</div>
 				</div> 
 				</td>
 			</tr>
 		</table>
-	</div>
-	<div id="fenyediv">
-		<fieldset class="layui-elem-field layui-field-title" style="width:1500px">
-		</fieldset>
-		<div id="demo1"></div>
 	</div>
 <div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
     <br><br><br>
@@ -166,10 +173,10 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
     <br><br>
-    <img src="layui-v2.5.4/layui/images/face/img2.gif">
+    <img src="imgs/img2.png">
     <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
     <br><br>
-    <img src="layui-v2.5.4/layui/images/face/img1.png" style="height: 35px;width: 35px"/>
+    <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
 </div>
 	
 <script>
@@ -178,7 +185,9 @@
 		//后面就跟你平时使用jQuery一样
 		$=layui.jquery;
 		$(".divaa").click(function(){
-			window.location.href="健康科普详情页面.html"			
+		    var id=$(this).attr("id");
+		    alert(id)
+			window.location.href="healthyXiangQing?pscienceid="+id;
 		});
 		window.onload=function(){		
 			$("#div5").css("background-color","#FDA100");	
@@ -224,22 +233,9 @@
 			console.log(idss+":ss");;	
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="manbing"
-			
 		});
 	});
-	layui.use(['laypage', 'layer'], function(){
-	  var laypage = layui.laypage
-	  ,layer = layui.layer;
-	  //总页数大于页码总数
-	  laypage.render({
-		elem: 'demo1'
-		,count: 70 //数据总数
-		,jump: function(obj){
-		  console.log(obj)
-		}
-	  });
-	  
-	});   
+
 </script>
 </body>
 </html>

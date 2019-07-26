@@ -6,23 +6,23 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
 </head>
 <body>
 <div style="margin-bottom: 5px;">
 医生管理
 </div>
-<table class="layui-table" lay-data="{width: 100%, height:100%, url:'/demo/table/user/', page:true, id:'idTest'}" lay-filter="demo">
+<table class="layui-table" lay-data="{ url:'/main/docMa/data', page:true, id:'idTest'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'username', width:80}">用户名</th>
-        <th lay-data="{field:'gender', width:80}">性别</th>
-        <th lay-data="{field:'city', width:160}">所属城市</th>
-        <th lay-data="{field:'hospital', width:80, sort: true}">所属医院</th>
-        <th lay-data="{field:'departments', width:80}">所属科室</th>
-        <th lay-data="{field:'answersum', width:135, sort: true}">累积回答</th>
+        <th lay-data="{field:'doctorid',  sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'username', }">用户名</th>
+        <th lay-data="{field:'telphone', }">电话</th>
+        <th lay-data="{field:'hpid', }">医院</th>
+        <th lay-data="{field:'depid',  sort: true}">科室</th>
+        <th lay-data="{field:'jobtitle', }">职称</th>
+        <th lay-data="{field:'doctorinfo',  sort: true}">医生信息</th>
         <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>
@@ -35,7 +35,7 @@
 </script>
 
 
-<script src="/layui-v2.5.4/layui/layui.js" charset="utf-8"></script>
+<script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('table', function(){
