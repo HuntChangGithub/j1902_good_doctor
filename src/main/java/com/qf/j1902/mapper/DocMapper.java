@@ -2,6 +2,7 @@ package com.qf.j1902.mapper;
 
 import com.qf.j1902.pojo.Doctor;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ import java.util.List;
 @Mapper
 public interface DocMapper {
     List<Doctor> getAllDoc();
-
+    int delDocById(@Param("id")int id);
+    boolean UpDocById(@Param("doctor")Doctor doctor);
 }

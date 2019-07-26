@@ -6,6 +6,7 @@ import com.qf.j1902.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.util.List;
 
 /**
@@ -18,8 +19,22 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
     private DocMapper docMapper;
+
     @Override
     public List<Doctor> getAllDoc() {
         return docMapper.getAllDoc();
     }
+
+    @Override
+    public boolean delDocById(int id) {
+        int i = docMapper.delDocById(id);
+        return i>0;
+    }
+
+    @Override
+    public boolean UpDateById(Doctor doctor) {
+        return docMapper.UpDocById(doctor);
+    }
+
+
 }

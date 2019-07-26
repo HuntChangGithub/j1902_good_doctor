@@ -34,7 +34,8 @@ public class DoctorController {
         DataVo infoVo = new DataVo();
         infoVo.setCount(allDoc.size());
         infoVo.setData(allDoc);
-        System.out.println(infoVo);
         return infoVo;
     }
+
+
 }

@@ -38,9 +38,22 @@ public class TestDoc {
 
     @Test
     public void DocInfoTest1(){
-        List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
-        List<Doctor> allDoc = doctorService.getAllDoc();
-        System.out.println(allDoc);
-        System.out.println(allDocDealInfo);
+//        List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
+//        List<Doctor> allDoc = doctorService.getAllDoc();
+//        System.out.println(allDoc);
+//        System.out.println(allDocDealInfo);
+        Doctor doctor = new Doctor();
+
+
+        doctor.setDoctorid(1);
+        doctor.setDepid(1);
+        doctor.setDoctorinfo("222");
+        doctor.setHpid(1);
+        doctor.setJobtitle("教授");
+        doctor.setUsername("wanger");
+        doctor.setTelphone("17777777888");
+
+        boolean b = doctorService.UpDateById(doctor);
+        System.out.println(b);
     }
 }
