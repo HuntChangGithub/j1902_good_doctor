@@ -5,8 +5,8 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://localhost:3306/forthproject?characterEncoding=utf-8&serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: wanger
-      password: 19970521
+      username: root
+      password: 123456
   application:
     name: demo-service
   thymeleaf:

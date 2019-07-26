@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Administrator on 2019/7/24.
@@ -33,14 +32,18 @@ public class HealthyController {
             }
             map.put(i+1,articles2);
         }
-        System.out.println("value:"+map.get(1));
-        System.out.println("value:"+map.get(2));
-        System.out.println("value:"+map.get(3));
-        System.out.println("value:"+map.get(4));
-        System.out.println(map.values());
-        System.out.println(map.keySet());
         model.addAttribute("map",map);
         return "liangxing";
+    }
+    @RequestMapping("/healthyXiangQing")
+    public String healthyXiangQing(@RequestParam("pscienceid")Integer pscienceid,Model model){
+        Healtharticle article=healthyService.getHealthyArticleByID(pscienceid);
+        model.addAttribute("article",article);
+        Date createtime = article.getCreatetime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String format = dateFormat.format(createtime);
+        model.addAttribute("createtime",format);
+        return "healthyXiangQing";
     }
     @RequestMapping(value = "manbing",method = RequestMethod.GET)
     public String manbing(){

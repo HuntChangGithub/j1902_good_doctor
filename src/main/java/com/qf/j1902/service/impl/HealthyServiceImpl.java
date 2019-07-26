@@ -24,4 +24,11 @@ public class HealthyServiceImpl implements HealthyService {
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
+
+    @Override
+    public Healtharticle getHealthyArticleByID(Integer pscienceid) {
+        HealtharticleExample example = new HealtharticleExample();
+        Healtharticle article = healtharticleMapper.selectByPrimaryKey(pscienceid);
+        return article;
+    }
 }

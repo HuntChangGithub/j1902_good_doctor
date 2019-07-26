@@ -8,6 +8,8 @@
     <result column="psAuthor" property="psauthor" jdbcType="VARCHAR" />
     <result column="psimage" property="psimage" jdbcType="VARCHAR" />
     <result column="fenlei" property="fenlei" jdbcType="VARCHAR" />
+    <result column="if_valid" property="ifValid" jdbcType="TINYINT" />
+    <result column="createtime" property="createtime" jdbcType="DATE" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.qf.j1902.pojo.Healtharticle" extends="BaseResultMap" >
     <result column="pscontent" property="pscontent" jdbcType="LONGVARCHAR" />
@@ -71,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    pscienceID, pstitle, psintroduce, psAuthor, psimage, fenlei
+    pscienceID, pstitle, psintroduce, psAuthor, psimage, fenlei, if_valid, createtime
   </sql>
   <sql id="Blob_Column_List" >
     pscontent
@@ -127,10 +129,12 @@
   <insert id="insert" parameterType="com.qf.j1902.pojo.Healtharticle" >
     insert into healtharticle (pscienceID, pstitle, psintroduce, 
       psAuthor, psimage, fenlei, 
-      pscontent)
+      if_valid, createtime, pscontent
+      )
     values (#{pscienceid,jdbcType=INTEGER}, #{pstitle,jdbcType=VARCHAR}, #{psintroduce,jdbcType=VARCHAR}, 
       #{psauthor,jdbcType=VARCHAR}, #{psimage,jdbcType=VARCHAR}, #{fenlei,jdbcType=VARCHAR}, 
-      #{pscontent,jdbcType=LONGVARCHAR})
+      #{ifValid,jdbcType=TINYINT}, #{createtime,jdbcType=DATE}, #{pscontent,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.qf.j1902.pojo.Healtharticle" >
     insert into healtharticle
@@ -152,6 +156,12 @@
       </if>
       <if test="fenlei != null" >
         fenlei,
+      </if>
+      <if test="ifValid != null" >
+        if_valid,
+      </if>
+      <if test="createtime != null" >
+        createtime,
       </if>
       <if test="pscontent != null" >
         pscontent,
@@ -175,6 +185,12 @@
       </if>
       <if test="fenlei != null" >
         #{fenlei,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null" >
+        #{ifValid,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
       </if>
       <if test="pscontent != null" >
         #{pscontent,jdbcType=LONGVARCHAR},
@@ -208,6 +224,12 @@
       <if test="record.fenlei != null" >
         fenlei = #{record.fenlei,jdbcType=VARCHAR},
       </if>
+      <if test="record.ifValid != null" >
+        if_valid = #{record.ifValid,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=DATE},
+      </if>
       <if test="record.pscontent != null" >
         pscontent = #{record.pscontent,jdbcType=LONGVARCHAR},
       </if>
@@ -224,6 +246,8 @@
       psAuthor = #{record.psauthor,jdbcType=VARCHAR},
       psimage = #{record.psimage,jdbcType=VARCHAR},
       fenlei = #{record.fenlei,jdbcType=VARCHAR},
+      if_valid = #{record.ifValid,jdbcType=TINYINT},
+      createtime = #{record.createtime,jdbcType=DATE},
       pscontent = #{record.pscontent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +260,9 @@
       psintroduce = #{record.psintroduce,jdbcType=VARCHAR},
       psAuthor = #{record.psauthor,jdbcType=VARCHAR},
       psimage = #{record.psimage,jdbcType=VARCHAR},
-      fenlei = #{record.fenlei,jdbcType=VARCHAR}
+      fenlei = #{record.fenlei,jdbcType=VARCHAR},
+      if_valid = #{record.ifValid,jdbcType=TINYINT},
+      createtime = #{record.createtime,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,6 +285,12 @@
       <if test="fenlei != null" >
         fenlei = #{fenlei,jdbcType=VARCHAR},
       </if>
+      <if test="ifValid != null" >
+        if_valid = #{ifValid,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
       <if test="pscontent != null" >
         pscontent = #{pscontent,jdbcType=LONGVARCHAR},
       </if>
@@ -272,6 +304,8 @@
       psAuthor = #{psauthor,jdbcType=VARCHAR},
       psimage = #{psimage,jdbcType=VARCHAR},
       fenlei = #{fenlei,jdbcType=VARCHAR},
+      if_valid = #{ifValid,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=DATE},
       pscontent = #{pscontent,jdbcType=LONGVARCHAR}
     where pscienceID = #{pscienceid,jdbcType=INTEGER}
   </update>
@@ -281,7 +315,9 @@
       psintroduce = #{psintroduce,jdbcType=VARCHAR},
       psAuthor = #{psauthor,jdbcType=VARCHAR},
       psimage = #{psimage,jdbcType=VARCHAR},
-      fenlei = #{fenlei,jdbcType=VARCHAR}
+      fenlei = #{fenlei,jdbcType=VARCHAR},
+      if_valid = #{ifValid,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=DATE}
     where pscienceID = #{pscienceid,jdbcType=INTEGER}
   </update>
 </mapper>
