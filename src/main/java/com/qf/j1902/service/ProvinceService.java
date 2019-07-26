@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ProvinceService {
     public List<Province> findAll();
+    //查询provinceID
+    public Province getProvByName(String provName);
 }

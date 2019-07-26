@@ -49,4 +49,13 @@ public class HospitalServiceImpl implements HospitalService{
         int i = tHospitalsMapper.insertSelective(hospital);
         return i;
     }
+
+    @Override
+    public int countHospitalsByProvince(Integer provId) {
+        THospitalsExample hospitalsExample = new THospitalsExample();
+        THospitalsExample.Criteria criteria = hospitalsExample.createCriteria();
+        criteria.andProvidEqualTo(provId);
+        int i = tHospitalsMapper.countByExample(hospitalsExample);
+        return i;
+    }
 }

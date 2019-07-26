@@ -1,6 +1,7 @@
 package com.qf.j1902.service;
 
 import com.qf.j1902.pojo.THospitals;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface HospitalService {
     public boolean delHospital(List<Integer> hpid);
     //增加一条医院数据
     public int addHospital(THospitals hospital);
+    //地区的医院数据计数
+    public int countHospitalsByProvince(@Param("prov") Integer provId);
 }

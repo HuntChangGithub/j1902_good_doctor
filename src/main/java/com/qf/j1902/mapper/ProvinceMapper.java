@@ -2,6 +2,7 @@ package com.qf.j1902.mapper;
 
 import com.qf.j1902.pojo.Province;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ import java.util.List;
 @Mapper
 public interface ProvinceMapper {
     public List<Province> findAll();
+    public Province getProvByName(@Param("provName") String provName);
 }
