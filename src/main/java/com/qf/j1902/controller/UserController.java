@@ -145,7 +145,7 @@ public class UserController {
         //解析进入登录页前的页面全路径，获取路径以便动态返回登录前的页面
         int i = url.lastIndexOf("/");
         int length = url.length();
-        String substring = url.substring(i+1, length);
+        String substring = url.substring(i, length);
         //从session中获取存储的验证码
         String verify = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
         List<User> users = userService.getUserByName(userInfo.getUsername());
@@ -161,7 +161,11 @@ public class UserController {
                     if (subject.isAuthenticated()) {
                         if (roleName.equals("doctor") || roleName.equals("member")){
                             session.setAttribute("username", userInfo.getUsername());
-                            return substring;
+                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")){
+                                return "index";
+                            }else {
+                                return substring;
+                            }
                         }else {
                             return "main";
                         }
@@ -187,5 +191,11 @@ public class UserController {
     @RequestMapping(value = "onlinedoctory")
     public String toOnlinedoctory(){
         return "onlinedoctory";
+    }
+    //退出
+    @RequestMapping(value = "logout")
+    public String logout(HttpSession session){
+        session.setAttribute("username","");
+        return "index";
     }
 }

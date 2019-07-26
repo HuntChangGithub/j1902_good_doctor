@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css"/>
+    <style>
+        .follow{
+            display: block;
+            width: 25%;
+            height: 30px;
+            margin: 0 auto;
+            margin-top: 8px;
+            background: #87CECB;
+            border: 1px solid black;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+        }
+        .follow:hover{
+            background: #DCDCDC;
+        }
+        .true{
+            display: inline;
+        }
+        .false{
+            display: none;
+        }
+        .tuoYuan{
+            border: 1px solid #000;
+            margin-left: -10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            height:25px;
+            width:70px;
+        }
+    </style>
+</head>
+<body style="background-color: #F5F5F5">
+    <div style="position: absolute;width: 900px;height: 1150px;left: 322px; background-color: #F5F5F5">
+        <div style="position: absolute;width: 900px;height: 120px;left: 0px;top: 0px; background-color: #008080">
+            <div style="position: absolute;left: 30px;top: 25px">
+               <img src="imgs/hushi.jpg" style="width: 100px;height: 80px">
+            </div>
+            <div style="position: absolute;left: 150px;top: 20px">
+               <ul style="line-height: 30px;color: #FFFFFF">
+                   <li>桃子医生</li>
+                   <li>小儿眼科 副主任医师</li>
+                   <li>海南省妇幼保健院</li>
+               </ul>
+            </div>
+            <div style="position: absolute;left: 770px;top: 40px;">
+                <button class="follow" onclick="show()" style="width: 80px;height: 30px;">
+                    <span class="true">关注</span>
+                    <span class="false">已关注</span>
+                </button>
+            </div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 150px;top: 125px;background-color: #ffffff">
+            <div style="position: absolute;left: 50px;top: 45px;">
+                <ul style="line-height: 30px;">
+                    <li style="font-size: 20px">21年</li>
+                    <li style="color: #9F9F9F">从业年限</li>
+                </ul>
+            </div>
+            <div style="position: absolute;left: 400px;top: 45px;">
+                <ul style="line-height: 30px;">
+                    <li style="font-size: 20px">65次</li>
+                    <li style="color: #9F9F9F">回答次数</li>
+                </ul>
+            </div>
+            <div style="position: absolute;left: 650px;top: 52px">
+                <div id="test5"></div>
+            </div>
+            <div style="position: absolute;left: 45px;top: 120px;font-size: 10px;color: #9F9F9F">
+                <img style="width: 12px;height: 12px;" src="imgs/true.png">&nbsp;可开处方
+            </div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 251px;top: 290px;background-color: #ffffff">
+            <div style="position: absolute;left: 20px;top: 15px;font-size: 17px">擅长方向</div>
+            <ul style="padding: 0px;margin: 0px;position: absolute;left: 30px;top: 60px;color: #696969 ">
+                <li class="tuoYuan" style="list-style:none;display: inline-block;"><p style="margin-left: 20px;margin-top: 2px">近视</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-left: 20px;margin-top: 2px">斜视</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-top: 3px">泪囊泪道炎</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-left: 13px;margin-top: 2px">结膜炎</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-left: 13px;margin-top: 2px">青光眼</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-top: 3px">睑板腺囊肿</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-left: 20px;margin-top: 2px">弱视</p></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="tuoYuan"style="list-style:none;display: inline-block;"><p style="margin-left: 13px;margin-top: 2px">飞蚊症</p></li>
+            </ul>
+            <div style="position: absolute;left: 20px;top: 115px;font-size: 17px">个人简介</div>
+            <div style="position: absolute;left: 20px;top: 160px;font-size: 16px;color: #696969"><p>眼科专家，擅长小儿眼科、激光治疗近视、斜视、黑影、眼痛、眼痒、磨眼、流泪、眼皮长包、眨眼频繁，急病人之所急的“好医生”</p></div>
+            <div style="position: absolute;left: 380px;top: 220px;font-size: 14px;color: #A9A9A9 ">更多医生详细信息 ></div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 170px;top: 560px;background-color: #ffffff">
+            <div style="position: absolute;left:20px; top: 20px;font-size: 17px">匿名评价</div>
+            <div style="position: absolute;left:20px; top: 50px;font-size: 14px">
+                <ul style="line-height: 25px">
+                    <li>匿名用户4443</li>
+                    <li style="font-size: 10px">昨天 09:49</li>
+                    <li>谢谢医生</li>
+                </ul>
+            </div>
+            <div style="position: absolute;left: 650px;top: 65px">
+                <div id="test9"></div>
+            </div>
+            <div style="position: absolute;left: 380px;top: 135px;font-size: 14px;color: #A9A9A9 ">更多405 个评价 ></div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 200px;top: 750px;background-color: #ffffff">
+            <div style="position: absolute;left:20px; top: 20px;font-size: 17px">患者提问</div>
+            <div style="position: absolute;left:20px; top: 50px;font-size: 14px">
+                <ul style="line-height: 25px">
+                    <li>患者问：</li>
+                    <li style="font-size: 17px;color: #696969">你好医生。我女儿7岁，最近总说右上眼睑有下垂的感觉，今天发现大小眼已经很明显了。附图是晚上刚刚拍的。暂时没有其他症状。我想请问，这是不是重症肌无力的症状？需要做哪些检查？很着急，很担心。谢谢。</li>
+                </ul>
+            </div>
+            <div style="position: absolute;left: 380px;top: 170px;font-size: 14px;color: #A9A9A9 ">更多100 个问题 ></div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 150px;top: 970px;background-color: #ffffff">
+            <div style="position: absolute;left:20px; top: 20px;font-size: 17px">医院信息</div>
+            <div style="position: absolute;left:50px; top: 50px;font-size: 14px">
+                <ul style="line-height: 35px">
+                    <li>海南省妇幼保健院</li>
+                    <li style="font-size: 17px;color: #696969">联系电话(总机) 0898，36373861</li>
+                    <li style="font-size: 17px;color: #696969">海口市龙昆南路15号</li>
+                </ul>
+            </div>
+        </div>
+        <div style="position: absolute;width: 900px;height: 66px;top: 1130px;background-color: #006400">
+            <a style="position:absolute;top: 20px; margin-left: 350px;font-size: 20px;color: white" href="questionSubmission"><span>桃子医生</span>(29.9¥)</a>
+        </div>
+    </div>
+<script src="layui/layui.js"></script>
+<script src="layer/layer.js"></script>
+<script src="layui/lay/modules/jquery.js"></script>
+<script>
+    function show(){
+        var aTrue = document.getElementsByClassName(true);
+        var aFalse = document.getElementsByClassName(false);
+        var x=1;
+        if ( aTrue[0].style.display!="none"){
+            aTrue[0].style.display="none";
+            aFalse[0].style.display="inline";
+        }else{
+            aTrue[0].style.display="inline";
+            aFalse[0].style.display="none";
+        }
+    }
+</script>
+<script>
+    layui.use(['rate'], function(){
+        var rate = layui.rate;
+        rate.render({
+            elem: '#test9'
+            ,value: 5
+            ,readonly: true
+        });
+        rate.render({
+            elem: '#test5'
+            ,value: 3
+            ,text: true
+            ,setText: function(value){ //自定义文本的回调
+                var arrs = {
+                    '1': '极差'
+                    ,'2': '差'
+                    ,'3': '中等'
+                    ,'4': '好'
+                    ,'5': '极好'
+                };
+                this.span.text(arrs[value] || ( value + "星"));
+            }
+        })
+    });
+</script>
+</body>
+</html>
