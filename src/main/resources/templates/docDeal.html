@@ -12,20 +12,20 @@
 <div style="margin-bottom: 5px;">
     医生资质审核
 </div>
-<table class="layui-table" lay-data="{width: 892, height:330,url:'/main/dealdoctor/data', page:true, id:'idTest'}" lay-filter="demo">
+<table class="layui-table" lay-data="{url:'/main/dealdoctor/data', page:true, id:'idTest'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-        <th lay-data="{field:'doctorid', width:80, sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'username', width:80}">用户名</th>
-        <th lay-data="{field:'telphone', width:160}">电话</th>
-        <th lay-data="{field:'hpid', width:80, sort: true}">所属医院</th>
-        <th lay-data="{field:'depid', width:80}">所属科室</th>
-        <th lay-data="{field:'jobtitle', width:135, sort: true}">职称</th>
-        <th lay-data="{field:'doctorinfo', width:135, sort: true}">医生信息</th>
-        <th lay-data="{field:'diplomaimg', width:135, sort: true}">文凭</th>
-        <th lay-data="{field:'certificateimg', width:135, sort: true}">资格证</th>
-        <th lay-data="{field:'ifValid', width:135, sort: true}">审核完成否</th>
+        <th lay-data="{field:'doctorid', sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'username', }">用户名</th>
+        <th lay-data="{field:'telphone', }">电话</th>
+        <th lay-data="{field:'hpid',  sort: true}">所属医院</th>
+        <th lay-data="{field:'depid', }">所属科室</th>
+        <th lay-data="{field:'jobtitle',  sort: true}">职称</th>
+        <th lay-data="{field:'doctorinfo', sort: true}">医生信息</th>
+        <th lay-data="{field:'diplomaimg',  sort: true}">文凭</th>
+        <th lay-data="{field:'certificateimg',  sort: true}">资格证</th>
+        <th lay-data="{field:'ifValid',  sort: true}">审核完成否</th>
         <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>
