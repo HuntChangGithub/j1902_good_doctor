@@ -20,4 +20,16 @@ public class ProvinceServiceImpl implements ProvinceService{
         List<Province> provinceList = provinceMapper.findAll();
         return provinceList;
     }
+
+    @Override
+    public Province getProvByName(String provName) {
+        Province province = provinceMapper.getProvByName(provName);
+        return province;
+    }
+
+    @Override
+    public Province getProvByProvId(String provId) {
+        Province province = provinceMapper.getProvById(provId);
+        return province;
+    }
 }

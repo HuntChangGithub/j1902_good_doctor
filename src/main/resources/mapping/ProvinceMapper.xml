@@ -9,4 +9,10 @@
         <include refid="sqlProvince"/>
         FROM provinces
     </select>
+    <select id="getProvByName" parameterType="string" resultType="com.qf.j1902.pojo.Province">
+        SELECT <include refid="sqlProvince"/> FROM provinces WHERE province LIKE '%${provName}%'
+    </select>
+    <select id="getProvById" parameterType="string" resultType="com.qf.j1902.pojo.Province">
+        SELECT <include refid="sqlProvince"/> FROM provinces WHERE provinceid = ${provId}
+    </select>
 </mapper>
