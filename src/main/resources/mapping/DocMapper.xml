@@ -23,6 +23,28 @@
     if_valid=1
 	</select>
 
+    <delete id="delDocById">
+    delete from
+    doctor
+    where
+    doctorid=#{id}
+    </delete>
+
+    <update id="UpDocById" parameterType="com.qf.j1902.pojo.Doctor">
+        update
+        doctor d,
+        user u
+        set
+        u.telphone=#{doctor.telphone},
+        d.depid=#{doctor.depid},
+        d.jobtitle=#{doctor.jobtitle},
+        d.doctorinfo=#{doctor.doctorinfo},
+        d.hpid=#{doctor.hpid}
+        where
+        d.doctorid=#{doctor.doctorid}
+        and u.username=#{doctor.username}
+    </update>
+
 
 
 
