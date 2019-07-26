@@ -35,4 +35,9 @@ public class TestProvinceMapper {
         Integer i = Integer.parseInt(province.getProvinceid());
         System.out.println(i);
     }
+    @Test
+    public void Testonebbb(){
+        Province province = provinceMapper.getProvById("450000");
+        System.out.println(province);
+    }
 }

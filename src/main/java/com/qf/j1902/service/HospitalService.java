@@ -19,4 +19,6 @@ public interface HospitalService {
     public int addHospital(THospitals hospital);
     //地区的医院数据计数
     public int countHospitalsByProvince(@Param("prov") Integer provId);
+    //根据provId查询医院列表
+    public List<THospitals> findHospitalsByProvId(String provId);
 }

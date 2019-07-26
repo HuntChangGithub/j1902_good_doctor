@@ -1,55 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>全国医院</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 </head>
 <style>
-
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1080px;
+    }
 </style>
-<body style="background-color: #e2e2e2">
+<body>
 <div style="width: 100%;height: auto">
-    <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
-        <h2 style="margin-left: 100px;color: darkorange">全国医院</h2>
+    <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+        <div class="ly-inner pg-inner">
+            <ul class="topline-list fl clearfix">
+                <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">更多</a>
+                    <dl class="layui-nav-child">
+                        <dd>< a href="">会议</a></dd>
+                        <dd>< a href="">用药助手</a></dd>
+                        <dd>< a href="">叮当铺</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <div>
+                <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+                <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+            </div>
+        </div>
+
     </div>
-    <div id="" style="margin-left: 100px">
+    <br>
+    <div style="width: 100%;height: 60px" align="center">
+        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+        <input style="height: 38px;width: 450px" type="text"placeholder="请输入疾病名/药品名"/>
+        <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+    </div>
+    <div class="ul1" align="center" style="width: 80%;margin-left: 10%" >
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="onlinedoctory">在线问诊</a></li>
+            <li class="layui-nav-item"><a href="questionandanswer">名医问答</a></li>
+            <li class="layui-nav-item"><a href="diseaseencyclopedia">疾病百科</a></li>
+            <li class="layui-nav-item"><a href="tuijian">健康科普</a></li>
+            <li class="layui-nav-item"><a href="featuredtopics">精选专题</a></li>
+            <li class="layui-nav-item"><a href="allhospital">全国医院</a></li>
+            <li class="layui-nav-item"><a href="familymedication">家庭用药</a></li>
+        </ul>
+    </div>
+    <div id="" style="width: 80%;margin-left: 136px;background-color: #D0D0D0">
         <br>
         <h2>&nbsp;全国医院</h2>
         <br>
-        <div id="city" style="width: 20%;height: 532px;background-color: #D0D0D0" align="center"><!--左边显示全部省份-->
-            <li style="margin-top: 8px"><a>北京市</a> || <a>天津市</a></li>
-            <li style="margin-top: 8px"><a>上海市</a> || <a>重庆市</a></li>
-            <li style="margin-top: 8px"><a>河北省</a> || <a>河南省</a></li>
-            <li style="margin-top: 8px"><a>云南省</a> || <a>辽宁省</a></li>
-            <li style="margin-top: 8px"><a>四川省</a> || <a>湖南省</a></li>
-            <li style="margin-top: 8px"><a>安徽省</a> || <a>陕西省</a></li>
-            <li style="margin-top: 8px"><a>山东省</a> || <a>吉林省</a></li>
-            <li style="margin-top: 8px"><a>湖北省</a> || <a>福建省</a></li>
-            <li style="margin-top: 8px"><a>江苏省</a> || <a>贵州省</a></li>
-            <li style="margin-top: 8px"><a>浙江省</a> || <a>广东省</a></li>
-            <li style="margin-top: 8px"><a>江西省</a> || <a>青海省</a></li>
-            <li style="margin-top: 8px"><a>山西省</a> || <a>海南省</a></li>
-            <li style="margin-top: 8px"><a>甘肃省</a> || <a>台湾省</a></li>
-            <li style="margin-top: 8px"><a>香港</a> || <a>澳门</a></li>
-            <li style="margin-top: 8px"><a>黑龙江省</a></li>
-            <li style="margin-top: 8px"><a>西藏自治区</a></li>
-            <li style="margin-top: 8px"><a>新疆维吾尔自治区</a></li>
-            <li style="margin-top: 8px"><a>广西壮族自治区</a></li>
-            <li style="margin-top: 8px"><a>宁夏回族自治区</a></li>
-            <li style="margin-top: 8px"><a>内蒙古自治区</a></li>
+        <div id="city" style="width: 20%;height: 542px;background-color: #D0D0D0" align="center"><!--左边显示全部省份-->
+            <li style="margin-top: 8px"><a class="province" onclick="query(110000)">北京市</a> || <a class="province"  onclick="query(120000)">天津市</a></li>
+            <li style="margin-top: 8px"><a onclick="query(310000)">上海市</a> || <a onclick="query(500000)">重庆市</a></li>
+            <li style="margin-top: 8px"><a onclick="query(130000)">河北省</a> || <a onclick="query(410000)">河南省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(530000)">云南省</a> || <a onclick="query(210000)">辽宁省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(510000)">四川省</a> || <a onclick="query(430000)">湖南省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(340000)">安徽省</a> || <a onclick="query(610000)">陕西省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(370000)">山东省</a> || <a onclick="query(220000)">吉林省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(420000)">湖北省</a> || <a onclick="query(350000)">福建省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(320000)">江苏省</a> || <a onclick="query(520000)">贵州省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(330000)">浙江省</a> || <a onclick="query(440000)">广东省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(360000)">江西省</a> || <a onclick="query(630000)">青海省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(140000)">山西省</a> || <a onclick="query(460000)">海南省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(620000)">甘肃省</a> || <a onclick="query(710000)">台湾省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(810000)">香港</a> || <a onclick="query(820000)">澳门</a></li>
+            <li style="margin-top: 8px"><a onclick="query(230000)">黑龙江省</a></li>
+            <li style="margin-top: 8px"><a onclick="query(540000)">西藏自治区</a></li>
+            <li style="margin-top: 8px"><a onclick="query(650000)">新疆维吾尔自治区</a></li>
+            <li style="margin-top: 8px"><a onclick="query(450000)">广西壮族自治区</a></li>
+            <li style="margin-top: 8px"><a onclick="query(640000)">宁夏回族自治区</a></li>
+            <li style="margin-top: 8px"><a onclick="query(150000)">内蒙古自治区</a></li>
+            <br>
         </div>
-        <div style="position: absolute;margin-left: 260px;margin-top: -532px;width: 60%;height: 532px;background-color: #D0D0D0">
+        <div style="position: absolute;margin-left: 20%;margin-top: -542px;width: 60%;height: 532px;background-color: #D0D0D0">
             <div class="by-way" style="margin-left: 25px">
                 <br>
                 <h3>查询结果</h3>
                 <br>
-                <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/110000">北京 &gt;</a></h4>
-                <ul style="margin-left: 8px">
-                    <li style="margin-top: 8px"><a target="_blank" href="https://dxy.com/health/hospital/13744">北京协和医院</a></li>
-                    <li style="margin-top: 8px"><a target="_blank" href="https://dxy.com/health/hospital/12704">中国人民解放军总医院</a></li>
-                    <li style="margin-top: 8px"><a target="_blank" href="https://dxy.com/health/hospital/19129">北京大学第一医院</a></li>
-                    <li style="margin-top: 8px"><a target="_blank" href="https://dxy.com/health/hospital/15567">中国医学科学院肿瘤医院</a></li>
+                <h4> <a id="provinceView" href="#">北京市 &gt;</a></h4>
+                <ul id="eachHospital" style="margin-left: 8px">
+                    <li style="margin-top: 8px"><a  href="hospital/13744">北京协和医院</a></li>
+                    <li style="margin-top: 8px"><a  href="hospital/12704">中国人民解放军总医院</a></li>
+                    <li style="margin-top: 8px"><a  href="hospital/19129">北京大学第一医院</a></li>
+                    <li style="margin-top: 8px"><a  href="hospital/15567">中国医学科学院肿瘤医院</a></li>
                 </ul>
             </div>
         </div>
@@ -58,9 +108,66 @@
 <div id="lastdiv" style="width: 100%;height: 100px">
 
 </div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
 <script src="layui/layui.all.js"></script>
+<script src="layui/layui.js"></script>
 <script>
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
 
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+
+        }
+    }
+    window.onload=function () {
+        searchSession();
+    }
+</script>
+<script>
+    //根据省份ID筛选
+    function  query(provId){
+        //console.log(provId);
+        var provinceView=$("#provinceView");
+        var eachHospital=$("#eachHospital");
+        $.ajax({
+            type:'post',
+            url:'queryByProvId',
+            data: {"provId":provId},
+            success:function (result) {
+                var obj=JSON.parse(result)
+                //console.log("prov="+obj.provinceName);
+                //console.log("data="+JSON.stringify(obj.hospitalList));
+                var hospitals=obj.hospitalList;
+                provinceView.text(obj.provinceName);
+                eachHospital.empty();
+                for (var i in hospitals){
+                    //console.log(hospitals[i].hpname);
+                    eachHospital.append('<li style="margin-top: 8px"><a  href="hospital/'+hospitals[i].hpid+'">'+hospitals[i].hpname+'</a></li>')
+                }
+
+            }
+        });
+    };
 </script>
 </body>
 </html>

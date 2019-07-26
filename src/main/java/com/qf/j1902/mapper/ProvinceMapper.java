@@ -13,4 +13,5 @@ import java.util.List;
 public interface ProvinceMapper {
     public List<Province> findAll();
     public Province getProvByName(@Param("provName") String provName);
+    public Province getProvById(@Param("provId") String provId);
 }

@@ -26,4 +26,10 @@ public class ProvinceServiceImpl implements ProvinceService{
         Province province = provinceMapper.getProvByName(provName);
         return province;
     }
+
+    @Override
+    public Province getProvByProvId(String provId) {
+        Province province = provinceMapper.getProvById(provId);
+        return province;
+    }
 }

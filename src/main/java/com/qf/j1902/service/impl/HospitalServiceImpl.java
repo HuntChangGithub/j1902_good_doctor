@@ -58,4 +58,14 @@ public class HospitalServiceImpl implements HospitalService{
         int i = tHospitalsMapper.countByExample(hospitalsExample);
         return i;
     }
+
+    @Override
+    public List<THospitals> findHospitalsByProvId(String provinceId) {
+        Integer provId=Integer.parseInt(provinceId);
+        THospitalsExample example = new THospitalsExample();
+        THospitalsExample.Criteria criteria = example.createCriteria();
+        criteria.andProvidEqualTo(provId);
+        List<THospitals> hospitalsList = tHospitalsMapper.selectByExample(example);
+        return hospitalsList;
+    }
 }

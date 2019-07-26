@@ -101,7 +101,7 @@ public class HospitalController {
     @RequestMapping(value = "/addhospital")
     @ResponseBody
     public String addhospital(THospitals hospital){
-        System.out.println(hospital);
+        //System.out.println(hospital);
         int i = hospitalService.addHospital(hospital);
         if (i==1){
             return "success";
@@ -124,5 +124,31 @@ public class HospitalController {
             return i;
         }
         return 0;
+    }
+
+    /*
+    * 以下是用户界面的控制层代码
+    * */
+    @RequestMapping("/allhospital")
+    public String showHospitallist(){
+        //显示该页面
+        return "hospital_list";
+    }
+    @RequestMapping("/hospitalCity")
+    public String showHospitalcity(){
+        //显示该页面
+        return "hospital_city";
+    }
+    @RequestMapping("/queryByProvId")
+    @ResponseBody
+    public String queryByProvId(@RequestParam("provId")String provId){
+        //先查询省名称，再查询医院列表，在封装结果集
+        Province province = provinceService.getProvByProvId(provId);
+        String provinceName = province.getProvince();
+        List<THospitals> hospitalsList = hospitalService.findHospitalsByProvId(provId);
+        JSONObject json = new JSONObject();
+        json.put("provinceName",provinceName);
+        json.put("hospitalList",hospitalsList);
+        return json.toString();
     }
 }
