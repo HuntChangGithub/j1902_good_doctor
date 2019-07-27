@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface DoctorService {
     List<Doctor> getAllDoc();
+
+    List<Doctor> getDoctorsByDepName(String string);
     boolean delDocById(int id);
     boolean UpDateById(Doctor doctor);
 

@@ -6,11 +6,14 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
-import com.aliyuncs.http.HttpRequest;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.google.gson.Gson;
+import com.qf.j1902.pojo.Doctor;
+import com.qf.j1902.pojo.TDepartment;
 import com.qf.j1902.pojo.User;
+import com.qf.j1902.service.DoctorService;
+import com.qf.j1902.service.TDepartmentService;
 import com.qf.j1902.service.UserService;
 import com.qf.j1902.utils.ImgCode;
 import com.qf.j1902.vo.UserInfo;
@@ -41,6 +44,10 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    TDepartmentService departmentService;
+    @Autowired
+    private DoctorService doctorService;
     @RequestMapping(value = "index")
     public String index(){
         return "index";
@@ -122,11 +129,16 @@ public class UserController {
         String sendcode = (String) session.getAttribute("sendyzm");
         if (yzm.equals(sendcode)){
             boolean isAdd = userService.addUser(user);
-            string = "恭喜你，注册成功！";
-            return "regsuccess";
+            if (isAdd) {
+                string = "恭喜你，注册成功！";
+                return "regsuccess";
+            }else {
+                string = "很抱歉，注册失败！";
+                return "reg";
+            }
 
         }else {
-            string = "很抱歉，注册失败！";
+            string = "验证码错误！";
             model.addAttribute("string",string);
             return "reg";
         }
@@ -146,6 +158,7 @@ public class UserController {
         int i = url.lastIndexOf("/");
         int length = url.length();
         String substring = url.substring(i, length);
+        System.out.println(substring);
         //从session中获取存储的验证码
         String verify = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
         List<User> users = userService.getUserByName(userInfo.getUsername());
@@ -160,11 +173,11 @@ public class UserController {
                     subject.login(token);
                     if (subject.isAuthenticated()) {
                         if (roleName.equals("doctor") || roleName.equals("member")){
-                            session.setAttribute("user", userInfo);
+                            session.setAttribute("username", userInfo.getUsername());
                             if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")){
                                 return "index";
                             }else {
-                                return substring;
+                                return "redirect:"+substring;
                             }
                         }else {
                             return "main";
@@ -189,7 +202,31 @@ public class UserController {
         return "login";
     }
     @RequestMapping(value = "onlinedoctory")
-    public String toOnlinedoctory(){
+    public String toOnlinedoctory(Model model){
+        // 获取外科医生回答数前四名医生的资料doctorsWai
+        String string1 = "外科";
+        List<Doctor> doctorsWai = doctorService.getDoctorsByDepName(string1);
+        model.addAttribute("doctorsWai",doctorsWai);
+        //获取外科医生回答数前四名医生的资料doctorsGu
+        String string2 = "骨科";
+        List<Doctor> doctorsGu = doctorService.getDoctorsByDepName(string2);
+        model.addAttribute("doctorsGu",doctorsGu);
+        //获取外科医生回答数前四名医生的资料doctorsEr
+        String string3 = "儿科";
+        List<Doctor> doctorsEr = doctorService.getDoctorsByDepName(string3);
+        model.addAttribute("doctorsEr",doctorsEr);
+        //获取外科医生回答数前四名医生的资料doctorsPiFu
+        String string4 = "皮肤科";
+        List<Doctor> doctorsPiFu = doctorService.getDoctorsByDepName(string4);
+        model.addAttribute("doctorsPiFu",doctorsPiFu);
+        //获取外科医生回答数前四名医生的资料doctorsZhongYi
+        String string5 = "中医科";
+        List<Doctor> doctorsZhongYi = doctorService.getDoctorsByDepName(string5);
+        model.addAttribute("doctorsZhongYi",doctorsZhongYi);
+        //获取所有科室信息
+        List<TDepartment> depts = departmentService.getDepts();
+        TDepartment remove = depts.remove(0);
+        model.addAttribute("depts",depts);
         return "onlinedoctory";
     }
     //退出
