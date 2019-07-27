@@ -21,4 +21,5 @@ public interface HospitalService {
     public int countHospitalsByProvince(@Param("prov") Integer provId);
     //根据provId查询医院列表
     public List<THospitals> findHospitalsByProvId(String provId);
+    public THospitals getHospitalsById(Integer id);
 }

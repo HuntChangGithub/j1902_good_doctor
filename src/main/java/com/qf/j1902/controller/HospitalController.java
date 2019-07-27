@@ -9,10 +9,8 @@ import com.qf.j1902.service.HospitalService;
 import com.qf.j1902.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ public class HospitalController {
     private ProvinceService provinceService;
     @Autowired
     private CityService cityService;
-    @RequestMapping(value = "/hospital")
+    @RequestMapping(value = "/htHospital")
     public String hospitals(){
         //显示该页面
 
@@ -150,5 +148,25 @@ public class HospitalController {
         json.put("provinceName",provinceName);
         json.put("hospitalList",hospitalsList);
         return json.toString();
+    }
+    @RequestMapping("/hospital")
+    public String hospital(@RequestParam(value = "id",defaultValue = "")String ids, Model model){
+        //查询医院信息
+        if (!ids.equals("")) {
+            Integer id = Integer.parseInt(ids);
+            THospitals hospital = hospitalService.getHospitalsById(id);
+            model.addAttribute("hospital", hospital);
+        }else {
+            THospitals hospitalnull = new THospitals();
+            hospitalnull.setHpname("暂无数据");
+            model.addAttribute("hospital", hospitalnull);
+        }
+        return "hospital_info";
+    }
+    @RequestMapping("/hospitalDepart")
+    public String showHospitalDepart(){
+        //查询全部科室表，返回页面
+
+        return "hospital_depart";
     }
 }

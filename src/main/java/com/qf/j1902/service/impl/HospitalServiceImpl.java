@@ -68,4 +68,10 @@ public class HospitalServiceImpl implements HospitalService{
         List<THospitals> hospitalsList = tHospitalsMapper.selectByExample(example);
         return hospitalsList;
     }
+
+    @Override
+    public THospitals getHospitalsById(Integer id) {
+        THospitals hospital = tHospitalsMapper.selectByPrimaryKey(id);
+        return hospital;
+    }
 }
