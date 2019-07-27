@@ -3,10 +3,12 @@ package com.qf.j1902.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.qf.j1902.pojo.City;
 import com.qf.j1902.pojo.Province;
+import com.qf.j1902.pojo.TDepartment;
 import com.qf.j1902.pojo.THospitals;
 import com.qf.j1902.service.CityService;
 import com.qf.j1902.service.HospitalService;
 import com.qf.j1902.service.ProvinceService;
+import com.qf.j1902.service.TDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,8 @@ public class HospitalController {
     private ProvinceService provinceService;
     @Autowired
     private CityService cityService;
+    @Autowired
+    private TDepartmentService departmentService;
     @RequestMapping(value = "/htHospital")
     public String hospitals(){
         //显示该页面
@@ -155,6 +159,12 @@ public class HospitalController {
         if (!ids.equals("")) {
             Integer id = Integer.parseInt(ids);
             THospitals hospital = hospitalService.getHospitalsById(id);
+            if (hospital==null){
+                THospitals hospitals = new THospitals();
+                hospitals.setHpname("暂无数据");
+                model.addAttribute("hospital", hospitals);
+                return "hospital_info";
+            }
             model.addAttribute("hospital", hospital);
         }else {
             THospitals hospitalnull = new THospitals();
@@ -164,9 +174,26 @@ public class HospitalController {
         return "hospital_info";
     }
     @RequestMapping("/hospitalDepart")
-    public String showHospitalDepart(){
+    public String showHospitalDepart(Model model){
         //查询全部科室表，返回页面
-
+        List<TDepartment> departmentList = departmentService.getDepts();
+        //去掉不限这条数据
+        departmentList.remove(0);
+        model.addAttribute("deptList",departmentList);
         return "hospital_depart";
+    }
+    @RequestMapping("/queryByDeptId")
+    @ResponseBody
+    public String queryByDeptId(@RequestParam("depid")String depid, Model model){
+        //查询全部科室表，返回页面
+        TDepartment department = departmentService.findDepartById(depid);
+        String depname=department.getDepname();
+        //根据科室名称，查询推荐医院列表
+        List<THospitals> hospitalsList = hospitalService.findHospitalsByDepName(depname);
+        //System.out.println(hospitalsList);
+        JSONObject json = new JSONObject();
+        json.put("depname",depname);
+        json.put("hospitalsList",hospitalsList);
+        return json.toString();
     }
 }

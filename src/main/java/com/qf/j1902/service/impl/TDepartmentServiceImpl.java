@@ -25,4 +25,11 @@ public class TDepartmentServiceImpl implements TDepartmentService {
         List<TDepartment> departments = departmentMapper.selectByExample(tDepartmentExample);
         return departments;
     }
+
+    @Override
+    public TDepartment findDepartById(String depid) {
+        Integer i = Integer.parseInt(depid);
+        TDepartment department = departmentMapper.selectByPrimaryKey(i);
+        return department;
+    }
 }

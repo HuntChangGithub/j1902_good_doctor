@@ -2,6 +2,7 @@ package com.qf.j1902;
 
 import com.qf.j1902.mapper.ProvinceMapper;
 import com.qf.j1902.pojo.Province;
+import com.qf.j1902.pojo.THospitals;
 import com.qf.j1902.service.HospitalService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,5 +27,10 @@ public class TestHospitalService {
         int i = hospitalService.countHospitalsByProvince(610000);
         System.out.println(i);
     }
+    @Test
+    public void Testone(){
+        List<THospitals> list = hospitalService.findHospitalsByDepName("外科");
 
+        System.out.println(list);
+    }
 }
