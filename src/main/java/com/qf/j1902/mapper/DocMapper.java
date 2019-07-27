@@ -14,6 +14,8 @@ import java.util.List;
 @Mapper
 public interface DocMapper {
     List<Doctor> getAllDoc();
+
+    List<Doctor> getDoctorsByDepName(@Param("string") String string);
     int delDocById(@Param("id")int id);
     boolean UpDocById(@Param("doctor")Doctor doctor);
 }
