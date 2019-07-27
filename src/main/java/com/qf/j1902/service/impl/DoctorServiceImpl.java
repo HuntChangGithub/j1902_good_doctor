@@ -26,6 +26,12 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public List<Doctor> getDoctorsByDepName(String string) {
+        List<Doctor> list = docMapper.getDoctorsByDepName(string);
+        return list;
+    }
+
+    @Override
     public boolean delDocById(int id) {
         int i = docMapper.delDocById(id);
         return i>0;
