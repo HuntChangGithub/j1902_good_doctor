@@ -11,9 +11,12 @@ import java.util.List;
  */
 public interface DoctorService {
     List<Doctor> getAllDoc();
-
+    //查询科室回答数在前四的医生
     List<Doctor> getDoctorsByDepName(String string);
     boolean delDocById(int id);
     boolean UpDateById(Doctor doctor);
-
+    //查询科室所有医生
+    List<Doctor> getDoctorsAllByDepName(String deptname);
+    //根据doctorid查一个doctor
+    public Doctor getDoctorById(Integer doctorid);
 }
