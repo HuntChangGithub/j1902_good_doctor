@@ -7,79 +7,55 @@
     <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css"/>
     <style>
         .bq:hover{
-            background-color: #5FB878;
+            background-color: darkseagreen;
         }
         .loginandreg{
             position: relative;
             top: -40px;
             left: 1080px;
         }
+        .bq{
+            border: 1px solid #D3D3D3;
+            border-top-right-radius:5px;
+            border-bottom-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-top-left-radius:5px;
+            height: 30px;
+            background-color: #F5F5F5;
+        }
     </style>
-    <script>
-        //通过判断session的值是否为空，改变五个标签的hidden属性
-        function searchSession() {
-            var username = document.getElementById("uname").innerHTML;
-            //获取五个标签对应的对象
-            var logina = document.getElementById("logina");
-            var rega = document.getElementById("rega");
-            var helloa = document.getElementById("helloa");
-            var uname = document.getElementById("uname");
-            var logouta = document.getElementById("logouta");
-
-            if (username != ""){
-                //如果不为空，说明已登录
-                logina.setAttribute("hidden",true);
-                rega.setAttribute("hidden",true);
-                helloa.removeAttribute("hidden");
-                uname.removeAttribute("hidden");
-                logouta.removeAttribute("hidden");
-            }else {
-                //否则说明未登录或已退出
-                logina.removeAttribute("hidden");
-                rega.removeAttribute("hidden");
-                helloa.setAttribute("hidden",true);
-                logouta.setAttribute("hidden",true);
-                uname.setAttribute("hidden",true);
-
-            }
-        }
-        window.onload=function () {
-            searchSession();
-        }
-    </script>
 </head>
 <body style="min-width: 1200px;overflow-x: hidden;overflow-y: auto">
     <div>
-        <div class="layui-head">
-            <ul class="layui-nav">
-                <li class="layui-nav-item"><a href="">丁香园</a></li>
-                <li class="layui-nav-item"><a href="">论坛</a></li>
-                <li class="layui-nav-item"><a href="">丁香通</a></li>
-                <li class="layui-nav-item"><a href="">丁香客</a></li>
-                <li class="layui-nav-item"><a href="">医药招聘</a></li>
-                <li class="layui-nav-item"><a href="">文献求助</a></li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">更多</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">会议</a></dd>
-                        <dd><a href="">用药助手</a></dd>
-                        <dd><a href="">丁当铺</a></dd>
-                        <dd><a href="">定香搜索</a></dd>
-                    </dl>
-                </li>
-            </ul>
-
-            <div>
-                <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
-                <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+        <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+            <div class="ly-inner pg-inner">
+                <ul class="topline-list fl clearfix">
+                    <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                    <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">更多</a>
+                        <dl class="layui-nav-child">
+                            <dd>< a href="">会议</a></dd>
+                            <dd>< a href="">用药助手</a></dd>
+                            <dd>< a href="">叮当铺</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div>
+                    <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+                    <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+                </div>
             </div>
-
         </div>
         <div style="position:absolute;top: 100px; width: 100%;height: 60px" align="center" >
             <a href="questionandanswer.html"><img src="imgs/jxys.jpg" style="width: 120px;height: 60px"></a>
@@ -113,104 +89,102 @@
                 <h3 style="position: relative;top: 20px;left: 30px">科室</h3>
                 <div style="position: relative;top: 40px;left: 30px">
                     <ul style="padding: 0px;margin: 0px;line-height: 50px">
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="#">不限</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="#">不限</a></p></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">皮肤性病科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">皮肤性病科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">消化内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">消化内科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">耳鼻咽喉科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">耳鼻咽喉科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">呼吸内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">呼吸内科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">儿科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">儿科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">风湿免疫科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">风湿免疫科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">普通内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">普通内科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">心血管内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">心血管内科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">骨科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">骨科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">眼科</a></p></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">普外科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">眼科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">感染科 传染科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">普外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">内分泌科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">感染科 传染科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">妇产科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">内分泌科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">口腔科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">妇产科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">神经内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">口腔科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">心胸外科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">神经内科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">肿瘤科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">心胸外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">肝胆胰腺外科</a></p></li>
+                        &nbsp;&nbsp;
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">血液科</a></p></li>
+                        &nbsp;&nbsp;
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">甲状腺乳腺外科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">肿瘤科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><P style="margin-top: -8px"><a href="">泌尿外科</a></P></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">肝胆胰腺外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">神经外科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">血液科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">精神心理科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">甲状腺乳腺外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">肾脏内科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">泌尿外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">美容整形科</a></p></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">神经外科</a></li>
+                        <li class="bq"style="list-style:none;display: inline-block;"><P style="margin-top: -8px"><a href="">疼痛科 麻醉科</a></P></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">精神心理科</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">肾脏内科</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">美容整形科</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">疼痛科 麻醉科</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="bq"style="list-style:none;display: inline-block;"><a href="">其他</a>
+                        <li class="bq"style="list-style:none;display: inline-block;"><p style="margin-top: -8px"><a href="">其他</a></p></li>
                     </ul>
                 </div>
             </div>
-            <div style="position: absolute;top: 325px;width: 900px;height:100%;left: 200px;background-color: #FFFFFF">
-                <div style="position: absolute;top: 35px;left:30px;font-size: 20px">相关回答</div>
+            <div style="position: absolute;top: 350px;width: 900px;left: 200px;">
+                <div style="position: absolute;top: -40px;left:30px;font-size: 20px">相关回答</div>
                 <a href="Reply">
-                    <div style="position: absolute;top: 100px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px"></div>
-                    <div style="position: absolute;top: 150px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px">
-                        <div style="position: absolute;top: 20px;left: 10px">
-                            <img style="width: 50px;height: 50px" src="imgs/wenti.png"/>
-                            <ul style="padding: 0px;margin: 0px;line-height: 50px">
-                                <li>
-                                    提问的问题
-                                </li>
-                            </ul>
+                    <ul style="" th:each="doctors:${session.doctor}">
+                        <div style="margin-top: 20px;border: 1px solid #D3D3D3;background-color: white; border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                            <div style="width: 900px;height: 20px;"></div>
+                            <div>
+                                &nbsp;&nbsp;&nbsp;提问时间：<li style="margin-left: 80px;margin-top: -17px" th:text="${doctors.getQuestionTime()}"></li>
+                                <img style="width: 50px;height: 50px;margin-top: 20px;margin-left: 10px" src="imgtaozi/wentu.png">
+                                <li style="margin-left: 70px;margin-top: -43px;letter-spacing: 3px;line-height: 20px" th:text="${doctors.getConcreteProblems()}"></li>
+                            </div>
+                            <div style="background-color:#F8F8FF ;margin-top: 30px">
+                                <div style="width: 900px;height: 20px;"></div>
+                                &nbsp;&nbsp;&nbsp;回答时间：<li style="margin-left: 80px;margin-top: -17px" th:text="${doctors.getResponseTime()}"></li>
+                                <img style="width: 50px;height: 50px;margin-top: 20px;margin-left: 10px" th:src="${doctors.getDoctorsPicture()}" src="imgtaozi/doctor6.png">
+                                <li style="margin-left: 70px;margin-top: -50px;letter-spacing: 3px;line-height: 20px" th:text="${doctors.getQuestionResponse()}"></li>
+                            </div>
+                            <div style="background-color: #F8F8FF ;height: 20px"></div>
                         </div>
-                        <div style="position: absolute;top: 150px;left: 10px">
-                            <img style="width: 50px;height: 50px" src="imgs/yisheng.jpg">
-                            <ul th:each="doctors:${session.doctor}">
-                                <li th:text="${doctors.getQuestionResponse()}">
-                                    医生的答复
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div style="position: absolute;top: 500px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px"></div>
-                    <div style="position: absolute;top: 550px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px">
-
-                    </div>
-                </a>
-                <a href="">
-                    <div style="position: absolute;top: 900px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px"></div>
-                    <div style="position: absolute;top: 950px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px">
-
-                    </div>
+                    </ul>
                 </a>
             </div>
             <div style="position: absolute;top:50px;left: 1130px;background-color: #ffffff;width: 220px;height: 850px  ">
-                
+                <div style="margin-left:65px;margin-top: 30px;font-size: 20px">名医推荐</div>
+                <a href="">
+                    <ul>
+                        <div style="margin-left: 20px;margin-top: 30px;width: 180px;height: 230px;border: 1px solid #D3D3D3 ;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                            <img  style="height: 55px;width: 65px;margin-left: 50px;margin-top: 30px;" src="imgtaozi/doctor3cc.png">
+                            <li style="margin-left: 30px;margin-top: 10px;font-size: 16px">张如卉</li>
+                            <li style="margin-left: 85px;margin-top: -20px;font-size: 16px">主治医师</li>
+                            <li style="margin-left: 25px;margin-top: 7px;font-size: 13px;color:#808080 ">浙江大学附属第一...</li>
+                            <li style="margin-left: 70px;margin-top: 7px;font-size: 13px;color: #808080 ">全科</li>
+                            <img style="margin-left: 15px;margin-top: 10px;width: 150px;height: 25px" src="imgtaozi/xia.png">
+                        </div>
+                    </ul>
+                </a>
             </div>
         </div>
     </div>
@@ -229,28 +203,36 @@
         });
     </script>
     <script>
-        layui.use('flow', function(){
-            var flow = layui.flow;
+        //通过判断session的值是否为空，改变五个标签的hidden属性
+        function searchSession() {
+            var username = document.getElementById("uname").innerHTML;
+            //获取五个标签对应的对象
+            var logina = document.getElementById("logina");
+            var rega = document.getElementById("rega");
+            var helloa = document.getElementById("helloa");
+            var uname = document.getElementById("uname");
+            var logouta = document.getElementById("logouta");
 
-            flow.load({
-                elem: '#LAY_demo1' //流加载容器
-                ,scrollElem: '#LAY_demo1' //滚动条所在元素，一般不用填，此处只是演示需要。
-                ,done: function(page, next){ //执行下一页的回调
+            if (username != ""){
+                //如果不为空，说明已登录
+                logina.setAttribute("hidden",true);
+                rega.setAttribute("hidden",true);
+                helloa.removeAttribute("hidden");
+                uname.removeAttribute("hidden");
+                logouta.removeAttribute("hidden");
+            }else {
+                //否则说明未登录或已退出
+                logina.removeAttribute("hidden");
+                rega.removeAttribute("hidden");
+                helloa.setAttribute("hidden",true);
+                logouta.setAttribute("hidden",true);
+                uname.setAttribute("hidden",true);
 
-                    //模拟数据插入
-                    setTimeout(function(){
-                        var lis = [];
-                        for(var i = 0; i < 8; i++){
-                            lis.push('<li>'+ ( (page-1)*8 + i + 1 ) +'</li>')
-                        }
-
-                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                        next(lis.join(''), page < 10); //假设总页数为 10
-                    }, 500);
-                }
-            });
-        });
+            }
+        }
+        window.onload=function () {
+            searchSession();
+        }
     </script>
 </body>
 </html>

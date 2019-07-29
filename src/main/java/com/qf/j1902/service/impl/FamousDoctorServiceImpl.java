@@ -1,7 +1,7 @@
 package com.qf.j1902.service.impl;
 import com.qf.j1902.mapper.FamousDoctorMapper;
-import com.qf.j1902.pojo.Doctorsreply;
 import com.qf.j1902.service.FamousDoctorService;
+import com.qf.j1902.vo.FamousDoctorVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,7 +15,7 @@ public class FamousDoctorServiceImpl implements FamousDoctorService{
     private FamousDoctorMapper famousDoctorMapper;
 
     @Override
-    public List<Doctorsreply> findAll() {
+    public List<FamousDoctorVo> findAll() {
         return famousDoctorMapper.findAll();
     }
 }
