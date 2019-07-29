@@ -10,4 +10,6 @@ import java.util.List;
 public interface TDepartmentService {
     //获取科室表信息
     public List<TDepartment> getDepts();
+    //获取科室信息
+    public TDepartment findDepartById(String depid);
 }

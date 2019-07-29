@@ -74,4 +74,10 @@ public class HospitalServiceImpl implements HospitalService{
         THospitals hospital = tHospitalsMapper.selectByPrimaryKey(id);
         return hospital;
     }
+
+    @Override
+    public List<THospitals> findHospitalsByDepName(String depName) {
+        List<THospitals> hospitalsList = tHospitalsMapper.selectLikeSkill(depName);
+        return hospitalsList;
+    }
 }
