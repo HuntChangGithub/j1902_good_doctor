@@ -19,6 +19,7 @@ public class DocDealServiceImpl implements DocDealService {
     @Autowired
     private DocDealMapper docDealMapper;
     @Override
+    //获得医生审核信息
     public List<DocDealInfo> getAllDocDealInfo() {
         return docDealMapper.getAllDocDealInfo();
     }

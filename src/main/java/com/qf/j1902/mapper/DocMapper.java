@@ -13,9 +13,12 @@ import java.util.List;
  */
 @Mapper
 public interface DocMapper {
+    //得到所有医生信息
     List<Doctor> getAllDoc();
-
+    //根据部门名得到部门下所有医生
     List<Doctor> getDoctorsByDepName(@Param("string") String string);
+    //通过doctorid删除医生
     int delDocById(@Param("id")int id);
+    //更新doc信息
     boolean UpDocById(@Param("doctor")Doctor doctor);
 }

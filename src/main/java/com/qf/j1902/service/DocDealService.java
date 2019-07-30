@@ -10,5 +10,6 @@ import java.util.List;
  * @date 2019/7/25 10:52
  */
 public interface DocDealService {
+    //获得审核医生信息
     List<DocDealInfo> getAllDocDealInfo();
 }

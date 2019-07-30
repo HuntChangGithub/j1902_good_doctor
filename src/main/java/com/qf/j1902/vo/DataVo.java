@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Data
 public class DataVo {
-    private Integer count;
-    private Integer code = 0;
-    private String msg = "";
-    private List<?> data;
+    private Integer count;  //data条数
+    private Integer code = 0;//编码，通过此编码实现回调（未实现）
+    private String msg = ""; //回调信息
+    private List<?> data;//数据
 }

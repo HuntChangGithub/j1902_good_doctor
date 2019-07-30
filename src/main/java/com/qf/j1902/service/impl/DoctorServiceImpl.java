@@ -20,23 +20,25 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     private DocMapper docMapper;
 
+    //获得所有医生信息
     @Override
     public List<Doctor> getAllDoc() {
         return docMapper.getAllDoc();
     }
 
+    //获得部门下所属医生
     @Override
     public List<Doctor> getDoctorsByDepName(String string) {
         List<Doctor> list = docMapper.getDoctorsByDepName(string);
         return list;
     }
-
+    //删除医生信息通过id
     @Override
     public boolean delDocById(int id) {
         int i = docMapper.delDocById(id);
         return i>0;
     }
-
+    //更新医生信息
     @Override
     public boolean UpDateById(Doctor doctor) {
         return docMapper.UpDocById(doctor);

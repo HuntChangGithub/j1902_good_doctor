@@ -12,5 +12,7 @@ import java.util.List;
  */
 @Mapper
 public interface DocDealMapper {
+
+    //得到所有医生审核信息
     List<DocDealInfo> getAllDocDealInfo();
 }
