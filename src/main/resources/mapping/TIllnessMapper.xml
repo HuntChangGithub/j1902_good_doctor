@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.j1902.mapper.TIllnessMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.j1902.pojo.TIllness" >
+    <id column="illId" property="illid" jdbcType="INTEGER" />
+    <result column="illName" property="illname" jdbcType="VARCHAR" />
+    <result column="illPart" property="illpart" jdbcType="VARCHAR" />
+    <result column="illSort" property="illsort" jdbcType="VARCHAR" />
+    <result column="illCrowd" property="illcrowd" jdbcType="VARCHAR" />
+    <result column="illDuc" property="illduc" jdbcType="VARCHAR" />
+    <result column="illInfo" property="illinfo" jdbcType="VARCHAR" />
+    <result column="illCause" property="illcause" jdbcType="VARCHAR" />
+    <result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+    <result column="cure" property="cure" jdbcType="VARCHAR" />
+    <result column="prevent" property="prevent" jdbcType="VARCHAR" />
+    <result column="depId" property="depid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    illId, illName, illPart, illSort, illCrowd, illDuc, illInfo, illCause, diagnosis, 
+    cure, prevent, depId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.j1902.pojo.TIllnessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_illness
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_illness
+    where illId = #{illid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_illness
+    where illId = #{illid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.j1902.pojo.TIllnessExample" >
+    delete from t_illness
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.j1902.pojo.TIllness" >
+    insert into t_illness (illId, illName, illPart, 
+      illSort, illCrowd, illDuc, 
+      illInfo, illCause, diagnosis, 
+      cure, prevent, depId
+      )
+    values (#{illid,jdbcType=INTEGER}, #{illname,jdbcType=VARCHAR}, #{illpart,jdbcType=VARCHAR}, 
+      #{illsort,jdbcType=VARCHAR}, #{illcrowd,jdbcType=VARCHAR}, #{illduc,jdbcType=VARCHAR}, 
+      #{illinfo,jdbcType=VARCHAR}, #{illcause,jdbcType=VARCHAR}, #{diagnosis,jdbcType=VARCHAR}, 
+      #{cure,jdbcType=VARCHAR}, #{prevent,jdbcType=VARCHAR}, #{depid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.j1902.pojo.TIllness" >
+    insert into t_illness
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="illid != null" >
+        illId,
+      </if>
+      <if test="illname != null" >
+        illName,
+      </if>
+      <if test="illpart != null" >
+        illPart,
+      </if>
+      <if test="illsort != null" >
+        illSort,
+      </if>
+      <if test="illcrowd != null" >
+        illCrowd,
+      </if>
+      <if test="illduc != null" >
+        illDuc,
+      </if>
+      <if test="illinfo != null" >
+        illInfo,
+      </if>
+      <if test="illcause != null" >
+        illCause,
+      </if>
+      <if test="diagnosis != null" >
+        diagnosis,
+      </if>
+      <if test="cure != null" >
+        cure,
+      </if>
+      <if test="prevent != null" >
+        prevent,
+      </if>
+      <if test="depid != null" >
+        depId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="illid != null" >
+        #{illid,jdbcType=INTEGER},
+      </if>
+      <if test="illname != null" >
+        #{illname,jdbcType=VARCHAR},
+      </if>
+      <if test="illpart != null" >
+        #{illpart,jdbcType=VARCHAR},
+      </if>
+      <if test="illsort != null" >
+        #{illsort,jdbcType=VARCHAR},
+      </if>
+      <if test="illcrowd != null" >
+        #{illcrowd,jdbcType=VARCHAR},
+      </if>
+      <if test="illduc != null" >
+        #{illduc,jdbcType=VARCHAR},
+      </if>
+      <if test="illinfo != null" >
+        #{illinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="illcause != null" >
+        #{illcause,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="cure != null" >
+        #{cure,jdbcType=VARCHAR},
+      </if>
+      <if test="prevent != null" >
+        #{prevent,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null" >
+        #{depid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.j1902.pojo.TIllnessExample" resultType="java.lang.Integer" >
+    select count(*) from t_illness
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_illness
+    <set >
+      <if test="record.illid != null" >
+        illId = #{record.illid,jdbcType=INTEGER},
+      </if>
+      <if test="record.illname != null" >
+        illName = #{record.illname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illpart != null" >
+        illPart = #{record.illpart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illsort != null" >
+        illSort = #{record.illsort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illcrowd != null" >
+        illCrowd = #{record.illcrowd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illduc != null" >
+        illDuc = #{record.illduc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illinfo != null" >
+        illInfo = #{record.illinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illcause != null" >
+        illCause = #{record.illcause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnosis != null" >
+        diagnosis = #{record.diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cure != null" >
+        cure = #{record.cure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prevent != null" >
+        prevent = #{record.prevent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depid != null" >
+        depId = #{record.depid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_illness
+    set illId = #{record.illid,jdbcType=INTEGER},
+      illName = #{record.illname,jdbcType=VARCHAR},
+      illPart = #{record.illpart,jdbcType=VARCHAR},
+      illSort = #{record.illsort,jdbcType=VARCHAR},
+      illCrowd = #{record.illcrowd,jdbcType=VARCHAR},
+      illDuc = #{record.illduc,jdbcType=VARCHAR},
+      illInfo = #{record.illinfo,jdbcType=VARCHAR},
+      illCause = #{record.illcause,jdbcType=VARCHAR},
+      diagnosis = #{record.diagnosis,jdbcType=VARCHAR},
+      cure = #{record.cure,jdbcType=VARCHAR},
+      prevent = #{record.prevent,jdbcType=VARCHAR},
+      depId = #{record.depid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.j1902.pojo.TIllness" >
+    update t_illness
+    <set >
+      <if test="illname != null" >
+        illName = #{illname,jdbcType=VARCHAR},
+      </if>
+      <if test="illpart != null" >
+        illPart = #{illpart,jdbcType=VARCHAR},
+      </if>
+      <if test="illsort != null" >
+        illSort = #{illsort,jdbcType=VARCHAR},
+      </if>
+      <if test="illcrowd != null" >
+        illCrowd = #{illcrowd,jdbcType=VARCHAR},
+      </if>
+      <if test="illduc != null" >
+        illDuc = #{illduc,jdbcType=VARCHAR},
+      </if>
+      <if test="illinfo != null" >
+        illInfo = #{illinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="illcause != null" >
+        illCause = #{illcause,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        diagnosis = #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="cure != null" >
+        cure = #{cure,jdbcType=VARCHAR},
+      </if>
+      <if test="prevent != null" >
+        prevent = #{prevent,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null" >
+        depId = #{depid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where illId = #{illid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.j1902.pojo.TIllness" >
+    update t_illness
+    set illName = #{illname,jdbcType=VARCHAR},
+      illPart = #{illpart,jdbcType=VARCHAR},
+      illSort = #{illsort,jdbcType=VARCHAR},
+      illCrowd = #{illcrowd,jdbcType=VARCHAR},
+      illDuc = #{illduc,jdbcType=VARCHAR},
+      illInfo = #{illinfo,jdbcType=VARCHAR},
+      illCause = #{illcause,jdbcType=VARCHAR},
+      diagnosis = #{diagnosis,jdbcType=VARCHAR},
+      cure = #{cure,jdbcType=VARCHAR},
+      prevent = #{prevent,jdbcType=VARCHAR},
+      depId = #{depid,jdbcType=INTEGER}
+    where illId = #{illid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -21,4 +21,7 @@ public interface DocMapper {
     int delDocById(@Param("id")int id);
     //更新doc信息
     boolean UpDocById(@Param("doctor")Doctor doctor);
+    List<Doctor> getDoctorsAllByDepName(String deptname);
+    //根据doctorid查一个doctor
+    public Doctor getDoctorById(Integer doctorid);
 }

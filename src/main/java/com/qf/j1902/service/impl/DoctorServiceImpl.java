@@ -44,5 +44,17 @@ public class DoctorServiceImpl implements DoctorService {
         return docMapper.UpDocById(doctor);
     }
 
+    @Override
+    public List<Doctor> getDoctorsAllByDepName(String deptname) {
+        List<Doctor> doctorList = docMapper.getDoctorsAllByDepName(deptname);
+        return doctorList;
+    }
+
+    @Override
+    public Doctor getDoctorById(Integer doctorid) {
+        Doctor doctor = docMapper.getDoctorById(doctorid);
+        return doctor;
+    }
+
 
 }
