@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疾病百科</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body style="background-color: #e2e2e2">
+<div style="width: 100%;height: auto">
+    <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
+        <span style="font-size: 18px;margin-top: 40px;margin-left: 200px;color: black">添加一条疾病百科信息</span>
+    </div>
+    <form action="" class="layui-form" style="width: 70%;margin-left: 13%">
+        <div class="layui-form-item">
+            <label class="layui-form-label">疾病名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="illname" lay-verify="required" autocomplete="off" placeholder="请输入疾病名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属科室</label>
+            <div class="layui-input-inline">
+                <select name="depid" id="depid" lay-filter="depid">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发病部位</label>
+            <div class="layui-input-inline">
+                <select name="illpart" id="illpart" lay-filter="illpart">
+                    <option value="全身">全身</option>
+                    <option value="器官">器官</option>
+                    <option value="四肢">四肢</option>
+                    <option value="头部">头部</option>
+                </select>
+            </div>
+            <label class="layui-form-label">疾病类型</label>
+            <div class="layui-input-inline">
+                <select name="illsort" id="illsort" lay-filter="illsort">
+                    <option value="其他">其他</option>
+                    <option value="慢性">慢性</option>
+                    <option value="传染">传染</option>
+                    <option value="职业">职业</option>
+                    <option value="遗传">遗传</option>
+                </select>
+            </div>
+            <label class="layui-form-label">易患人群</label>
+            <div class="layui-input-inline">
+                <select name="illcrowd" id="illcrowd" lay-filter="illcrowd">
+                    <option value="全部">全部</option>
+                    <option value="老人">老人</option>
+                    <option value="儿童">儿童</option>
+                    <option value="男性">男性</option>
+                    <option value="女性">女性</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">概要简介</label>
+            <div class="layui-input-block">
+                <textarea name="illduc" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">症状描述</label>
+            <div class="layui-input-block">
+                <textarea name="illinfo" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">病因描述</label>
+            <div class="layui-input-block">
+                <textarea name="illcause" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">诊断手段</label>
+            <div class="layui-input-block">
+                <textarea name="diagnosis" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">治疗手段</label>
+            <div class="layui-input-block">
+                <textarea name="cure" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">预防措施</label>
+            <div class="layui-input-block">
+                <textarea name="prevent" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="subm" lay-submit="">立即提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<script src="layui/layui.js"></script>
+<script src="layui/layui.all.js"></script>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        getDepartments(form);
+        /*监听提交*/
+        form.on('submit(subm)', function(data){
+            $.ajax({
+                url:'/addIllness' ,
+                type: 'post',
+                data: data.field,
+                success:function (result) {
+                    console.log(result);
+                    if ("success"==result){
+                        layer.alert("添加成功！")
+                    }else {
+                        layer.alert("添加失败！")
+                    }
+                }
+            });
+            return false;
+        });
+    });
+    function getDepartments(form) {
+        $.ajax({
+            url:"/getDepartments",
+            type: "get",
+            success:function (result) {
+                var depid=$('#depid');
+                depid.empty();
+                depid.append("<option value='0' selected='selected'>请选择</option>")
+                for(var i in result) {
+                    depid.append('<option value="'+result[i].depid+'">'+result[i].depname+'</option>');
+                }
+                form.render('select');
+            }
+        });
+    };
+</script>
+</body>
+</html>

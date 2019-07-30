@@ -16,7 +16,8 @@
 <body style="background-color: #e2e2e2">
 <div style="width: 100%;height: auto">
     <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
-        <span style="margin-left: 100px;color: darkorange">疾病百科列表</span>
+        <br>
+        <span style="font-size: 18px;margin-top: 40px;margin-left: 100px;color: #23262E">疾病百科列表</span>
     </div>
     <table id="showList" lay-filter="detail">
 
@@ -40,18 +41,18 @@
                     elem: '#showList',
                     data: data,
                     toolbar: '#toolbarDemo',
-                    height: 530,
+                    height: 460,
                     cols : [ [ // 表头
                         {
                             type:'checkbox',
-                            width : '5%'
+                            width : '4%'
                         },
                         {
                             field : 'illname',
                             title : '疾病名称',
                             sort : true,
                             align : 'left',
-                            width : '23%',
+                            width : '6%',
                             event : 'seeDetail',
                             style: 'cursor: pointer;'
                         },{
@@ -59,38 +60,42 @@
                             title : '疾病简介',
                             width : '15%',
                             align : "center",
+                            event: 'setSignDuc',
                             sort : true
                         }, {
                             field : 'illinfo',
                             title : '症状描述',
-                            width : '10%',
+                            width : '15%',
                             align : "center",
+                            event: 'setSignInfo',
                             sort : true
                         }, {
                             field : 'illcause',
                             title : '病因描述',
-                            width : '25%',
+                            width : '15%',
                             align : "center",
-                            event: 'setSign',
-                           /* edit: 'text',*/
+                            event: 'setSignCause',
                             sort : true
                         }, {
                             field : 'diagnosis',
                             title : '如何诊断',
                             width : '15%',
                             align : "center",
+                            event: 'setSignDia',
                             sort : true
                         }, {
                             field : 'cure',
                             title : '如何治疗',
-                            width : '7%',
+                            width : '15%',
                             align : "center",
+                            event: 'setSignCure',
                             sort : true
                         },{
                             field : 'prevent',
                             title : '如何预防',
-                            width : '7%',
+                            width : '15%',
                             align : "center",
+                            event: 'setSignPrev',
                             sort : true
                         } ] ],
                     skin: 'line', //表格风格
@@ -103,28 +108,30 @@
             }
         });
 
-        /*// 监听单元格事件
+        // 监听单元格编辑事件
         table.on('tool(detail)', function(obj){
+            console.log(obj);
             var data = obj.data;
-            if(obj.event === 'setSign'){
+            //疾病简介
+            if(obj.event === 'setSignDuc'){
                 layer.prompt({
                     formType: 2
-                    ,title: '修改['+ data.hpname +'] 的简介'
-                    ,value: data.hpinfo
+                    ,title: '修改['+ data.illname +'] 的疾病简介'
+                    ,value: data.illduc
                 }, function(value, index){
                     layer.close(index);
                     //发送修改的Ajax请求
-                    var hpid=data.hpid;
+                    var illid=data.illid;
                     $.ajax({
-                        url:"upHospital",
+                        url:"updateIllness",
                         type: "post",
-                        data: {"hpid":hpid,"hpinfo":value},
+                        data: {"illid":illid,"illduc":value},
                         success:function(result){
                             if("success"==result){
                                 layer.alert("修改成功！");
                                 //同步更新表格和缓存对应的值
                                 obj.update({
-                                    hpinfo: value
+                                    illduc: value
                                 });
                             }else {
                                 layer.alert("修改失败！");
@@ -133,11 +140,151 @@
                     });
                 });
             }
+            //症状描述
+            if(obj.event === 'setSignInfo'){
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改['+ data.illname +'] 的症状描述'
+                    ,value: data.illinfo
+                }, function(value, index){
+                    layer.close(index);
+                    //发送修改的Ajax请求
+                    var illid=data.illid;
+                    $.ajax({
+                        url:"updateIllness",
+                        type: "post",
+                        data: {"illid":illid,"illinfo":value},
+                        success:function(result){
+                            if("success"==result){
+                                layer.alert("修改成功！");
+                                //同步更新表格和缓存对应的值
+                                obj.update({
+                                    illinfo: value
+                                });
+                            }else {
+                                layer.alert("修改失败！");
+                            }
+                        }
+                    });
+                });
+            }
+            //病因描述
+            if(obj.event === 'setSignCause'){
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改['+ data.illname +'] 的病因描述'
+                    ,value: data.illcause
+                }, function(value, index){
+                    layer.close(index);
+                    //发送修改的Ajax请求
+                    var illid=data.illid;
+                     $.ajax({
+                         url:"updateIllness",
+                         type: "post",
+                         data: {"illid":illid,"illcause":value},
+                         success:function(result){
+                             if("success"==result){
+                                 layer.alert("修改成功！");
+                                 //同步更新表格和缓存对应的值
+                                 obj.update({
+                                     illcause: value
+                                 });
+                             }else {
+                                layer.alert("修改失败！");
+                             }
+                         }
+                     });
+                });
+            }
+            //如何诊断
+            if(obj.event === 'setSignDia'){
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改['+ data.illname +'] 的如何诊断'
+                    ,value: data.diagnosis
+                }, function(value, index){
+                    layer.close(index);
+                    //发送修改的Ajax请求
+                    var illid=data.illid;
+                     $.ajax({
+                         url:"updateIllness",
+                         type: "post",
+                         data: {"illid":illid,"diagnosis":value},
+                         success:function(result){
+                             if("success"==result){
+                                layer.alert("修改成功！");
+                                //同步更新表格和缓存对应的值
+                                 obj.update({
+                                     diagnosis: value
+                                 });
+                             }else {
+                                layer.alert("修改失败！");
+                             }
+                         }
+                     });
+                });
+            }
+            //如何治疗
+            if(obj.event === 'setSignCure'){
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改['+ data.illname +'] 的如何治疗单元'
+                    ,value: data.cure
+                }, function(value, index){
+                    layer.close(index);
+                    //发送修改的Ajax请求
+                    var illid=data.illid;
+                     $.ajax({
+                         url:"updateIllness",
+                         type: "post",
+                         data: {"illid":illid,"cure":value},
+                         success:function(result){
+                            if("success"==result){
+                             layer.alert("修改成功！");
+                                 //同步更新表格和缓存对应的值
+                                 obj.update({
+                                     cure: value
+                                 });
+                             }else {
+                                layer.alert("修改失败！");
+                             }
+                         }
+                     });
+                });
+            }
+            //如何预防
+            if(obj.event === 'setSignPrev'){
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改['+ data.illname +'] 的如何预防'
+                    ,value: data.prevent
+                }, function(value, index){
+                    layer.close(index);
+                    //发送修改的Ajax请求
+                    var illid=data.illid;
+                     $.ajax({
+                         url:"updateIllness",
+                         type: "post",
+                         data: {"illid":illid,"prevent":value},
+                         success:function(result){
+                            if("success"==result){
+                             layer.alert("修改成功！");
+                             //同步更新表格和缓存对应的值
+                                obj.update({
+                                    prevent: value
+                                });
+                             }else {
+                                layer.alert("修改失败！");
+                             }
+                        }
+                    });
+                });
+            }
         });
         //头工具栏事件
         table.on('toolbar(detail)', function(obj){
             if (obj.event == 'add'){
-                window.location.href="showAddHospital"
+                window.location.href="showAddIllness"
             }
             var checkStatus = table.checkStatus(obj.config.id);
             if(obj.event == 'getCheckData'){
@@ -147,10 +294,10 @@
                 }
                 var idList=new Array();
                 for (var i=0;i<data.length;i++){
-                    idList.push(data[i].hpid);
+                    idList.push(data[i].illid);
                 }
                 $.ajax({
-                    url:"delHospitals",
+                    url:"delIllness",
                     type:"post",
                     data:{"idList":idList.toString()},
                     success:function(result){
@@ -162,7 +309,7 @@
                     }
                 });
             };
-        });*/
+        });
 
     });
 </script>
