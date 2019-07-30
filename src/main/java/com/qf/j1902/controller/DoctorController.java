@@ -50,7 +50,6 @@ public class DoctorController {
         System.out.println(doctor);
         boolean b = doctorService.UpDateById(doctor);
         if (b){
-            System.out.println("你吗了个巴子");
             return "0";
         }
         return "1";

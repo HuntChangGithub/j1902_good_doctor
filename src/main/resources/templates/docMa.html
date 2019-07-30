@@ -29,7 +29,7 @@
 </table>
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -38,9 +38,12 @@
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+    // function cutQuotations(str){
+    //     return str.substring(str.indexOf("\"")+1,str.lastIndexOf("\""));
+    // }
     layui.use('table', function(){
-        var table = layui.table;
 
+        var table = layui.table;
         //监听表格复选框选择
         table.on('checkbox(demo)', function(obj){
             console.log(obj)
@@ -49,11 +52,13 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
+                // var username=cutQuotations(JSON.stringify(data.username));
+                // alert(username);
+                // alert(data.username)
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    layer.close(2);
+                    layer.closeAll();
                 });
             } else if(obj.event === 'edit'){
                 layer.open({
@@ -65,16 +70,24 @@
                     shadeClose: true, //点击遮罩关闭
                     success: function (layero, index) {
                         var body = layer.getChildFrame('body', index);
-                        var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                        // var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
                         //console.log(body.html()) //得到iframe页的body内容
                         //初始化表单数据的值//要修改的每个td的值存为变量传进去
-                        body.find("#username").val(JSON.stringify(data.username));
-                        body.find("#doctorid").val(JSON.stringify(data.doctorid));
-                        body.find("#telphone").val(JSON.stringify(data.telphone));
-                        body.find("#hpid").val(JSON.stringify(data.hpid));
-                        body.find("#depid").val(JSON.stringify(data.depid));
-                        body.find("#jobtitle").val(JSON.stringify(data.jobtitle));
-                        body.find("#doctorinfo").val(JSON.stringify(data.doctorinfo));
+                        // body.find("#username").val(cutQuotations(JSON.stringify(data.username)));
+                        // body.find("#doctorid").val(JSON.stringify(data.doctorid));
+                        // body.find("#telphone").val(cutQuotations(JSON.stringify(data.telphone)));
+                        // body.find("#hpid").val(JSON.stringify(data.hpid));
+                        // body.find("#depid").val(JSON.stringify(data.depid));
+                        // body.find("#jobtitle").val(cutQuotations(JSON.stringify(data.jobtitle)));
+                        // body.find("#doctorinfo").val(cutQuotations(JSON.stringify(data.doctorinfo)));
+                        body.find("#username").val(data.username);
+                        body.find("#doctorid").val(data.doctorid);
+                        body.find("#telphone").val(data.telphone);
+                        body.find("#hpid").val(data.hpid);
+                        body.find("#depid").val(data.depid);
+                        body.find("#jobtitle").val(data.jobtitle);
+                        body.find("#doctorinfo").val(data.doctorinfo);
+
                     }
                 });
             }
