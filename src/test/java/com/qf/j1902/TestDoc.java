@@ -47,11 +47,11 @@ public class TestDoc {
 
         doctor.setDoctorid(1);
         doctor.setDepid(1);
-        doctor.setDoctorinfo("222");
+        doctor.setDoctorinfo("321321312");
         doctor.setHpid(1);
         doctor.setJobtitle("教授");
         doctor.setUsername("wanger");
-        doctor.setTelphone("17777777888");
+        doctor.setTelphone("1777dasdasd888");
 
         boolean b = doctorService.UpDateById(doctor);
         System.out.println(b);

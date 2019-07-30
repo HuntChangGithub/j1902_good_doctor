@@ -22,6 +22,9 @@
     and
     if_valid=1
 	</select>
+    <select id="getDoctorsByDepName" parameterType="string" resultType="Doctor">
+        SELECT * FROM doctor WHERE depName=#{string} order by answercount desc limit 0,4;
+    </select>
 
     <delete id="delDocById">
     delete from
@@ -44,6 +47,12 @@
         d.doctorid=#{doctor.doctorid}
         and u.username=#{doctor.username}
     </update>
+    <select id="getDoctorsAllByDepName" parameterType="string" resultType="Doctor">
+        SELECT * FROM doctor WHERE depName=#{string} order by answercount desc
+    </select>
+    <select id="getDoctorById" resultType="Doctor">
+        SELECT * FROM doctor WHERE doctorid = #{doctorid}
+    </select>
 
 
 
