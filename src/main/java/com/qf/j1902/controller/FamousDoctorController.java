@@ -2,6 +2,7 @@ package com.qf.j1902.controller;
 
 import com.qf.j1902.pojo.Doctorsreply;
 import com.qf.j1902.service.FamousDoctorService;
+import com.qf.j1902.vo.FamousDoctorVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ public class FamousDoctorController {
     private FamousDoctorService famousDoctorService;
     @RequestMapping("/questionandanswer")
     public String questionandanswer(HttpSession session){
-        List<Doctorsreply> doctorsreply = famousDoctorService.findAll();
+        List<FamousDoctorVo> doctorsreply = famousDoctorService.findAll();
         session.setAttribute("doctor",doctorsreply);
         return "questionandanswer";
     }

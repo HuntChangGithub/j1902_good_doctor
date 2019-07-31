@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>全国医院</title>
@@ -12,93 +12,179 @@
         margin-left: 35px;
         float: left;
     }
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1080px;
+    }
 </style>
-<body style="background-color: #e2e2e2">
+<body>
 <div style="width: 100%;height: auto">
-    <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
-        <h2 style="margin-left: 100px;color: darkorange">全国医院</h2>
+    <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+        <div class="ly-inner pg-inner">
+            <ul class="topline-list fl clearfix">
+                <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">更多</a>
+                    <dl class="layui-nav-child">
+                        <dd>< a href="">会议</a></dd>
+                        <dd>< a href="">用药助手</a></dd>
+                        <dd>< a href="">叮当铺</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <div>
+                <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+                <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+            </div>
+        </div>
+
     </div>
-    <div id="" style="margin-left: 100px">
+    <br>
+    <div style="width: 100%;height: 60px" align="center">
+        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+        <input style="height: 38px;width: 450px" type="text"placeholder="请输入疾病名/药品名"/>
+        <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+    </div>
+    <div class="ul1" align="center" style="width: 80%;margin-left: 10%" >
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="onlinedoctory">在线问诊</a></li>
+            <li class="layui-nav-item"><a href="questionandanswer">名医问答</a></li>
+            <li class="layui-nav-item"><a href="diseaseencyclopedia">疾病百科</a></li>
+            <li class="layui-nav-item"><a href="tuijian">健康科普</a></li>
+            <li class="layui-nav-item"><a href="featuredtopics">精选专题</a></li>
+            <li class="layui-nav-item"><a href="allhospital">全国医院</a></li>
+            <li class="layui-nav-item"><a href="familymedication">家庭用药</a></li>
+        </ul>
+    </div>
+    <div id="tophead" style="width: 100%;height: 50px">
         <br>
-        <h2>按城市 <a href="hospital_city" style="float: right;margin-right: 350px;font-size: 16px;margin-top: 10px">全部城市</a></h2>
+        <span style="font-size: 20px;margin-left: 200px;margin-top: 20px;color: darkorange">全国医院</span>
+    </div>
+    <div id="" style="margin-left: 200px">
         <br>
-        <div style="width: 75%;height: 200px;background-color: #D0D0D0">
+        <h2>按城市 <a class="layui-btn layui-btn-primary layui-btn-sm" href="hospitalCity" style="float: right;margin-right: 350px;font-size: 16px;margin-top: 10px">全部城市</a></h2>
+        <br>
+        <div style="width: 80%;height: 200px;background-color: #D0D0D0">
             <div class="by-way" style="margin-top: 10px">
-                <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/110000">北京 &gt;</a></h4>
+                <h4> <a target="_blank" href="" >北京 &gt;</a></h4>
+                <br>
                 <ul>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/13744">北京协和医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/12704">中国人民解放军总医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/19129">北京大学第一医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/15567">中国医学科学院肿瘤医院</a></li>
+                    <li><a target="_blank" href="hospital?id=6">北京协和医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=7">中国人民解放军总医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=9">北京大学第一医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=10">中国医学科学院肿瘤医院</a></li>
                 </ul>
             </div>
             <div class="by-way" style="margin-top: 10px">
-                <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/310000">上海 &gt;</a></h4>
+                <h4> <a target="_blank" href="location/310000">上海 &gt;</a></h4>
+                <br>
                 <ul>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/9120">上海交通大学医学院附属瑞金医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/3324">复旦大学附属中山医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/11390">上海长海医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/17425">复旦大学附属眼耳鼻喉科医院</a></li>
+                    <li><a target="_blank" href="hospital?id=9120">上海交通大学医学院附属瑞金医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=3324">复旦大学附属中山医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=11390">上海长海医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=17425">复旦大学附属眼耳鼻喉科医院</a></li>
                 </ul>
             </div>
             <div class="by-way" style="margin-top: 10px">
-                <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/440000">广东 &gt;</a></h4>
+                <h4> <a target="_blank" href="location?id=440000">广东 &gt;</a></h4>
+                <br>
                 <ul>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/17435">中山大学附属第一医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/9348">广东省人民医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/2639">南方医科大学南方医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/4766">中山大学附属第三医院</a></li>
+                    <li><a target="_blank" href="hospital?id=17435">中山大学附属第一医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=9348">广东省人民医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=2639">南方医科大学南方医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=4766">中山大学附属第三医院</a></li>
                 </ul>
             </div>
             <div class="by-way" style="margin-top: 10px">
-                <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/330000">浙江 &gt;</a></h4>
+                <h4> <a target="_blank" href="location/330000">浙江 &gt;</a></h4>
+                <br>
                 <ul>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/2270">浙江大学医学院附属第二医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/8197">浙江大学附属第一医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/5660">浙江大学医学院附属邵逸夫医院</a></li>
-                    <li><a target="_blank" href="https://dxy.com/health/hospital/8677">浙江省人民医院</a></li>
+                    <li><a target="_blank" href="hospital?id=2270">浙江大学医学院附属第二医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=8197">浙江大学附属第一医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=5660">浙江大学医学院附属邵逸夫医院</a></li>
+                    <br>
+                    <li><a target="_blank" href="hospital?id=8677">浙江省人民医院</a></li>
                 </ul>
             </div>
 
         </div>
         <br>
-    <h2>按科室<a href="" style="float: right;margin-right: 350px;font-size: 16px;margin-top: 10px">全部科室</a></h2>
+    <h2>按科室<a class="layui-btn layui-btn-primary layui-btn-sm" href="hospitalDepart" style="float: right;margin-right: 350px;font-size: 16px;margin-top: 10px">全部科室</a></h2>
         <br>
-    <div style="width: 75%;height: 200px;background-color: #D0D0D0">
+    <div style="width: 80%;height: 200px;background-color: #D0D0D0">
         <div class="by-way" style="margin-top: 10px">
-            <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/110000">外科 &gt;</a></h4>
+            <h4> <a target="_blank" href="">外科 &gt;</a></h4>
+            <br>
             <ul>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/13744">北京协和医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/12704">中国人民解放军总医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/19129">北京大学第一医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/15567">中国医学科学院肿瘤医院</a></li>
+                <li><a target="_blank" href="hospital?id=13744">北京协和医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=12704">中国人民解放军总医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=19129">北京大学第一医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=15567">中国医学科学院肿瘤医院</a></li>
             </ul>
         </div>
         <div class="by-way" style="margin-top: 10px">
-            <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/310000">内科 &gt;</a></h4>
+            <h4> <a target="_blank" href="">内科 &gt;</a></h4>
+            <br>
             <ul>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/9120">上海交通大学医学院附属瑞金医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/3324">复旦大学附属中山医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/11390">上海长海医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/17425">复旦大学附属眼耳鼻喉科医院</a></li>
+                <li><a target="_blank" href="hospital?id=9120">上海交通大学医学院附属瑞金医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=3324">复旦大学附属中山医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=11390">上海长海医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=17425">复旦大学附属眼耳鼻喉科医院</a></li>
             </ul>
         </div>
         <div class="by-way" style="margin-top: 10px">
-            <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/440000">妇科 &gt;</a></h4>
+            <h4> <a target="_blank" href="">妇科 &gt;</a></h4>
+            <br>
             <ul>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/17435">中山大学附属第一医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/9348">广东省人民医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/2639">南方医科大学南方医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/4766">中山大学附属第三医院</a></li>
+                <li><a target="_blank" href="hospital?id=17435">中山大学附属第一医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=9348">广东省人民医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=2639">南方医科大学南方医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=4766">中山大学附属第三医院</a></li>
             </ul>
         </div>
         <div class="by-way" style="margin-top: 10px">
-            <h4> <a target="_blank" href="https://dxy.com/health/hospital/location/330000">骨科 &gt;</a></h4>
+            <h4> <a target="_blank" href="">骨科 &gt;</a></h4>
+            <br>
             <ul>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/2270">浙江大学医学院附属第二医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/8197">浙江大学附属第一医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/5660">浙江大学医学院附属邵逸夫医院</a></li>
-                <li><a target="_blank" href="https://dxy.com/health/hospital/8677">浙江省人民医院</a></li>
+                <li><a target="_blank" href="hospital?id=2270">浙江大学医学院附属第二医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=8197">浙江大学附属第一医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=5660">浙江大学医学院附属邵逸夫医院</a></li>
+                <br>
+                <li><a target="_blank" href="hospital?id=8677">浙江省人民医院</a></li>
             </ul>
         </div>
 
@@ -109,9 +195,40 @@
 
 <script src="layui/layui.all.js"></script>
 <script>
-    Window.onload=function () {
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
 
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+
+        }
     }
+    window.onload=function () {
+        searchSession();
+    }
+</script>
+
+<script>
+
 </script>
 </body>
 </html>

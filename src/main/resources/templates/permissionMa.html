@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
@@ -18,7 +18,7 @@
 <div id="test6" class="demo-transfer"></div>
 
 
-<script src="/layui-v2.5.4/layui/layui.js" charset="utf-8"></script>
+<script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use(['transfer', 'layer', 'util'], function(){
@@ -44,12 +44,36 @@
         //穿梭时的回调
         transfer.render({
             elem: '#test6'
+            ,title:['可选权限', '已有权限']
             ,data: data1
-            ,onchange: function(obj, index){
-                var arr = ['左边', '右边'];
-                layer.alert('来自 <strong>'+ arr[3] + '</strong> 的数据：'+ JSON.stringify(obj)); //获得被穿梭时的数据
+            ,onchange: function(transferJson, index){
+                $.ajax(
+                    {
+                        url:'/main/permission/transfer',
+                        type:"POST",
+                        contentType : "application/json",
+                        // data:"username="+username+"&password="+password,
+                        data:JSON.stringify(transferJson),
+                        datatype:"json",
+                        success:function (msg) {
+                            if(msg=="1") {
+                                //此处连接其他服务
+                                alert('ok');
+                                window.parent.location.reload();
+                                parent.layer.close(index);
+                            }else {
+                                alert("no")
+                                parent.layer.close(index);
+                            }
+                        },
+                        error:function () {
+                            alert("妈了个巴子");
+                        }
+                    }
+                )
+                layer.alert('将权限'+ JSON.stringify(transferJson)); //获得被穿梭时的数据
             }
-        })
+        });
 
 
         //批量办法定事件

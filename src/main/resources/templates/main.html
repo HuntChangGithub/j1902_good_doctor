@@ -6,11 +6,6 @@
     <title>健康医生后台</title>
     <link rel="stylesheet" href="layui/css/layui.css">
 </head>
-<style>
-
-
-
-</style>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
@@ -32,7 +27,6 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
                     贤心
                 </a>
                 <dl class="layui-nav-child">
@@ -40,7 +34,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="/logout">退了</a></li>
         </ul>
     </div>
 
@@ -58,7 +52,7 @@
                             <a data-url="userMa"  data-id="2" data-title="会员管理" href="#" class="site-demo-active"    data-type="ltabAdd">会员管理</a>
                         </dd>
                         <dd>
-                            <a data-url="permissionMa" data-id="3" data-title="角色分配" href="#" class="site-demo-active"    data-type="ltabAdd">角色分配</a>
+                            <a data-url="/main/permission" data-id="3" data-title="角色分配" href="#" class="site-demo-active"    data-type="ltabAdd">角色分配</a>
                         </dd>
                         <dd>
                         </dd>
@@ -81,7 +75,8 @@
                         </dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a data-url="hospital" data-id="8" data-title="医院信息管理" href="#" class="site-demo-active"    data-type="ltabAdd">医院信息管理</a></li>
+                <li class="layui-nav-item"><a data-url="htHospital" data-id="8" data-title="医院信息管理" href="#" class="site-demo-active"    data-type="ltabAdd">医院信息管理</a></li>
+                <li class="layui-nav-item"><a data-url="htIllnessList" data-id="9" data-title="疾病百科管理" href="#" class="site-demo-active"    data-type="ltabAdd">疾病百科管理</a></li>
                 <li class="layui-nav-item"><a href="#">待加选项</a></li>
             </ul>
         </div>
@@ -90,7 +85,6 @@
     <div class="layui-body" id="uibody">
         <!-- 内容主体区域 -->
         <div>
-
             <div id="colcse" class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
                 <ul class="layui-tab-title">
                     <li>欢迎</li>
@@ -110,15 +104,15 @@
                 -->
                 <ul class="rightmenu" style=" display: none;position: absolute;background: #6E6C79;">
                     <li id="yue" style="color: red;cursor:pointer;" data-id="" data-type="closethis">
-                        <a href="#" id="colcse" style="color: white;cursor:pointer;"  data-type="closethis"  >   &nbsp;&nbsp;关闭当前&nbsp;&nbsp;</a>
+                        <a href="#"  style="color: white;cursor:pointer;"  data-type="closethis"  >   &nbsp;&nbsp;关闭当前&nbsp;&nbsp;</a>
                     </li>
 
                     <li data-type="closeall">
-                        <a href="#" id="colcse" style="color: white;cursor:pointer;" data-id=""  data-type="closeall">&nbsp;&nbsp;关闭所有&nbsp;&nbsp;</a>
+                        <a href="#"  style="color: white;cursor:pointer;" data-id=""  data-type="closeall">&nbsp;&nbsp;关闭所有&nbsp;&nbsp;</a>
                     </li>
 
                     <li data-type="closeothe">
-                        <a href="#" id="colcse" style="color: white;cursor:pointer;" data-id=""  data-type="closeothe">&nbsp;&nbsp;关闭其它&nbsp;&nbsp;</a>
+                        <a href="#"  style="color: white;cursor:pointer;" data-id=""  data-type="closeothe">&nbsp;&nbsp;关闭其它&nbsp;&nbsp;</a>
                     </li>
                 </ul>
                 <div class="layui-tab-content">
@@ -180,7 +174,7 @@
                 //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                 element.tabAdd('demo', {
                     title: name,
-                    content: '<iframe src="'+url+'" frameborder="0" width="100%"></iframe>',
+                    content: '<iframe src="'+url+'" frameborder="0" scrolling="no" width="100%"></iframe>',
                     id: id //规定好的id
                 })
                 CustomRightClick(id); //给tab绑定右击事件
@@ -264,7 +258,6 @@
             //右键菜单中的选项被点击之后，判断type的类型，决定关闭所有还是关闭当前。
             if ($(this).attr("data-type") == "closethis") {
                 //如果关闭当前，即根据显示右键菜单时所绑定的id，执行tabDelete
-
                 active.tabDelete($(this).attr("data-id"));
             } else if ($(this).attr("data-type") == "closeall") {
                 var tabtitle = $(".layui-tab-title li");

@@ -29,4 +29,6 @@ public interface THospitalsMapper {
     int updateByPrimaryKeySelective(THospitals record);
 
     int updateByPrimaryKey(THospitals record);
+
+    List<THospitals> selectLikeSkill(@Param("hpskill") String hpskill);
 }

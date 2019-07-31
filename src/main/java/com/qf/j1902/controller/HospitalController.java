@@ -3,16 +3,16 @@ package com.qf.j1902.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.qf.j1902.pojo.City;
 import com.qf.j1902.pojo.Province;
+import com.qf.j1902.pojo.TDepartment;
 import com.qf.j1902.pojo.THospitals;
 import com.qf.j1902.service.CityService;
 import com.qf.j1902.service.HospitalService;
 import com.qf.j1902.service.ProvinceService;
+import com.qf.j1902.service.TDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,9 @@ public class HospitalController {
     private ProvinceService provinceService;
     @Autowired
     private CityService cityService;
-    @RequestMapping(value = "/hospital")
+    @Autowired
+    private TDepartmentService departmentService;
+    @RequestMapping(value = "/htHospital")
     public String hospitals(){
         //显示该页面
 
@@ -101,12 +103,97 @@ public class HospitalController {
     @RequestMapping(value = "/addhospital")
     @ResponseBody
     public String addhospital(THospitals hospital){
-        System.out.println(hospital);
+        //System.out.println(hospital);
         int i = hospitalService.addHospital(hospital);
         if (i==1){
             return "success";
         }
         return "error";
     }
+    @RequestMapping("/echarts")
+    public String echarts(){
+        return "hospitals_echarts";
+    }
+    @RequestMapping("/detail")
+    @ResponseBody
+    public Integer detail(@RequestParam(value = "name",defaultValue = "")String provName){
+        if (!"".equals(provName)){
+            //获取provinceid；
+            Province province = provinceService.getProvByName(provName);
+            Integer provinceid = Integer.parseInt(province.getProvinceid());
+            //查询数据条数
+            int i = hospitalService.countHospitalsByProvince(provinceid);
+            return i;
+        }
+        return 0;
+    }
 
+    /*
+    * 以下是用户界面的控制层代码
+    * */
+    @RequestMapping("/allhospital")
+    public String showHospitallist(){
+        //显示该页面
+        return "hospital_list";
+    }
+    @RequestMapping("/hospitalCity")
+    public String showHospitalcity(){
+        //显示该页面
+        return "hospital_city";
+    }
+    @RequestMapping("/queryByProvId")
+    @ResponseBody
+    public String queryByProvId(@RequestParam("provId")String provId){
+        //先查询省名称，再查询医院列表，在封装结果集
+        Province province = provinceService.getProvByProvId(provId);
+        String provinceName = province.getProvince();
+        List<THospitals> hospitalsList = hospitalService.findHospitalsByProvId(provId);
+        JSONObject json = new JSONObject();
+        json.put("provinceName",provinceName);
+        json.put("hospitalList",hospitalsList);
+        return json.toString();
+    }
+    @RequestMapping("/hospital")
+    public String hospital(@RequestParam(value = "id",defaultValue = "")String ids, Model model){
+        //查询医院信息
+        if (!ids.equals("")) {
+            Integer id = Integer.parseInt(ids);
+            THospitals hospital = hospitalService.getHospitalsById(id);
+            if (hospital==null){
+                THospitals hospitals = new THospitals();
+                hospitals.setHpname("暂无数据");
+                model.addAttribute("hospital", hospitals);
+                return "hospital_info";
+            }
+            model.addAttribute("hospital", hospital);
+        }else {
+            THospitals hospitalnull = new THospitals();
+            hospitalnull.setHpname("暂无数据");
+            model.addAttribute("hospital", hospitalnull);
+        }
+        return "hospital_info";
+    }
+    @RequestMapping("/hospitalDepart")
+    public String showHospitalDepart(Model model){
+        //查询全部科室表，返回页面
+        List<TDepartment> departmentList = departmentService.getDepts();
+        //去掉不限这条数据
+        departmentList.remove(0);
+        model.addAttribute("deptList",departmentList);
+        return "hospital_depart";
+    }
+    @RequestMapping("/queryByDeptId")
+    @ResponseBody
+    public String queryByDeptId(@RequestParam("depid")String depid, Model model){
+        //查询全部科室表，返回页面
+        TDepartment department = departmentService.findDepartById(depid);
+        String depname=department.getDepname();
+        //根据科室名称，查询推荐医院列表
+        List<THospitals> hospitalsList = hospitalService.findHospitalsByDepName(depname);
+        //System.out.println(hospitalsList);
+        JSONObject json = new JSONObject();
+        json.put("depname",depname);
+        json.put("hospitalsList",hospitalsList);
+        return json.toString();
+    }
 }

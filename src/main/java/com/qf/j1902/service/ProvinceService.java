@@ -9,4 +9,7 @@ import java.util.List;
  */
 public interface ProvinceService {
     public List<Province> findAll();
+    //查询province
+    public Province getProvByName(String provName);
+    public Province getProvByProvId(String provId);
 }

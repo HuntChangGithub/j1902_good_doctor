@@ -272,4 +272,7 @@
       hpskill = #{hpskill,jdbcType=VARCHAR}
     where hpId = #{hpid,jdbcType=INTEGER}
   </update>
+  <select id="selectLikeSkill" parameterType="string" resultMap="BaseResultMap">
+    SELECT * FROM t_hospitals WHERE hpskill LIKE '%${hpskill}%'
+  </select>
 </mapper>

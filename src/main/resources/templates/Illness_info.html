@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>疾病百科</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body  style="background-color: #e2e2e2">
+<div id="bigdiv" style="height: auto">
+    <div id="tophead" style="width: 100%;height: 50px;background-color: skyblue">
+        <br>
+        <span style="font-size: 18px;margin-top: 20px;margin-left: 100px;color: black">疾病百科详情</span>
+    </div>
+    <div id="daohang" style="margin-top: 50px">
+        <li style="margin-left: 150px"><a href="index">&nbsp;首页</a>&gt;<a href="#">&nbsp;疾病百科</a>&gt;<a href="#" th:text="${illness.illname}">&nbsp;xxxxx病名</a>&gt;</li>
+    </div>
+    <div>
+        <div id="info" style="margin-left: 150px;margin-top: 30px;width: 65%;background-color:ghostwhite">
+            <h2 style="margin-left: 10px" th:text="${illness.illname}">标题</h2>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 2em" th:text="${illness.illduc}">疾病简介</pre>
+            <hr>
+            <h3 style="margin-left: 10px">症状</h3>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 10px" th:text="${illness.illinfo}">症状详情、并发症等</pre>
+            <hr>
+            <h3 style="margin-left: 10px">病因</h3>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 10px" th:text="${illness.illcause}">病因详情、等</pre>
+            <hr>
+            <h3 style="margin-left: 10px">临床诊断</h3>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 10px" th:text="${illness.diagnosis}">确诊详情、等</pre>
+            <hr>
+            <h3 style="margin-left: 10px">临床治疗</h3>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 10px" th:text="${illness.cure}">治疗方法、等</pre>
+            <hr>
+            <h3 style="margin-left: 10px">如何预防</h3>
+            &nbsp;&nbsp;&nbsp;<pre style="margin-left: 2em;margin-right: 10px" th:text="${illness.prevent}">方法、等</pre>
+            <hr>
+        </div>
+        </div>
+    </div>
+</div>
+<!--<div style="position: absolute;top: 150px;right: 40px;width: 20%;height: 300px;">
+    <span>编审专家</span>
+    <p>姓名:华佗</p>
+    专家形象：<img src=""/>
+    <p>所属医院：中国华佗研究院</p>
+    <p>所属科室：中医科</p>
+</div>-->
+<div id="lastdiv" style="width: 100%;height: 100px">
+
+</div>
+<script src="layui/layui.all.js"></script>
+</body>
+</html>

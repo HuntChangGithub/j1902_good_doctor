@@ -23,7 +23,23 @@
     user.userid=doctor.doctorid
 	</select>
 
+    <update id="passto" >
+    update
+    doctor
+    set
+    if_valid=1
+    where
+    doctorid=#{id}
+ </update>
 
+    <update id="sealDoc" >
+    update
+    doctor
+    set
+    if_valid=0
+    where
+    doctorid=#{id}
+ </update>
 
 
     <!--<insert id="insert">-->
