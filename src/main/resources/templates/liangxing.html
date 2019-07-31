@@ -26,7 +26,6 @@
 		#divgg{
 			margin-top: 20px;
 			margin-left: 230px;
-			
 		}
 	   #tbalediv{
 		   margin-top: 20px;
@@ -56,14 +55,7 @@
 			margin-top: 20px;
 		
 		}
-		/*#fenyediv{
-			position:absolute;
-			top:1400px;
-		}*/
-		#demo1{
-			margin-left:500px;
-			
-		}
+
 		.loginandreg{
 			position: relative;
 			top: -40px;
@@ -96,25 +88,25 @@
 				<a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				<span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
-				<span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.user.username}" ></span>
+				<span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				<a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
 			</div>
 		</div>
 	</div>
 	<div style="width:100%;height:60px" align="center">
-		<a href="index.html"><img  id="imgss" src="logo/logo.jpg" /></a>
-		<input style="width:450px;height:35px"/>
-		<button type="button" style="width:100px;height:42px" class="layui-btn layui-btn-warm">搜索</button>
+		<a href="index"><img  id="imgss" src="logo/logo.jpg" /></a>
+		<input placeholder="请输入作者或者文章名称" name="keywords" style="width:450px;height:35px"/>
+		<button id="sousuo" type="button" style="width:100px;height:42px" class="layui-btn layui-btn-warm">搜索</button>
 	</div>
 	<ul class="layui-nav layui-bg-green" align="center">
-		  <li class="layui-nav-item"><a href="">首页</a></li>
+		  <li class="layui-nav-item"><a href="index">首页</a></li>
 		  <li class="layui-nav-item layui-this"><a href="javascript:;">医学科普</a></li>
 		  <li class="layui-nav-item"><a href="">名医问答</a></li>
 		  <li class="layui-nav-item"><a href="">精选专题</a></li>
 		  <li class="layui-nav-item"><a href="">来问医生</a></li>
 		  <li class="layui-nav-item"><a href="">全国医院</a></li>
-		  <li class="layui-nav-item"><a href="">用药查询</a></li>
+		  <li class="layui-nav-item"><a href="drugHelper">用药查询</a></li>
 		  <li class="layui-nav-item"><a href="">App下载</a></li>
 	</ul>
 	<div id="divgg" style="background-color:#FFFFFF" align="center">
@@ -178,15 +170,15 @@
     <br><br>
     <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
 </div>
-	
 <script>
 	layui.use(['jquery', 'layer'], function(){ 
 		var $ = layui.$ ,//重点处		
 		//后面就跟你平时使用jQuery一样
 		$=layui.jquery;
+
+		//去详情页面
 		$(".divaa").click(function(){
 		    var id=$(this).attr("id");
-		    alert(id)
 			window.location.href="healthyXiangQing?pscienceid="+id;
 		});
 		window.onload=function(){		
@@ -194,7 +186,7 @@
 		}	
 		$("#div1").click(function(){
 			 var idss=$(this).attr("id");
-			 console.log(idss+":ss");;	
+			 console.log(idss+":ss");
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="tuijian"
 			
@@ -202,28 +194,28 @@
 		
 		$("#div2").click(function(){
 			var idss=$(this).attr("id");
-			console.log(idss+":ss");;	
+			console.log(idss+":ss");
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="zuixin"
 			
 		});
 		$("#div3").click(function(){
 			var idss=$(this).attr("id");
-			console.log(idss+":ss");;	
+			console.log(idss+":ss");
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="ytdudong"
 			
 		});
 		$("#div4").click(function(){
 			var idss=$(this).attr("id");
-			console.log(idss+":ss");;	
+			console.log(idss+":ss");
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="zhenxiang"
 			
 		});
 		$("#div6").click(function(){
 			var idss=$(this).attr("id");
-			console.log(idss+":ss");;	
+			console.log(idss+":ss");
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="zhongliu"
 			
@@ -234,7 +226,43 @@
 			$("#"+idss).css("background-color","#FDA100");
 			 window.location.href="manbing"
 		});
-	});
+        $(function(){
+            searchSession();
+        });
+        
+        //搜索的点击事件
+        $("#sousuo").click(function () {
+            var keywords=$("[name='keywords']").val();
+            //alert(keywords);
+            window.location.href="serachArticle?keywords="+keywords;
+        });
+	})
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+        }
+
+    }
 
 </script>
 </body>
