@@ -1,6 +1,8 @@
 package com.qf.j1902;
 
 import com.qf.j1902.pojo.TDepartment;
+import com.qf.j1902.pojo.TIllness;
+import com.qf.j1902.service.IllnessServiceH;
 import com.qf.j1902.service.TDepartmentService;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
@@ -18,6 +20,8 @@ import java.util.List;
 public class J1902GoodDoctorApplicationTests {
 	@Autowired
 	private TDepartmentService departmentService;
+	@Autowired
+	private IllnessServiceH illnessService;
 	@Test
 	public void contextLoads() {
 		Date date = new Date();
@@ -38,5 +42,9 @@ public class J1902GoodDoctorApplicationTests {
 		//departmentList.remove("其他");
 		System.out.println(departmentList);
 	}
-
+	@Test
+	public void testLikeIllname(){
+		List<TIllness> illnessList = illnessService.findIllnessLikeillname("%病%");
+		System.out.println(illnessList);
+	}
 }
