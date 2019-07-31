@@ -36,7 +36,7 @@ public class TestDoc {
     }
 
 
-    @Test
+  /*  @Test
     public void DocInfoTest1(){
 //        List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
 //        List<Doctor> allDoc = doctorService.getAllDoc();
@@ -54,6 +54,6 @@ public class TestDoc {
         doctor.setTelphone("17777777888");
 
         boolean b = doctorService.UpDateById(doctor);
-        System.out.println(b);
-    }
+        System.out.println(b);*/
+    /*}*/
 }

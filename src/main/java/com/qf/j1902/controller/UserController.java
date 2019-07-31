@@ -1,5 +1,6 @@
 package com.qf.j1902.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
@@ -9,13 +10,10 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.google.gson.Gson;
-import com.qf.j1902.pojo.Doctor;
-import com.qf.j1902.pojo.TDepartment;
 import com.qf.j1902.pojo.User;
-import com.qf.j1902.service.DoctorService;
-import com.qf.j1902.service.TDepartmentService;
 import com.qf.j1902.service.UserService;
 import com.qf.j1902.utils.ImgCode;
+import com.qf.j1902.vo.MsgResult;
 import com.qf.j1902.vo.UserInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -28,14 +26,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by asus on 2019/7/23.
@@ -44,10 +43,7 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    TDepartmentService departmentService;
-    @Autowired
-    private DoctorService doctorService;
+
     @RequestMapping(value = "index")
     public String index(){
         return "index";
@@ -56,6 +52,7 @@ public class UserController {
     public String reg(){
         return "reg";
     }
+
     //判断用户名是否已存在
     @RequestMapping(value = "/reg/fetchuname" , method = RequestMethod.GET)
     @ResponseBody
@@ -117,32 +114,34 @@ public class UserController {
                         @RequestParam("telphone") String telphone,
                         @RequestParam("yzm") String yzm,
                         HttpSession session , Model model){
+        String avatar = "defaultAvatar.jpg";
+        Double balance = 0.0;
         Md5Hash md5Hash = new Md5Hash(upassword,null,1024);
         String md5str = md5Hash.toString();
         User user = new User();
         user.setUsername(username);
         user.setUpassword(md5str);
         user.setTelphone(telphone);
+        user.setAvatar(avatar);
+        user.setBalance(balance);
         Date date = new Date();
         user.setRegtime(date);
         String string;
         String sendcode = (String) session.getAttribute("sendyzm");
-        if (yzm.equals(sendcode)){
+
+        if (yzm.equals(sendcode)) {
             boolean isAdd = userService.addUser(user);
             if (isAdd) {
                 string = "恭喜你，注册成功！";
                 return "regsuccess";
-            }else {
+            } else {
                 string = "很抱歉，注册失败！";
-                return "reg";
             }
-
-        }else {
+        } else {
             string = "验证码错误！";
-            model.addAttribute("string",string);
-            return "reg";
+            model.addAttribute("string", string);
         }
-
+        return "reg";
     }
     //生成登录时验证码
     @RequestMapping(value="/getImage" ,method=RequestMethod.GET)
@@ -158,12 +157,15 @@ public class UserController {
         int i = url.lastIndexOf("/");
         int length = url.length();
         String substring = url.substring(i, length);
-        System.out.println(substring);
         //从session中获取存储的验证码
         String verify = (String) session.getAttribute(ImgCode.RANDOMCODEKEY);
         List<User> users = userService.getUserByName(userInfo.getUsername());
+
+        String string1;
+        String string2;
+        String string3;
         //检验登录验证码
-        if (StringUtils.startsWithIgnoreCase(verify,userInfo.getVerifyCode())){
+        if (StringUtils.startsWithIgnoreCase(verify, userInfo.getVerifyCode())) {
             if (users.size() != 0) {
                 Integer userid = users.get(0).getUserid();
                 String roleName = userService.getRoleNameByUid(userid);
@@ -172,27 +174,27 @@ public class UserController {
                     UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getUpassword());
                     subject.login(token);
                     if (subject.isAuthenticated()) {
-                        if (roleName.equals("doctor") || roleName.equals("member")){
+                        if (roleName.equals("doctor") || roleName.equals("member")) {
                             session.setAttribute("username", userInfo.getUsername());
-                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")){
+                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")) {
                                 return "index";
-                            }else {
-                                return "redirect:"+substring;
-                            }
-                        }else {
+                            } else {
+                                return "redirect:" + substring;
+                               }
+                        } else {
                             return "main";
                         }
                     }
                 } catch (Exception e) {
-                    String string1 = "用户名或密码错误";
+                    string1 = "用户名或密码错误";
                     model.addAttribute("string1", string1);
                 }
-            }else {
-                String string3 = "用户名不存在";
+            } else {
+                string3 = "用户名不存在";
                 model.addAttribute("string3", string3);
             }
-        }else {
-            String string2 = "验证码错误";
+        } else {
+            string2 = "验证码错误";
             model.addAttribute("string2", string2);
         }
         return "login";
@@ -201,38 +203,147 @@ public class UserController {
     public String login(){
         return "login";
     }
-    @RequestMapping(value = "onlinedoctory")
-    public String toOnlinedoctory(Model model){
-        // 获取外科医生回答数前四名医生的资料doctorsWai
-        String string1 = "外科";
-        List<Doctor> doctorsWai = doctorService.getDoctorsByDepName(string1);
-        model.addAttribute("doctorsWai",doctorsWai);
-        //获取外科医生回答数前四名医生的资料doctorsGu
-        String string2 = "骨科";
-        List<Doctor> doctorsGu = doctorService.getDoctorsByDepName(string2);
-        model.addAttribute("doctorsGu",doctorsGu);
-        //获取外科医生回答数前四名医生的资料doctorsEr
-        String string3 = "儿科";
-        List<Doctor> doctorsEr = doctorService.getDoctorsByDepName(string3);
-        model.addAttribute("doctorsEr",doctorsEr);
-        //获取外科医生回答数前四名医生的资料doctorsPiFu
-        String string4 = "皮肤科";
-        List<Doctor> doctorsPiFu = doctorService.getDoctorsByDepName(string4);
-        model.addAttribute("doctorsPiFu",doctorsPiFu);
-        //获取外科医生回答数前四名医生的资料doctorsZhongYi
-        String string5 = "中医科";
-        List<Doctor> doctorsZhongYi = doctorService.getDoctorsByDepName(string5);
-        model.addAttribute("doctorsZhongYi",doctorsZhongYi);
-        //获取所有科室信息
-        List<TDepartment> depts = departmentService.getDepts();
-        TDepartment remove = depts.remove(0);
-        model.addAttribute("depts",depts);
-        return "onlinedoctory";
-    }
+
     //退出
     @RequestMapping(value = "logout")
     public String logout(HttpSession session){
         session.setAttribute("username","");
         return "index";
+    }
+    //前往个人中心
+    @RequestMapping(value = "personalCenter" , method = RequestMethod.GET)
+    public String topPrsonalCenter(HttpSession session , Model model){
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        User user = users.get(0);
+        //将数据库的date数据类型转为String
+        Date regtime = user.getRegtime();
+        SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd");
+        String times = time.format(regtime);
+        model.addAttribute("user",user);
+        model.addAttribute("regtime",times);
+        return "personalCenter";
+    }
+    //修改密码   oldupassword  newupassword
+    @RequestMapping(value = "/updateUpw" , method = RequestMethod.GET)
+    @ResponseBody
+    public MsgResult updateUpw(@RequestParam(value = "newupassword")String newupassword ,
+                            @RequestParam("oldupassword")String oldupassword ,HttpSession session ){
+        //对用户输入的原密码进行加密
+        Md5Hash md5Hash = new Md5Hash(oldupassword,null,1024);
+        String md5str = md5Hash.toString();
+        //对用户输入的新密码进行加密
+        Md5Hash md5Hash1 = new Md5Hash(newupassword,null,1024);
+        String md5str1 = md5Hash1.toString();
+        //通过session中的username获取对象进而获取原密码
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        String upassword = users.get(0).getUpassword();
+        Integer userid = users.get(0).getUserid();
+        String avatar = users.get(0).getAvatar();
+        Double balance = users.get(0).getBalance();
+        Date regtime = users.get(0).getRegtime();
+        String telphone = users.get(0).getTelphone();
+        User user = new User();
+        user.setUsername(username);
+        user.setUpassword(md5str1);
+        user.setUserid(userid);
+        user.setRegtime(regtime);
+        user.setAvatar(avatar);
+        user.setTelphone(telphone);
+        user.setBalance(balance);
+        MsgResult msgResult = new MsgResult();
+        //判断用户输入的原密码是否正确
+        if (md5str.equals(upassword)){//用户输入的原密码是否正确，可进行修改业务
+            boolean isUpdate = userService.updateUpw( user );
+            if (isUpdate) {
+                msgResult.setStatus(200);
+                msgResult.setMessage("修改成功！");;
+            }else {
+                msgResult.setStatus(400);
+                msgResult.setMessage("修改失败！");;
+            }
+        }else {
+            msgResult.setStatus(500);
+            msgResult.setMessage("原密码错误！");;
+        }
+        return msgResult;
+    }
+    //修改头像
+    @RequestMapping(value = "/updateAvatar" , method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject updateAvatar(@RequestParam("file")MultipartFile file, HttpSession session)throws IOException {
+        //如果文件内容不为空，则写入上传路径
+        JSONObject res = new JSONObject();
+        JSONObject resUrl = new JSONObject();
+        //上传文件路径
+        //String path = servletRequest.getServletContext().getRealPath("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\userimg");
+        String path = new String("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\userimg");
+        //上传照片原文件名
+        String name = file.getOriginalFilename();//上传文件的真实名称
+        String suffixName = name.substring(name.lastIndexOf("."));//获取后缀名
+        String hash = Integer.toHexString(new Random().nextInt());//自定义随机数（字母+数字）作为文件名
+        //加后缀的文件名
+        String fileName = hash + suffixName;
+        //将新的user信息set进user中
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        String upassword = users.get(0).getUpassword();
+        Integer userid = users.get(0).getUserid();
+        Double balance = users.get(0).getBalance();
+        Date regtime = users.get(0).getRegtime();
+        String telphone = users.get(0).getTelphone();
+        User user = new User();
+        user.setUsername(username);
+        user.setUpassword(upassword);
+        user.setUserid(userid);
+        user.setRegtime(regtime);
+        user.setAvatar(fileName);
+        user.setTelphone(telphone);
+        user.setBalance(balance);
+
+        File filepath = new File(path+fileName);
+        //判断路径是否存在，没有就创建一个
+        if (!filepath.getParentFile().exists()) {
+            filepath.getParentFile().mkdirs();
+        }
+       //将上传文件保存到一个目标文档中
+        File tempFile = new File(path + File.separator + fileName);
+        file.transferTo(tempFile);
+        //将进的用户信息写进数据库中
+        boolean isUpdate = userService.updateUpw( user );
+        resUrl.put("src", tempFile.getPath());
+        res.put("code", 0);
+        res.put("msg", "");
+        res.put("data", resUrl);
+        return res;
+    }
+    //前往个人订阅
+    @RequestMapping(value = "mySubscription" , method = RequestMethod.GET)
+    public String toMySubscription(HttpSession session , Model model){
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        User user = users.get(0);
+        model.addAttribute("user",user);
+
+        return "mySubscription";
+    }
+    //前往进行医师资格认证
+    @RequestMapping(value = "doctorApplication" , method = RequestMethod.GET)
+    public String toDoctorApplication(HttpSession session , Model model){
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        User user = users.get(0);
+        model.addAttribute("user",user);
+
+        return "doctorApplication";
+    }
+    //申请医师
+    @RequestMapping( value = "/applicationDoc" , method = RequestMethod.POST)
+    @ResponseBody
+    public MsgResult toApplicationDoc(){
+
+
+        return null;
     }
 }

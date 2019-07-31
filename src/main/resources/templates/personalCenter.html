@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <!--<script src="layer/layer.js" merge="true"></script>
+    <link rel="stylesheet" href="layer/theme/default/layer.css">-->
+                <!--http://localhost:8080/layer/theme/default/layer.css-->
+</head>
+<style>
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1080px;
+    }
+</style>
+<script>
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
+
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+
+        }
+    }
+    window.onload=function () {
+        searchSession();
+    }
+
+</script>
+<body style="background-color: #F5F5F5">
+<div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd>< a href="">会议</a></dd>
+                    <dd>< a href="">用药助手</a></dd>
+                    <dd>< a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div>
+            <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+            <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+        </div>
+    </div>
+
+</div>
+
+<br><br>
+<div style="width: 100%;height:500px;"  >
+    <!--border: 0.01px solid-->
+    <div style="width: 15%;height: 496px;float: left;margin-left: 300px;background-color: skyblue"  align="center">
+        <br><br>
+        <img th:src="@{'/userimg/'+${user.avatar}}"  style="width: 130px;height: 100px">
+        <br><br>
+        <br>
+        <hr style="border: 0.01px solid gray">
+        <div align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="personalCenter" style="font-size: 18px">账号管理</a>
+            <br>
+            <hr style="border: 0.01px solid gray">
+        </div>
+        <div align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="mySubscription" style="font-size: 18px">我的订阅</a>
+            <br>
+            <hr style="border: 0.01px solid gray">
+        </div>
+        <div align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="doctorApplication" style="font-size: 18px">医师认证</a>
+            <br>
+            <hr style="border: 0.01px solid gray">
+        </div>
+
+    </div>
+    <div style="width: 45%;float: left;background-color: white">
+        <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <span style="font-size: x-large" align="left">账号管理</span>
+        <br><br>
+
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" align="center">
+            <ul class="layui-tab-title">
+                <li class="layui-this">个人信息</li>
+                <li>修改密码</li>
+                <li>修改头像</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 350px;" >
+                <div class="layui-tab-item layui-show" align="center">
+                    <span style="font-size: x-large" align="center">个人信息</span>
+                    <br><br><br>
+                    <div class="layui-inline" align="center">
+                        <label class="layui-form-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" style="width: 200px;height: 40px" th:value="${user.username}" name="username" lay-verify="required|phone" autocomplete="off" readonly  class="layui-input">
+                        </div>
+                    </div>
+                    <br><br><br>
+                    <div class="layui-inline" align="center">
+                        <label class="layui-form-label">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" style="width: 200px;height: 40px" th:value="${user.telphone}" name="telphone" lay-verify="required|phone" autocomplete="off" readonly class="layui-input">
+                        </div>
+
+                    </div>
+                    <br><br><br>
+                    <div class="layui-inline" align="center">
+                        <label class="layui-form-label">账户余额</label>
+                        <div class="layui-input-inline">
+                            <input type="text" style="width: 200px;height: 40px" th:value="${user.balance}" name="balance" lay-verify="required|phone" autocomplete="off" readonly class="layui-input">
+                        </div>
+
+                    </div>
+                    <br><br><br>
+                    <div class="layui-inline" align="center">
+                        <label class="layui-form-label">注册时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" style="width: 200px;height: 40px" th:value="${regtime}" name="regtime" lay-verify="required|phone" autocomplete="off" readonly class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item" align="center">
+                    <form align="center">
+                        <span style="font-size: x-large" align="center">修改密码</span>
+                        <br><br><br>
+                        <div class="layui-inline" align="center">
+                            <label class="layui-form-label">旧&nbsp;&nbsp;密&nbsp;&nbsp;码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" style="width: 280px;height: 50px" id="oldupassword" name="oldupassword" lay-verify="required|phone" onfocus="delData()"
+                                       autocomplete="off" placeholder="请输入旧密码" class="layui-input">
+                            </div>
+                            <div id="oldupwResult" style="width: 100px;height: 38px;color: #FD482C" class="layui-input-inline">
+
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="layui-inline" align="center">
+                            <label class="layui-form-label">新&nbsp;&nbsp;密&nbsp;&nbsp;码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" style="width: 280px;height: 50px" id="newupassword" onblur="zhengZePw()" onfocus="clearPwData()" name="newupassword" lay-verify="required|phone"
+                                       autocomplete="off" placeholder="请输入由6-10位数字或字母组成的新密码" class="layui-input">
+                            </div>
+                            <div id="newupwResult" style="width: 100px;height: 38px;color: #FD482C" class="layui-input-inline">
+
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="layui-inline" align="center">
+                            <label class="layui-form-label">确认密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" style="width: 280px;height: 50px" id="newupassword1" onblur="compareUpw()" onfocus="clearData()" name="newupassword1" lay-verify="required|phone"
+                                       autocomplete="off" placeholder="请确认新密码" class="layui-input">
+                            </div>
+                            <div id="newupwResult1" style="width: 100px;height: 38px;color: #FD482C" class="layui-input-inline">
+
+                            </div>
+                        </div>
+                        <br><br><br>
+                        <div class="layui-inline" id="update" align="center" >
+                            <button type="button" id="updateupw" class="layui-btn layui-btn-normal" style="width: 100px;height:45px">确认修改</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item" align="center">
+                    <br>
+
+                    <div class="layui-form-item">
+                        <span style="font-size: x-large" align="center">修改头像</span>
+                        <br><br> <br>
+                        <div style="width: 360px;float: left" ></div>
+                        <div class="layui-input-block" style="float: left;" align="left">
+                            <!-- 上传按钮 -->
+                            <button type="button" class="layui-btn" id="uploadPic"><i class="layui-icon">&#xe67c;</i>选择图片</button>
+                            <br><br><br>
+                            <button type="button" class="layui-btn layui-btn-warm" id="uploadPicBtn">开始上传</button>
+                            <br>
+                            <!-- 隐藏的input,一个隐藏的input（用于保存文件url） -->
+                            <input type="hidden" id="img_url" name="img" value=""/>
+                            <br>
+                            <!-- 预览区域 -->
+                            <div class="layui-upload-list">
+                                <img class="layui-upload-img" width="100px" height="80px" id="preShow"/>
+                                <p id="demoText"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br>
+<div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+    <br><br>
+    <span style="font-size: 16px;color: #4E5465">Copyright © 2000-2019DXY All Rights Reserved</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+    <br><br>
+    <img src="imgs/img2.png">
+    <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+    <br><br>
+    <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+    <br>
+    <br>
+</div>
+</body>
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+
+
+    //用正则表达式判断新密码的有效性
+    function zhengZePw() {
+        var zc = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/;
+        var upw = document.getElementById("newupassword").value;
+        if (zc.test(upw) == false){
+            return document.getElementById("newupwResult").innerHTML = "请输入有效密码！";
+        }
+    }
+    //newupassword   newupwResult
+    function clearPwData() {
+        document.getElementById("newupassword").value = "";
+        document.getElementById("newupwResult").innerHTML = "";
+    }
+    //判断两次密码是否一致
+    function compareUpw() {
+        var zc = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+        var upw = document.getElementById("newupassword").value;
+        var upw1 = document.getElementById("newupassword1").value;
+        if ( upw != upw1 ) {
+            return document.getElementById("newupwResult1").innerHTML = "两次密码不一致,请重输";
+        }else {
+            return document.getElementById("newupwResult1").innerHTML = "";
+        }
+    }
+    function clearData() {
+        document.getElementById("newupassword1").value = "";
+        document.getElementById("newupwResult1").innerHTML = "";
+    }
+
+
+    //通过ajax提交修改密码
+    //oldupassword  newupassword
+    $("#updateupw").on('click',function ( ) {
+        var oldupassword = document.getElementById("oldupassword").value;
+        var newupassword = document.getElementById("newupassword").value;
+        $.ajax({
+            type:'GET',
+            url: '/updateUpw',
+            data:{"oldupassword":oldupassword,"newupassword":newupassword},
+            dataType:'json',
+            success:function (msg) {
+                if ( msg.status== "200"){
+                    layer.open({
+                        title: '提示',
+                        content: msg.message,
+                        time: 10000,
+                        closeBtn: 1,
+                        shade: [0.8, '#393D49'],
+                        fixed: false,
+                        maxHeight:260,
+                        moveOut:true,
+                        skin: 'layui-layer-molv'
+                    });
+                    document.getElementById("oldupassword").value = "";
+                    document.getElementById("newupassword").value = "";
+                    document.getElementById("newupassword1").value = "";
+                }else if (msg.status== "400"){
+                    layer.open({
+                        title: '提示',
+                        content: msg.message,
+                        time: 10000,
+                        closeBtn: 1,
+                        shade: [0.8, '#393D49'],
+                        fixed: false,
+                        maxHeight:260,
+                        moveOut:true,
+                        skin: 'layui-layer-molv'
+                    });
+
+                }else {
+                    return document.getElementById("oldupwResult").innerHTML = msg.message;
+                }
+            }
+        })
+    })
+    //oldupwResult  oldupassword
+    //原密码错误时，重新输入清空左侧提示
+    function delData() {
+        document.getElementById("oldupassword").value = "";
+        document.getElementById("oldupwResult").innerHTML = "";
+    }
+
+
+    //上传图片
+    layui.use('upload', function() {
+        var upload = layui.upload, $ = layui.jquery;
+        //上传图片
+        var uploadInst = upload.render({
+            elem: '#uploadPic' //绑定元素
+            , url: '/updateAvatar' //上传接口 [[@{/upload/img}]]
+            , auto: false
+            , bindAction: '#uploadPicBtn'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#preShow').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    alert("上传失败" + res.data.src);
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+               // alert("上传成功" + res.data.src);
+                document.getElementById("img_url").value = res.data.src;
+                return layer.msg('上传成功');
+            }
+            , error: function () {
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    })
+    /*layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#uploadimg'
+            ,url: '/updateAvatar'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#upload').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+*/
+
+</script>
+</html>
