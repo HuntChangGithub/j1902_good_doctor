@@ -20,10 +20,13 @@ public class DealDoctorController {
     @Autowired
     private DocDealService docDealService;
 
+    //请求医生审核界面
     @RequestMapping("/main/dealdoctor")
     public String delDoctor(){
         return "docDeal";
     }
+
+    //审核医生信息数据
     @ResponseBody
     @RequestMapping("/main/dealdoctor/data")
     public Object dealDoctorData(){

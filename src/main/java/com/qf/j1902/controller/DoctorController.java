@@ -23,12 +23,13 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
+    //请求医生管理界面
     @RequestMapping("/main/docMa")
     public String docMa(){
         return "docMa";
     }
 
-
+    //请求医生管理数据到前端表格
     @ResponseBody
     @RequestMapping("/main/docMa/data")
     public Object docMaData(){
@@ -37,6 +38,23 @@ public class DoctorController {
         infoVo.setCount(allDoc.size());
         infoVo.setData(allDoc);
         return infoVo;
+    }
+
+    //请求更改页面
+    @RequestMapping("/main/docMa/docupdate")
+    public String docUpdatePage(){
+        return "docAdd";
+    }
+
+    @ResponseBody
+    @RequestMapping("/main/docMa/dodocupdate")
+    public String docDoUpdate(Doctor doctor){
+        System.out.println(doctor);
+        boolean b = doctorService.UpDateById(doctor);
+        if (b){
+            return "0";
+        }
+        return "1";
     }
 
 
