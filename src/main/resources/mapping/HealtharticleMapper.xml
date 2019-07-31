@@ -320,4 +320,13 @@
       createtime = #{createtime,jdbcType=DATE}
     where pscienceID = #{pscienceid,jdbcType=INTEGER}
   </update>
+  <insert id="addpsArticle" parameterType="com.qf.j1902.vo.ArticleVo">
+    insert into healtharticle
+     (pstitle, psintroduce,
+      psAuthor, psimage, fenlei,
+      createtime, pscontent,psAuthoInfo,psAuthorTel)
+     values
+      (#{pstitle},#{psintroduce},#{psAuthor},#{psimage},#{fenlei},
+       #{createtime},#{pscontent},#{psAuthorInfo},#{psAuthorTel})
+  </insert>
 </mapper>

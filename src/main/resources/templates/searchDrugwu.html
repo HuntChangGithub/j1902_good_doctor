@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐科普 - 丁香医生</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="layui/lay/modules/jquery.js" charset="utf-8"></script>
+    <script src="layer/layer.js" merge="true"></script>
+    <link rel="stylesheet" href="layer/theme/default/layer.css"  media="all">
+    <style>
+        #imgss{
+            width:120px;
+            height:60px;
+        }
+
+        body{
+            background-color:#f7f7f7
+        }
+        #bottomdiv{
+            margin-top: 20px;
+
+        }
+        .loginandreg{
+            position: relative;
+            top: -40px;
+            left: 1000px;
+        }
+        #bigdiv{
+            margin-top: 50px;
+            margin-left: 180px;
+            width: 1000px;
+            background-color:#ffffff;
+            height: auto;
+            border: solid 1px #ffffff;
+
+        }
+        #divaa{
+            margin-top: 20px;
+            margin-left: 20px;
+            height: auto;
+
+        }
+        .smalldiv{
+            padding: 10px;
+            font-size: 10px;
+        }
+
+        .divbb{
+
+            padding: 20px;
+        }
+        .concreteDrugdiv{
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        .yemadiv{
+            float: left;
+            margin-left: 10px;
+        }
+        #yemadiv2{
+            margin-top: 20px;
+            margin-bottom: 80px;
+            margin-left: 550px;
+            background-color:#f7f7f7
+        }
+    </style>
+</head>
+<body>
+<div class="layui-nav layui-bg-green">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href="http://www.dxy.cn/">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">会议</a></dd>
+                    <dd><a href="">用药助手</a></dd>
+                    <dd><a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div>
+            <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+            <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+        </div>
+    </div>
+</div>
+<div style="width:100%;height:60px" align="center">
+    <a href="index"><img  id="imgss" src="logo/logo.jpg" /></a>
+    <input id="sousuoinput" placeholder="请输入药品名称" th:value="${keywords}" style="width:450px;height:35px"/>
+    <button id="sousuo" type="button" style="width:100px;height:42px" class="layui-btn layui-btn-warm">搜索</button>
+</div>
+<ul class="layui-nav layui-bg-green" align="center">
+    <li class="layui-nav-item"><a href="index">首页</a></li>
+    <li class="layui-nav-item"><a href="tuijian">医学科普</a></li>
+    <li class="layui-nav-item"><a href="">名医问答</a></li>
+    <li class="layui-nav-item"><a href="">精选专题</a></li>
+    <li class="layui-nav-item"><a href="">来问医生</a></li>
+    <li class="layui-nav-item"><a href="">全国医院</a></li>
+    <li class="layui-nav-item layui-this"><a href="javascript:;">用药查询</a></li>
+    <li class="layui-nav-item"><a href="">App下载</a></li>
+</ul>
+<div id="bigdiv">
+    <div id="divaa">
+        <div class="divbb" th:each="concreteDrug:${concreteDrugs}">
+            <div class="concreteDrugdiv" th:id="${concreteDrug.getConcretedrugID()}" style="cursor: pointer;font-size:20px" th:text="${concreteDrug.getConcretedrugName()}"></div>
+            <span style="font-size: 15px;color: #0000FF">生产厂家：</span><div class="smalldiv" th:text="${concreteDrug.getFactoryName()}"></div>
+            <span style="font-size: 15px;color: #0000FF">商品名：</span><div class="smalldiv" th:text="${concreteDrug.getConcretedrugName()}"></div>
+            <span style="font-size: 15px;color: #0000FF">成分：</span><div class="smalldiv" th:text="${concreteDrug.getComponent()}"></div>
+            <span style="font-size: 15px;color: #0000FF">适应症：</span><div class="smalldiv" th:text="${concreteDrug.getIndication()}"></div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div id="yemadiv2">
+    <div class="yemadiv" th:if="${!pageInfo.isHasPreviousPage()}"><a href="#" style="font-size: 15px">上一页</a></div>
+    <div class="yemadiv" th:if="${pageInfo.isHasPreviousPage()}"><a onclick="pageQuery(this.id)" th:id="${pageInfo.getPrePage()}" style="font-size: 15px;cursor: pointer">上一页</a></div>
+    <div class="yemadiv" th:each="num:${pageInfo.getNavigatepageNums()}" th:if="${num < 9 }">
+        <div style="font-size: 15px;cursor: pointer" th:id="${num}" onclick="pageQuery(this.id)" th:text="${num}"></div>
+    </div>
+    <div class="yemadiv" th:if="${!pageInfo.isHasNextPage()}"><a href="#" style="font-size: 15px">下一页</a></div>
+    <div class="yemadiv" th:if="${pageInfo.isHasNextPage()}"><a onclick="pageQuery(this.id)"  th:id="${pageInfo.getNextPage()}" style="font-size: 15px;cursor: pointer">下一页</a></div>
+</div>
+<div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
+    <br><br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+    <br><br>
+    <span style="font-size: 16px;color: #4E5465">Copyright  2000-2019DXY All Rights Reserved</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+    <br><br>
+    <img src="imgs/img2.png">
+    <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+    <br><br>
+    <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+</div>
+<script>
+    layui.use(['jquery', 'layer'], function(){
+        var $ = layui.$ ,//重点处
+            //后面就跟你平时使用jQuery一样
+            $=layui.jquery;
+
+        $(".concreteDrugdiv").click(function () {
+            var concretedrugID=$(this).attr("id");
+            window.location.href="concreteDrug?concretedrugID="+concretedrugID;
+        });
+
+        //搜索药物的点击事件
+        $("#sousuo").click(function () {
+            var keywords=$("[name='keywords']").val();
+            alert(keywords);
+            window.location.href="serachDrugwu?keywords="+keywords;
+        });
+    })
+    //搜索药物的点击事件
+    function pageQuery(num) {
+        //var keywords=$("[name='keywords']").val();
+        var sousuoinput=document.getElementById("sousuoinput");
+        var keywords=sousuoinput.value;
+        //alert(keywords);
+        // alert(num);
+        window.location.href="/serachDrugwu?pn="+num+"&keywords="+keywords;
+
+    }
+
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+        }
+    }
+
+</script>
+</body>
+</html>

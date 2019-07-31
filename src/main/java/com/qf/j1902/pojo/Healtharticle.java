@@ -23,6 +23,7 @@ public class Healtharticle {
 
     private String pscontent;
 
+
     public Integer getPscienceid() {
         return pscienceid;
     }
