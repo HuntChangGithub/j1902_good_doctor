@@ -93,6 +93,8 @@
         }
     }
     function clearPwData() {
+        document.getElementById("upassword").value = "";
+        document.getElementById("zhengZeUpw").innerHTML = "";
         document.getElementById("zhengZeUpw").value = "";
         document.getElementById("zhengZeUpw").innerHTML = "";
     }
@@ -104,7 +106,7 @@
         if ( upw != upw1 ) {
             return document.getElementById("compareUpw").innerHTML = "两次密码不一致,请重输";
         }else {
-            return document.getElementById("compareUpw").innerHTML = "两次输入密码一致";
+            return document.getElementById("compareUpw").innerHTML = "";
         }
     }
     function clearData() {

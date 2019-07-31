@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
     private TShiroUserMapper tShiroUserMapper;
     @Autowired
     private TRoleMapper tRoleMapper;
+    //查询用户名是否已存在
     @Override
     public List<User> getUsers() {
         UserExample userExample = new UserExample();
@@ -29,10 +30,24 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    //注册用户
     @Override
     public boolean addUser(User user) {
         int addUser = userMapper.insertSelective(user);
-        if (addUser == 1){
+        //设置默认角色为普通会员
+        String username = user.getUsername();
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUsernameEqualTo(username);
+        Integer userid = userMapper.selectByExample(userExample).get(0).getUserid();
+        //默认为普通会员
+        Integer roleid = 6;
+        TShiroUser tShiroUser = new TShiroUser();
+        tShiroUser.setRoleId(roleid);
+        tShiroUser.setUserId(userid);
+        int insert = tShiroUserMapper.insert(tShiroUser);
+
+        if (addUser == 1 && insert == 1){
             return true;
         }else {
             return false;
@@ -59,5 +74,16 @@ public class UserServiceImpl implements UserService {
         //根绝角色id获取角色名
         String roleName = tRoleMapper.selectByPrimaryKey(roleId).getRoleName();
         return roleName;
+    }
+
+    @Override
+    public boolean updateUpw(User user ) {
+        UserExample userExample = new UserExample();
+        int i = userMapper.updateByPrimaryKey(user);
+        if (i == 1){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

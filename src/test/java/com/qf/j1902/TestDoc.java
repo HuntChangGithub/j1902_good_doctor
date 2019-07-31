@@ -36,7 +36,7 @@ public class TestDoc {
     }
 
 
-    @Test
+  /*  @Test
     public void DocInfoTest1(){
 //        List<DocDealInfo> allDocDealInfo = docDealService.getAllDocDealInfo();
 //        List<Doctor> allDoc = doctorService.getAllDoc();
@@ -58,11 +58,14 @@ public class TestDoc {
 
 
 
+        boolean b = doctorService.UpDateById(doctor);
+        System.out.println(b);*/
+    /*}*/
         //
 //        boolean passto = docDealService.passto(2);
 //        System.out.println(passto);
 //        boolean b = docDealService.sealDoc(1);
 //        System.out.println(b);
 
-    }
+   // }
 }
