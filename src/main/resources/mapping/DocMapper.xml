@@ -53,6 +53,10 @@
     <select id="getDoctorById" resultType="Doctor">
         SELECT * FROM doctor WHERE doctorid = #{doctorid}
     </select>
+    <insert id="addDoctor" parameterType="Doctor">
+        INSERT INTO doctor (username,relname,hpName,depName,jobtitle,avatar,idcard,certificateimg,doctorinfo) VALUES
+        (#{username},#{relname},#{hpName},#{depName},#{jobtitle},#{avatar},#{idcard},#{certificateimg},#{doctorinfo})
+    </insert>
 
 
 

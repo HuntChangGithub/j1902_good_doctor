@@ -80,4 +80,14 @@ public class HospitalServiceImpl implements HospitalService{
         List<THospitals> hospitalsList = tHospitalsMapper.selectLikeSkill(depName);
         return hospitalsList;
     }
+
+    @Override
+    public List<THospitals> findHospitalsByCityid(String cityid) {
+        Integer cityId = Integer.parseInt(cityid);
+        THospitalsExample tHospitalsExample = new THospitalsExample();
+        THospitalsExample.Criteria criteria = tHospitalsExample.createCriteria();
+        criteria.andCityidEqualTo(cityId);
+        List<THospitals> tHospitals = tHospitalsMapper.selectByExample(tHospitalsExample);
+        return tHospitals;
+    }
 }

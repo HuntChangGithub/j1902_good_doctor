@@ -5,6 +5,7 @@
     <title>Title</title>
     <script src="jquery/jquery-2.1.1.min.js"></script>
     <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="layui/layui.all.js"></script>
     <<link rel="stylesheet" href="layui/css/layui.css"  media="all">
     <!--<script src="layer/layer.js" merge="true"></script>
     <link rel="stylesheet" href="layer/theme/default/layer.css">-->
@@ -114,7 +115,7 @@
             <span style="font-size: x-large" align="left"> 医师认证 </span>
         </div>
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" align="center">
-            <form action="/applicationDoc" method="post" >
+            <form class="layui-form" action="/referDoctor" method="post">
                 <div class="layui-inline">
                     <label class="layui-form-label">真实姓名</label>
                     <div class="layui-input-inline">
@@ -125,31 +126,29 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">&nbsp;&nbsp;医&nbsp;&nbsp;&nbsp;&nbsp;院&nbsp;&nbsp;</label>
                     <div class="layui-input-inline" style="width: 150px;height: 30px">
-                        <select name="quiz1" style="width: 145px;height: 30px">
+                        <select style="width: 145px;height: 30px" name="provid" id="provinces" lay-filter="provinces">
                             <option value="">请选择省</option>
-                            <option value="浙江">浙江省</option>
 
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width: 150px;height: 30px" align="center">
-                        <select name="quiz2" style="width: 145px;height: 30px">
+                        <select style="width: 145px;height: 30px" name="cityid" id="citys" lay-filter="citys">
                             <option value="">请选择市</option>
-                            <option value="杭州">杭州</option>
+
                         </select>
                     </div>
-                    <div class="layui-input-inline" style="width: 150px;height: 30px"  align="center">
-                        <select name="quiz3" style="width: 145px;height: 30px">
+                    <div class="layui-input-inline" style="width: 150px;height: 30px"  align="center" >
+                        <select  style="width: 145px;height: 30px" name="hospatalid" id="hospatals" lay-filter="hospatal">
                             <option value="">请选择医院</option>
-                            <option value="西湖区">西湖区</option>
+
                         </select>
                     </div>
                 </div>
                 <div class="layui-inline" >
                     <label class="layui-form-label">&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp;&nbsp;室&nbsp;&nbsp;</label>
                     <div class="layui-input-inline" style="width: 220px;height: 30px">
-                        <select name="modules" lay-verify="required" lay-search="" style="width: 145px;height: 30px">
+                        <select name="depid" id="depid" lay-filter="depid" style="width: 145px;height: 30px">
                             <option value="">请选择科室</option>
-                            <option value="1">layer</option>
                         </select>
                     </div>
                 </div>
@@ -157,7 +156,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">&nbsp;&nbsp;职&nbsp;&nbsp;&nbsp;&nbsp;称&nbsp;&nbsp;</label>
                     <div class="layui-input-inline">
-                        <input type="password" style="width: 220px" id="upassword1" onblur="compareUpw()" onfocus="clearData()" lay-verify="email" autocomplete="off"
+                        <input type="text" style="width: 220px" name="jobtitle" lay-verify="email" autocomplete="off"
                                placeholder="请输入职称" class="layui-input">
                     </div>
                 </div>
@@ -167,7 +166,10 @@
                     <!--<div class="layui-input-inline" style="float: left">
                         <input type="text" style="width: 220px" name="idcard" lay-verify="email" autocomplete="off"placeholder="文件名" class="layui-input">
                     </div>-->
+                    <!--<input  name="shenfen" id="shenfenid" hidden/>-->
+                    <input hidden id="img_url1" name="shenfen"/>
                     <div class="layui-upload" style="float: left">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn" id="uploadidimg">保存</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-normal" id="idcardbut">选择文件</button>
                     </div>
                 </div>
@@ -177,7 +179,10 @@
                     <!--<div class="layui-input-inline" style="float: left">
                         <input type="text" style="width: 220px" name="certificateimg" lay-verify="email" autocomplete="off"placeholder="文件名" class="layui-input">
                     </div>-->
+                    <!--<input  name="zhicheng" id="zhichengid" hidden/>-->
+                    <input hidden id="img_url2" name="zhicheng"/>
                     <div class="layui-upload" style="float: left">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn" id="uploaddocimg">保存</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-normal" id="certificateimgbut">选择文件</button>
                     </div>
                 </div>
@@ -194,7 +199,7 @@
                 <br><br>
                 <div class="layui-inline" id="reg" align="center" >
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                    <button type="submit" class="layui-btn layui-btn-normal" style="width: 100px;height: 40px">提交申请</button>
+                    <button type="submit" class="layui-btn layui-btn-normal"  style="width: 100px;height: 40px">提交申请</button>
                 </div>
             </form>
 
@@ -243,30 +248,175 @@
 </body>
 <script>
 
-    //选完文件后不自动上传
+    //选完文件后不自动上传---身份证
+    layui.use('upload', function(){
+        var $ = layui.jquery,
+            upload = layui.upload;
+        upload.render({
+            elem: '#idcardbut',
+            auto: false,
+            url: '/upLoadIdCard',
+            bindAction: '#uploadidimg',
+            /*before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#preShow').attr('src', result); //图片链接（base64）
+                });
+            }
+            , */
+                done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    alert("上传失败" + res.data.src);
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                alert("上传成功" + res.data.src);
+                document.getElementById("img_url1").value = res.data.src;
+                var cardid = document.getElementById("shenfenid").innerHTML = res.data.shenfen;
+                return layer.msg('上传成功');
+            }
+            , error: function () {
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+
+    });
+    //选完文件后不自动上传---医师资格证
     layui.use('upload', function(){
         var $ = layui.jquery
             ,upload = layui.upload;
 
-        /*
-         upload.render({
-         elem: '#test8'
-         ,url: '/upload/'
-         ,auto: false
-         //,multiple: true
-         ,bindAction: '#test9'
-         ,done: function(res){
-         console.log(res)
-         }
-         })*/
-        //选择身份证
-        upload.render({
-            elem: '#idcardbut',
-        });
         //选择医师证件
         upload.render({
             elem: '#certificateimgbut',
+            auto: false,
+            url: '/upLoadDoctImg',
+            bindAction: '#uploaddocimg',
+           /* before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#preShow').attr('src', result); //图片链接（base64）
+                });
+            }
+            , */
+                done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    alert("上传失败" + res.data.src);
+
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                alert("上传成功" + res.data.src);
+                document.getElementById("img_url2").value = res.data.src;
+                var cardid = document.getElementById("zhichengid").innerHTML = res.data.zhicheng;
+                return layer.msg('上传成功');
+            }
+            , error: function () {
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
         });
+
     });
+
+
+
+    layui.use('form', function(){
+        var form = layui.form;
+        getDepartments(form);
+        getProvince(form);
+        /*监听省select*/
+        form.on('select(provinces)', function(data){
+            cityChange(form,data.value);
+
+        });
+        /*监听城市select*/
+        form.on('select(citys)', function(data){
+            hosptalChange(form,data.value);
+
+        });
+
+    });
+    //获取省份
+    function getProvince(form) {
+        $.ajax({
+            url:"/getprovinces",
+            type: "get",
+            success:function (result) {
+                var provinces=$('#provinces');
+                provinces.empty();
+                provinces.append("<option value='0' selected='selected'>请选择省</option>")
+                for(var i in result) {
+                    provinces.append('<option value="'+result[i].provinceid+'">'+result[i].province+'</option>');
+                }
+                form.render('select');
+            }
+        });
+        cityChange(form,$('#provinces').val());
+
+    };
+    //获取省份对应城市
+    function cityChange(form,value) {
+        $.ajax({
+            url:"/getcitys",
+            type: "get",
+            data: {"provinceid":value},
+            success:function (result) {
+                var citys=$('#citys');
+                citys.empty();
+                citys.append("<option value='0' selected='selected'>请选择市</option>")
+                for(var i in result) {
+                    citys.append('<option value="'+result[i].cityid+'">'+result[i].city+'</option>');
+                }
+                form.render('select');
+            }
+        });
+        hosptalChange(form,$('#citys').val());
+    };
+    //获取城市对应医院
+    function hosptalChange(form,value) {
+        $.ajax({
+            url:"/getHosptals",
+            type: "get",
+            data: {"cityid":value},
+            success:function (result) {
+                var citys=$('#hospatals');
+                citys.empty();
+                citys.append("<option value='0' selected='selected'>请选择市</option>")
+                for(var i in result) {
+                    citys.append('<option value="'+result[i].hpname+'">'+result[i].hpname+'</option>');
+                }
+                form.render('select');
+            }
+        });
+    };
+    //获取科室
+    function getDepartments(form) {
+        $.ajax({
+            url:"/getDepartments",
+            type: "get",
+            success:function (result) {
+                var depid=$('#depid');
+                depid.empty();
+                depid.append("<option value='0' selected='selected'>请选择</option>")
+                for(var i in result) {
+                    depid.append('<option value="'+result[i].depname+'">'+result[i].depname+'</option>');
+                }
+                form.render('select');
+            }
+        });
+    };
+
+
 </script>
 </html>

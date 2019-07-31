@@ -10,7 +10,9 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.google.gson.Gson;
+import com.qf.j1902.pojo.Doctor;
 import com.qf.j1902.pojo.User;
+import com.qf.j1902.service.DoctorService;
 import com.qf.j1902.service.UserService;
 import com.qf.j1902.utils.ImgCode;
 import com.qf.j1902.vo.MsgResult;
@@ -43,7 +45,8 @@ import java.util.*;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private DoctorService doctorService;
     @RequestMapping(value = "index")
     public String index(){
         return "index";
@@ -338,12 +341,101 @@ public class UserController {
 
         return "doctorApplication";
     }
-    //申请医师
-    @RequestMapping( value = "/applicationDoc" , method = RequestMethod.POST)
+    //申请医师--身份证上传图片    upLoadDoctImg
+    @RequestMapping( value = "/upLoadIdCard" , method = RequestMethod.POST)
     @ResponseBody
-    public MsgResult toApplicationDoc(){
+    public JSONObject toUpLoadIdCard(@RequestParam("file")MultipartFile file )throws IOException{
+        //如果文件内容不为空，则写入上传路径
+        JSONObject res = new JSONObject();
+        JSONObject resUrl = new JSONObject();
+        //上传文件路径
+        //String path = servletRequest.getServletContext().getRealPath("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\userimg");
+        String path = new String("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\doctorimg");
+        //上传照片原文件名  static.doctorimg
+        String name = file.getOriginalFilename();//上传文件的真实名称
+        String suffixName = name.substring(name.lastIndexOf("."));//获取后缀名
+        String hash = Integer.toHexString(new Random().nextInt());//自定义随机数（字母+数字）作为文件名
+        //加后缀的文件名
+        String fileName = hash + suffixName;
+        File filepath = new File(path+fileName);
 
+        //判断路径是否存在，没有就创建一个
+        if (!filepath.getParentFile().exists()) {
+            filepath.getParentFile().mkdirs();
+        }
+        //将上传文件保存到一个目标文档中
+        File tempFile = new File(path + File.separator + fileName);
+        file.transferTo(tempFile);
 
-        return null;
+        resUrl.put("src", tempFile.getPath());
+        res.put("shenfen",fileName);
+        res.put("code", 0);
+        res.put("msg", "");
+        res.put("data", resUrl);
+        return res;
+    }//申请医师--身份证上传图片
+    @RequestMapping( value = "/upLoadDoctImg" , method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject toUpLoadDoctImg(@RequestParam("file")MultipartFile file )throws IOException{
+        //如果文件内容不为空，则写入上传路径
+        JSONObject res = new JSONObject();
+        JSONObject resUrl = new JSONObject();
+        //上传文件路径
+        //String path = servletRequest.getServletContext().getRealPath("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\userimg");
+        String path = new String("E:\\IdeaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\doctorimg");
+        //上传照片原文件名  static.doctorimg
+        String name = file.getOriginalFilename();//上传文件的真实名称
+        String suffixName1 = name.substring(name.lastIndexOf("."));//获取后缀名
+        String hash = Integer.toHexString(new Random().nextInt());//自定义随机数（字母+数字）作为文件名
+        //加后缀的文件名
+        String fileName = hash + suffixName1;
+        File filepath = new File(path+fileName);
+
+        //判断路径是否存在，没有就创建一个
+        if (!filepath.getParentFile().exists()) {
+            filepath.getParentFile().mkdirs();
+        }
+        //将上传文件保存到一个目标文档中
+        File tempFile = new File(path + File.separator + fileName);
+        file.transferTo(tempFile);
+
+        resUrl.put("src", tempFile.getPath());
+        res.put("zhicheng",suffixName1);
+        res.put("code", 0);
+        res.put("msg", "");
+        res.put("data", resUrl);
+        return res;
+    }
+    //jobtitle
+    @RequestMapping(value = "/referDoctor" , method = RequestMethod.POST)
+    public String toReferDoctor(@RequestParam("relname")String relname ,
+                                @RequestParam("hospatalid")String hospatalid ,
+                                @RequestParam("depid")String depid ,
+                                @RequestParam("jobtitle")String jobtitle ,
+                                @RequestParam("shenfen")String shenfen ,
+                                @RequestParam("zhicheng")String zhicheng ,
+                                @RequestParam("doctorinfo")String doctorinfo ,HttpSession session){
+        String username = (String) session.getAttribute("username");
+        List<User> users = userService.getUserByName(username);
+        String avatar = users.get(0).getAvatar();
+        //处理前台传回的文件名
+        int i1 = shenfen.lastIndexOf("\\");
+        int length1 = shenfen.length();
+        String shenfenImg = shenfen.substring(i1+1, length1);
+        int i2 = zhicheng.lastIndexOf("\\");
+        int length2 = zhicheng.length();
+        String zhichengImg = zhicheng.substring(i2+1, length2);
+        Doctor doctor = new Doctor();
+        doctor.setUsername(username);
+        doctor.setAvatar(avatar);
+        doctor.setDepName(depid);
+        doctor.setHpName(hospatalid);
+        doctor.setIdcard(shenfenImg);
+        doctor.setCertificateimg(zhichengImg);
+        doctor.setRelname(relname);
+        doctor.setJobtitle(jobtitle);
+        doctor.setDoctorinfo(doctorinfo);
+        boolean isAdd = doctorService.addDoctor(doctor);
+        return "redirect:doctorApplication";
     }
 }
