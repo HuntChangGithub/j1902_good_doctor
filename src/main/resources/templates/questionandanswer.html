@@ -153,7 +153,7 @@
             </div>
             <div style="position: absolute;top: 350px;width: 900px;left: 200px;">
                 <div style="position: absolute;top: -40px;left:30px;font-size: 20px">相关回答</div>
-                    <ul th:each="doctors:${session.doctor}">
+                    <ul th:each="doctors:${doctor}">
                         <div class="cc" th:id="${doctors.getId()}"style="margin-top: 20px;background-color: white;border: 1px solid #D3D3D3; border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
                             <div style="width: 900px;height: 20px;"></div>
                             <div>

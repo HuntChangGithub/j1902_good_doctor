@@ -11,4 +11,12 @@
     <select id="findAllById" resultType="com.qf.j1902.pojo.Doctorsreply">
         SELECT * from doctorsreply  WHERE id=#{id}
     </select>
+    <insert id="add">
+        INSERT
+        INTO
+        Userquestions
+        (concreteProblems)
+        VALUES
+        (#{concreteProblems})
+    </insert>
 </mapper>
