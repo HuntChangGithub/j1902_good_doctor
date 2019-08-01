@@ -143,4 +143,9 @@
   <select id="getArticleIDbyUserID" parameterType="int" resultType="int">
     SELECT pscienceID FROM  user_psarticle WHERE userid=#{userid}
   </select>
+  <select id="getHealthyArticlesByUserid" parameterType="int" resultType="com.qf.j1902.pojo.Healtharticle">
+    SELECT h.*
+    FROM user_psarticle up,healtharticle h
+    WHERE up.pscienceID=h.pscienceID AND up.userid=#{userid}
+  </select>
 </mapper>

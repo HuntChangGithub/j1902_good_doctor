@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>疾病百科</title>
@@ -8,17 +8,96 @@
     <script src="layui/layui.all.js"></script>
     <script src="jquery/jquery-2.1.1.min.js"></script>
 </head>
+<style>
+    .loginandreg{
+        position: relative;
+        top: -40px;
+        left: 1080px;
+    }
+</style>
+<script>
+    //通过判断session的值是否为空，改变五个标签的hidden属性
+    function searchSession() {
+        var username = document.getElementById("uname").innerHTML;
+        //获取五个标签对应的对象
+        var logina = document.getElementById("logina");
+        var rega = document.getElementById("rega");
+        var helloa = document.getElementById("helloa");
+        var uname = document.getElementById("uname");
+        var logouta = document.getElementById("logouta");
+
+        if (username != ""){
+            //如果不为空，说明已登录
+            logina.setAttribute("hidden",true);
+            rega.setAttribute("hidden",true);
+            helloa.removeAttribute("hidden");
+            uname.removeAttribute("hidden");
+            logouta.removeAttribute("hidden");
+        }else {
+            //否则说明未登录或已退出
+            logina.removeAttribute("hidden");
+            rega.removeAttribute("hidden");
+            helloa.setAttribute("hidden",true);
+            logouta.setAttribute("hidden",true);
+            uname.setAttribute("hidden",true);
+
+        }
+    }
+    window.onload=function () {
+        searchSession();
+    }
+</script>
 <body  style="background-color: #e2e2e2">
+<div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd>< a href="">会议</a></dd>
+                    <dd>< a href="">用药助手</a></dd>
+                    <dd>< a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div>
+            <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+            <a href="personalCenter"><span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span></a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+        </div>
+    </div>
+
+</div>
+
+<br>
+<br>
+<div style="width: 100%;height: 60px" align="center">
+    <form action="indexSearch" method="post">
+        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+        <input name="searchInput" style="height: 38px;width: 450px" type="text" placeholder="请输入疾病名/药品名"/>
+        <button type="submit" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+    </form>
+</div>
 <div id="bigdiv">
     <div class="ul1" align="center" style="width: 80%;margin-left: 10%" >
         <ul class="layui-nav">
             <li class="layui-nav-item"><a href="onlinedoctory">在线问诊</a></li>
             <li class="layui-nav-item"><a href="questionandanswer">名医问答</a></li>
             <li class="layui-nav-item"><a href="diseaseencyclopedia">疾病百科</a></li>
-            <li class="layui-nav-item"><a href="tuijian">健康科普</a></li>
-            <li class="layui-nav-item"><a href="featuredtopics">精选专题</a></li>
+            <li class="layui-nav-item"><a href="tuijian">医学科普</a></li>
             <li class="layui-nav-item"><a href="allhospital">全国医院</a></li>
-            <li class="layui-nav-item"><a href="familymedication">家庭用药</a></li>
+            <li class="layui-nav-item"><a href="drugHelper">家庭用药</a></li>
         </ul>
     </div>
     <div id="daohang" style="margin-top: 50px">

@@ -44,7 +44,7 @@
     <div style="position: absolute;width: 900px;height: 1220px;left: 322px; background-color: #F5F5F5">
         <div style="position: absolute;width: 900px;height: 120px;left: 0px;top: 0px; background-color: #008080">
             <div style="position: absolute;left: 150px;top: 20px">
-               <ul style="line-height: 30px;color: #FFFFFF" th:each="doc:${session.doctors}">
+               <ul style="line-height: 30px;color: #FFFFFF" th:each="doc:${doctors}">
                    <img th:src="${doc.getDoctorsPicture()}" src="imgs/hushi.jpg" style="position:absolute;left: -100px; width: 90px;height: 80px">
                    <li th:text="${doc.getDoctorName()}">桃子医生</li>
                    <li th:text="${doc.getDepartments()}">小儿眼科 副主任医师</li>
@@ -60,7 +60,7 @@
         </div>
         <div style="position: absolute;width: 900px;height: 150px;top: 125px;background-color: #ffffff">
             <div style="position: absolute;left: 50px;top: 45px;">
-                <ul style="line-height: 30px;" th:each="geren:${session.doctors}">
+                <ul style="line-height: 30px;" th:each="geren:${doctors}">
                     <li th:text="${geren.getCongYeNianXian()}+'年'" style="font-size: 20px">21年</li>
                     <li style="color: #9F9F9F">从业年限</li>
                 </ul>
@@ -128,7 +128,7 @@
         <div style="position: absolute;width: 900px;height: 150px;top: 970px;background-color: #ffffff">
             <div style="position: absolute;left:20px; top: 20px;font-size: 17px">医院信息</div>
             <div style="position: absolute;left:50px; top: 50px;font-size: 14px">
-                <ul style="line-height: 35px" th:each="yiYuan:${session.doctors}">
+                <ul style="line-height: 35px" th:each="yiYuan:${doctors}">
                     <li th:text="${yiYuan.getHospital()}">海南省妇幼保健院</li>
                     <li style="font-size: 17px;color: #696969">联系电话(总机) 0898，36373861</li>
                     <li th:text="${yiYuan.getHospitalAddress()}" style="font-size: 17px;color: #696969">海口市龙昆南路15号</li>
@@ -136,7 +136,7 @@
             </div>
         </div>
     </div>
-    <ul th:each="vv:${session.doctors}">
+    <ul th:each="vv:${doctors}">
         <div class="tiWen" th:id="${vv.getId()}" style="position:fixed;bottom:0;width: 900px;height: 64px;margin-left:322px;background-color: #006400">
             <a style="position:absolute;top: 20px; margin-left: 350px;font-size: 20px;color: white"><span>向医师提问</span>(29.9¥)</a>
         </div>

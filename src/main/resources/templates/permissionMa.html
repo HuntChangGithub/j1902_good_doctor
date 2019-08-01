@@ -12,7 +12,22 @@
 <body>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend th:text="${'权限赋予'}">医生权限赋予</legend>
+    <legend id="role" >权限赋予</legend>
+
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <select id="brickType"  lay-filter="brickType">
+                <option value="0">--请选择角色--</option>
+                <option value="1" disabled>boss</option>
+                <option value="2">admin_doctor</option>
+                <option value="3">admin_member</option>
+                <option value="4">admin</option>
+                <option value="5">doctor</option>
+                <option value="6">member</option>
+            </select>
+        </div>
+    </form>
+
 </fieldset>
 
 <div id="test6" class="demo-transfer"></div>
@@ -21,23 +36,51 @@
 <script src="../layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use(['transfer', 'layer', 'util'], function(){
+    layui.use(['transfer', 'layer', 'util','form'], function(){
         var $ = layui.$
             ,transfer = layui.transfer
             ,layer = layui.layer
-            ,util = layui.util;
+            ,util = layui.util
+            ,form = layui.form;
+
+
+        //选择角色
+        var roleid = 1;
+        form.on('select(brickType)', function(data){
+            roleid = data.value;
+            $.ajax(
+                {
+                    url:'/main/permission/data',
+                    type:"POST",
+                    // contentType : "application/json",
+                    data:"roleid="+roleid,
+                    // datatype:"json",
+                    success:function (perlist) {
+
+                        transfer.reload('demo1', {
+                            elem: '#test6'
+                            ,title:['可选权限', '已有权限']
+                            ,data: data1
+                            ,value:perlist
+                        });
+                        // perData = perlist;
+                    },
+                    error:function () {
+                        alert("妈了个巴子");
+                    }
+                }
+            )
+        });
 
         //模拟数据
         var data1 = [
             {"value": "1", "title": "权限1"}
-            ,{"value": "2", "title": "权限1"}
-            ,{"value": "3", "title": "权限1"}
-            ,{"value": "4", "title": "权限1"}
-            ,{"value": "5", "title": "访问后台", "disabled": true}
-            ,{"value": "6", "title": "权限1"}
-            ,{"value": "7", "title": "权限1"}
-            ,{"value": "8", "title": "权限1"}
-            ,{"value": "9", "title": "权限1"}
+            ,{"value": "2", "title": "权限2"}
+            ,{"value": "3", "title": "权限3"}
+            ,{"value": "4", "title": "权限4"}
+            ,{"value": "5", "title": "权限5", "disabled": true}
+            ,{"value": "6", "title": "权限6"}
+            ,{"value": "7", "title": "权限7"}
         ]
 
 
@@ -46,35 +89,36 @@
             elem: '#test6'
             ,title:['可选权限', '已有权限']
             ,data: data1
+            ,value:[]
+            ,id:'demo1'
             ,onchange: function(transferJson, index){
+                var arr  = ['l','r']
                 $.ajax(
                     {
                         url:'/main/permission/transfer',
                         type:"POST",
-                        contentType : "application/json",
-                        // data:"username="+username+"&password="+password,
-                        data:JSON.stringify(transferJson),
-                        datatype:"json",
+                        // contentType : "application/json",
+                        data:"transferJson="+JSON.stringify(transferJson)+"&roleid="+roleid+"&dofor="+arr[index],
+                        // datatype:"json",
                         success:function (msg) {
                             if(msg=="1") {
                                 //此处连接其他服务
-                                alert('ok');
-                                window.parent.location.reload();
-                                parent.layer.close(index);
+                                if ('l'==arr[index]){
+                                    alert('赋权完成');
+                                }else {
+                                    alert('解除权限完成');
+                                }
                             }else {
-                                alert("no")
-                                parent.layer.close(index);
+                                alert("失败")
                             }
                         },
                         error:function () {
-                            alert("妈了个巴子");
+                            alert("接口连接失败");
                         }
                     }
                 )
-                layer.alert('将权限'+ JSON.stringify(transferJson)); //获得被穿梭时的数据
             }
         });
-
 
         //批量办法定事件
         util.event('lay-demoTransferActive', {
@@ -83,9 +127,7 @@
                 layer.alert(JSON.stringify(getData));
             }
         });
-
     });
 </script>
-
 </body>
 </html>

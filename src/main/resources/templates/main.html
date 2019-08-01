@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,12 +27,8 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    贤心
+                    你好：<span th:text="${session.username}"></span>
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
             </li>
             <li class="layui-nav-item"><a href="/logout">退了</a></li>
         </ul>
@@ -75,8 +71,21 @@
                         </dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a data-url="htHospital" data-id="8" data-title="医院信息管理" href="#" class="site-demo-active"    data-type="ltabAdd">医院信息管理</a></li>
-                <li class="layui-nav-item"><a data-url="htIllnessList" data-id="9" data-title="疾病百科管理" href="#" class="site-demo-active"    data-type="ltabAdd">疾病百科管理</a></li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">医院信息管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a data-url="htHospital" data-id="8" data-title="医院列表" href="#" class="site-demo-active"    data-type="ltabAdd">医院列表</a>
+                        </dd>
+                        <dd>
+                            <a data-url="echarts" data-id="9" data-title="医院信息统计" href="#" class="site-demo-active"    data-type="ltabAdd">医院信息统计</a>
+                        </dd>
+                    </dl>
+                </li>
+               <!-- <li class="layui-nav-item">
+                    <a data-url="htHospital" data-id="8" data-title="医院信息管理" href="#" class="site-demo-active" data-type="ltabAdd">医院信息管理</a>
+                </li>-->
+                <li class="layui-nav-item"><a data-url="htIllnessList" data-id="10" data-title="疾病百科管理" href="#" class="site-demo-active"    data-type="ltabAdd">疾病百科管理</a></li>
                 <li class="layui-nav-item"><a href="#">待加选项</a></li>
             </ul>
         </div>
@@ -174,7 +183,7 @@
                 //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                 element.tabAdd('demo', {
                     title: name,
-                    content: '<iframe src="'+url+'" frameborder="0" scrolling="no" width="100%"></iframe>',
+                    content: '<iframe src="'+url+'" frameborder="0"  width="100%"></iframe>',
                     id: id //规定好的id
                 })
                 CustomRightClick(id); //给tab绑定右击事件

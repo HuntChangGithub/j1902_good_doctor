@@ -6,6 +6,7 @@
     <script src="jquery/jquery-2.1.1.min.js"></script>
     <script src="layui/layui.js" charset="utf-8"></script>
     <<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <script src="jquery/jquery-2.1.1.min.js"></script>
     <!--<script src="layer/layer.js" merge="true"></script>
     <link rel="stylesheet" href="layer/theme/default/layer.css">-->
     <!--http://localhost:8080/layer/theme/default/layer.css-->
@@ -15,6 +16,27 @@
         position: relative;
         top: -40px;
         left: 1080px;
+    }
+    .dingyue{
+
+    }
+    .psimge{
+        width: 80px;
+        height: 80px;
+        margin-left: 5px;
+    }
+    .psdiv1{
+        margin-left: 20px;
+    }
+    .psdiv2{
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+    }
+    .bigps{
+        margin-top: -70px;
+        margin-left: 100px;
+
     }
 </style>
 <script>
@@ -84,9 +106,12 @@
 </div>
 
 <br><br>
+
+<a href="index" style="font-size: 18px;margin-left: 200px">返回首页</a>
+<br><br>
 <div style="width: 100%;height:500px;"  >
     <!--border: 0.01px solid-->
-    <div style="width: 15%;height: 496px;float: left;margin-left: 300px;background-color: skyblue"  align="center">
+    <div style="width: 15%;height: 496px;float: left;margin-left: 180px;background-color: skyblue">
         <br><br>
         <img th:src="@{'/userimg/'+${user.avatar}}"  style="width: 130px;height: 100px">
         <br><br>
@@ -109,13 +134,19 @@
         </div>
 
     </div>
-    <div style="width: 45%;float: left;background-color: white">
+    <div style="width: auto;float: left;background-color: white">
         <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <span style="font-size: x-large" align="left">个人订阅</span>
         <br><br>
-
-        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" align="center">
-
+        <div class="dingyue" lay-filter="docDemoTabBrief">
+            <div th:each="healtharticle:${healtharticles}">
+                <img class="psimge"  th:src="'images/'+${healtharticle.getPsimage()}"  src=""/>
+                <div class="bigps">
+                    <div th:text="${healtharticle.getPstitle()}" class="psdiv1"></div>
+                     <div th:text="${healtharticle.getPsintroduce()}"class="psdiv2"></div>
+                </div>
+                <hr>
+            </div>
         </div>
     </div>
 </div>
