@@ -1,6 +1,7 @@
 package com.qf.j1902.service.impl;
 
 import com.qf.j1902.mapper.UserPsarticleMapper;
+import com.qf.j1902.pojo.Healtharticle;
 import com.qf.j1902.pojo.UserPsarticle;
 import com.qf.j1902.pojo.UserPsarticleExample;
 import com.qf.j1902.service.UserPsarticleService;
@@ -29,6 +30,12 @@ public class UserPsarticleServiceImpl implements UserPsarticleService {
     @Override
     public Integer getArticleIDbyUserID(Integer userid) {
          return userPsarticleMapper.getArticleIDbyUserID(userid);
+    }
+
+    @Override
+    public List<Healtharticle> getHealthyArticlesByUserid(Integer userid) {
+        List<Healtharticle>  healtharticles=  userPsarticleMapper.getHealthyArticlesByUserid(userid);
+        return healtharticles;
     }
 
 

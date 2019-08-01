@@ -11,8 +11,10 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.google.gson.Gson;
 import com.qf.j1902.pojo.Doctor;
+import com.qf.j1902.pojo.Healtharticle;
 import com.qf.j1902.pojo.User;
 import com.qf.j1902.service.DoctorService;
+import com.qf.j1902.service.UserPsarticleService;
 import com.qf.j1902.service.UserService;
 import com.qf.j1902.utils.ImgCode;
 import com.qf.j1902.vo.MsgResult;
@@ -47,6 +49,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private UserPsarticleService userPsarticleService;
     @RequestMapping(value = "index")
     public String index(){
         return "index";
@@ -328,7 +332,9 @@ public class UserController {
         List<User> users = userService.getUserByName(username);
         User user = users.get(0);
         model.addAttribute("user",user);
-
+        Integer userid = user.getUserid();
+        List<Healtharticle> healtharticles= userPsarticleService.getHealthyArticlesByUserid(userid);
+        model.addAttribute("healtharticles",healtharticles);
         return "mySubscription";
     }
     //前往进行医师资格认证
