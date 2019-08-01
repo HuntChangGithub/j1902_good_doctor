@@ -12,7 +12,7 @@
 <body>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend th:text="${'权限赋予'}">医生权限赋予</legend>
+    <legend id="role" th:text="${'1'}">医生权限赋予</legend>
 </fieldset>
 
 <div id="test6" class="demo-transfer"></div>
@@ -28,16 +28,17 @@
             ,util = layui.util;
 
         //模拟数据
+        var role = $("#role").text();
         var data1 = [
             {"value": "1", "title": "权限1"}
-            ,{"value": "2", "title": "权限1"}
+            ,{"value": "2", "title": "权限2"}
             ,{"value": "3", "title": "权限1"}
             ,{"value": "4", "title": "权限1"}
             ,{"value": "5", "title": "访问后台", "disabled": true}
             ,{"value": "6", "title": "权限1"}
             ,{"value": "7", "title": "权限1"}
             ,{"value": "8", "title": "权限1"}
-            ,{"value": "9", "title": "权限1"}
+            ,{"value": "9", "title": "权限9"}
         ]
 
 
@@ -46,24 +47,23 @@
             elem: '#test6'
             ,title:['可选权限', '已有权限']
             ,data: data1
+            ,value:['2', '5', '9']
             ,onchange: function(transferJson, index){
+                var arr  = ['l','r']
                 $.ajax(
                     {
                         url:'/main/permission/transfer',
                         type:"POST",
-                        contentType : "application/json",
-                        // data:"username="+username+"&password="+password,
-                        data:JSON.stringify(transferJson),
-                        datatype:"json",
+                        // contentType : "application/json",
+                        data:"transferJson="+JSON.stringify(transferJson)+"&roleid="+role+"&dofor="+arr[index],
+                        // datatype:"json",
                         success:function (msg) {
                             if(msg=="1") {
                                 //此处连接其他服务
+                                alert(role);
                                 alert('ok');
-                                window.parent.location.reload();
-                                parent.layer.close(index);
                             }else {
                                 alert("no")
-                                parent.layer.close(index);
                             }
                         },
                         error:function () {
