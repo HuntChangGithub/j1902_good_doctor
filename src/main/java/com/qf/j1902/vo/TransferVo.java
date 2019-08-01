@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @auther mengyuan
- * @desc
+ * @desc 权限穿梭框VO
  * @date 2019/7/31 10:54
  */
 @Data
