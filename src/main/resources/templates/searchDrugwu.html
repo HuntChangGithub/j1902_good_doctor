@@ -129,8 +129,8 @@
     </div>
 </div>
 <div id="yemadiv2">
-    <div class="yemadiv" th:if="${!pageInfo.isHasPreviousPage()}"><a href="#" style="font-size: 15px">上一页</a></div>
-    <div class="yemadiv" th:if="${pageInfo.isHasPreviousPage()}"><a onclick="pageQuery(this.id)" th:id="${pageInfo.getPrePage()}" style="font-size: 15px;cursor: pointer">上一页</a></div>
+    <div class="yemadiv"><a  th:if="${!pageInfo.isHasPreviousPage()}" href="#" style="font-size: 15px">上一页</a></div>
+    <div class="yemadiv"><a  th:if="${pageInfo.isHasPreviousPage()}" onclick="pageQuery(this.id)" th:id="${pageInfo.getPrePage()}" style="font-size: 15px;cursor: pointer">上一页</a></div>
     <div class="yemadiv" th:each="num:${pageInfo.getNavigatepageNums()}" th:if="${num < 9 }">
         <div style="font-size: 15px;cursor: pointer" th:id="${num}" onclick="pageQuery(this.id)" th:text="${num}"></div>
     </div>
@@ -186,7 +186,7 @@
         //搜索药物的点击事件
         $("#sousuo").click(function () {
             var keywords=$("[name='keywords']").val();
-            alert(keywords);
+           // alert(keywords);
             window.location.href="serachDrugwu?keywords="+keywords;
         });
     })
