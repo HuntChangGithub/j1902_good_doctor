@@ -33,4 +33,6 @@ public interface HealthyService {
     List<Healtharticle> getHealthyArticlesByKeywords(String keywords);
 
     boolean addpsArticle(ArticleVo articleVo);
+
+    Integer getHealthyArticleID();
 }

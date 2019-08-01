@@ -3,9 +3,11 @@ package com.qf.j1902.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qf.j1902.pojo.DoctorAndArticle;
 import com.qf.j1902.pojo.Healtharticle;
 import com.qf.j1902.pojo.User;
 import com.qf.j1902.pojo.UserPsarticle;
+import com.qf.j1902.service.DoctorAndArticleService;
 import com.qf.j1902.service.HealthyService;
 import com.qf.j1902.service.UserPsarticleService;
 import com.qf.j1902.service.UserService;
@@ -38,6 +40,8 @@ public class HealthyController {
     private UserService userService;
     @Autowired
     private UserPsarticleService userPsarticleService;
+    @Autowired
+    private DoctorAndArticleService doctorAndArticleService;
 
     //两性显示
     @RequestMapping(value = "liangxing",method = RequestMethod.GET)
@@ -121,8 +125,8 @@ public class HealthyController {
 
     //发起文章的方法
      @RequestMapping("startArticle")
-     public String startArticle(@RequestParam("userid")Integer userid){
-        // System.out.println(userid);
+     public String startArticle(@RequestParam("userid")Integer userid,Model model){
+        model.addAttribute("userid",userid);
         return "startArticle";
      }
 
@@ -135,10 +139,9 @@ public class HealthyController {
                                  @RequestParam(value = "psimage")MultipartFile psimage,
                                  @RequestParam(value = "psAuthor",defaultValue = "")String psAuthor,
                                  @RequestParam(value = "psAuthorInfo",defaultValue = "")String psAuthorInfo,
-                                 @RequestParam(value = "psAuthorTel",defaultValue = "")String psAuthorTel) throws ParseException {
+                                 @RequestParam(value = "psAuthorTel",defaultValue = "")String psAuthorTel,
+                                 @RequestParam(value = "userid")Integer userid) throws ParseException {
          String upload="";
-        System.out.println(fenlei);
-        System.out.println(fenlei.equals("推荐"));
          if(fenlei.equals("推荐")){
              upload="tuijian";
          }else if(fenlei.equals("最新")){
@@ -157,8 +160,6 @@ public class HealthyController {
         System.out.println(upload);
          String path=new String("E:\\idea\\ideaProjects\\j1902_good_doctor\\src\\main\\resources\\static\\images");
          String filename = upload+"/"+psimage.getOriginalFilename();
-
-
          String location=path+"/"+filename;
          File file = new File(location);
         System.out.println(filename);
@@ -183,14 +184,20 @@ public class HealthyController {
         articleVo.setPsAuthorTel(psAuthorTel);//
         articleVo.setPsimage(filename);//
         System.out.println(articleVo);
+        //添加科普文章到数据库
         boolean add=healthyService.addpsArticle(articleVo);
+
+        //添加医生id和科普文章的id到医生和科普文章的中间表
+        DoctorAndArticle doctorAndArticle = new DoctorAndArticle();
+        doctorAndArticle.setDoctorid(userid);
+        Integer psArticleID= healthyService.getHealthyArticleID();
+        doctorAndArticle.setPscienceID(psArticleID);
+        System.out.println(doctorAndArticle);
+        boolean add2=doctorAndArticleService.addDoctorAndArticle(doctorAndArticle);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("msg","添加成功");
         return jsonObject;
     }
-
-
-
 
     //慢病
     @RequestMapping(value = "manbing",method = RequestMethod.GET)

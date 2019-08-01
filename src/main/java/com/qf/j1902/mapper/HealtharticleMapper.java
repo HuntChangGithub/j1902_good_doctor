@@ -39,4 +39,6 @@ public interface HealtharticleMapper {
 
     //添加科普文章的信息
     boolean addpsArticle(ArticleVo articleVo);
+
+    Integer getHealthyArticleID();
 }
