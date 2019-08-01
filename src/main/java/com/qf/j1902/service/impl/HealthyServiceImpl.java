@@ -33,6 +33,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("两性");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -49,6 +51,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("推荐");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -58,6 +62,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("一图读懂");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -67,6 +73,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("最新");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -76,6 +84,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("真相");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -85,6 +95,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("肿瘤");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -94,6 +106,8 @@ public class HealthyServiceImpl implements HealthyService {
         HealtharticleExample example = new HealtharticleExample();
         HealtharticleExample.Criteria criteria = example.createCriteria();
         criteria.andFenleiEqualTo("慢病");
+        Byte b=1;
+        criteria.andIfValidEqualTo(b);
         List<Healtharticle> articles = healtharticleMapper.selectByExample(example);
         return articles;
     }
@@ -124,6 +138,12 @@ public class HealthyServiceImpl implements HealthyService {
     public boolean addpsArticle(ArticleVo articleVo) {
         boolean add=healtharticleMapper.addpsArticle(articleVo);
         return add;
+    }
+
+    @Override
+    public Integer getHealthyArticleID() {
+        Integer ID= healtharticleMapper.getHealthyArticleID();
+        return ID;
     }
 
 

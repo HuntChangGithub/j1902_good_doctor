@@ -193,6 +193,7 @@
                                             <label class="col-sm-2 control-label">自我介绍</label>
                                             <div class="col-sm-10">
                                                 <input name="psAuthor" type="text" class="form-control" placeholder="作者名称">
+                                                <input name="userid"  th:value="${userid}" type="text" class="form-control" placeholder="作者名称">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -267,9 +268,11 @@
        var psAuthor=$("input[name=psAuthor]").val();//作者名字
        var psAuthorInfo=$("textarea[name=psAuthorInfo]").val();//作者信息
        var psAuthorTel=$("input[name=psAuthorTel]").val();//作者电话
+       var userid=$("input[name=userid]").val();
        formdata.append('psAuthor',psAuthor);
        formdata.append('psAuthorInfo',psAuthorInfo);
        formdata.append('psAuthorTel',psAuthorTel);
+       formdata.append('userid',userid);
        $.ajax({
            async:false,
            contentType:false,
@@ -277,7 +280,7 @@
            url:"addArticle",
            data:formdata,
            type:"post",
-           sucess:function (json) {
+           success:function (json) {
                alert(json.msg);
            }
 

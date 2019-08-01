@@ -329,4 +329,7 @@
       (#{pstitle},#{psintroduce},#{psAuthor},#{psimage},#{fenlei},
        #{createtime},#{pscontent},#{psAuthorInfo},#{psAuthorTel})
   </insert>
+  <select id="getHealthyArticleID" resultType="int">
+    SELECT MAX(pscienceID) FROM healtharticle
+  </select>
 </mapper>
