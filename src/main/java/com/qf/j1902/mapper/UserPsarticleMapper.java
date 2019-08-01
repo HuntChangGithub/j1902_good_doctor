@@ -1,5 +1,6 @@
 package com.qf.j1902.mapper;
 
+import com.qf.j1902.pojo.Healtharticle;
 import com.qf.j1902.pojo.UserPsarticle;
 import com.qf.j1902.pojo.UserPsarticleExample;
 import java.util.List;
@@ -25,4 +26,6 @@ public interface UserPsarticleMapper {
     Integer getUserIDbyArticleID(Integer pscienceid);
 
     Integer getArticleIDbyUserID(Integer userid);
+
+    List<Healtharticle> getHealthyArticlesByUserid(Integer userid);
 }
