@@ -5,4 +5,10 @@
     <select id="findAll" resultType="com.qf.j1902.vo.FamousDoctorVo">
         SELECT d.*,u.* from doctorsreply d,userquestions u WHERE d.userQuestionsID=u.id
     </select>
+    <select id="findAllByid" resultType="com.qf.j1902.vo.FamousDoctorVo">
+         SELECT d.*,u.* from doctorsreply d,userquestions u WHERE d.userQuestionsID=u.id AND d.id=#{id}
+    </select>
+    <select id="findAllById" resultType="com.qf.j1902.pojo.Doctorsreply">
+        SELECT * from doctorsreply  WHERE id=#{id}
+    </select>
 </mapper>

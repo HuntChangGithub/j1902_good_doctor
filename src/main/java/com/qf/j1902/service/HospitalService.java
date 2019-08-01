@@ -24,4 +24,6 @@ public interface HospitalService {
     public THospitals getHospitalsById(Integer id);
     //根据科室名称模糊查询专长此科的医院
     public List<THospitals> findHospitalsByDepName(String depName);
+    //根据城市id获取医院列表
+    public List<THospitals> findHospitalsByCityid(String cityid);
 }

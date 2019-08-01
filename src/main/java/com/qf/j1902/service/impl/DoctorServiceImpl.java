@@ -56,5 +56,12 @@ public class DoctorServiceImpl implements DoctorService {
         return doctor;
     }
 
+    @Override
+    public boolean addDoctor(Doctor doctor) {
+        //医生表中新加一条数据
+        boolean isAdd = docMapper.addDoctor(doctor);
+        return isAdd;
+    }
+
 
 }

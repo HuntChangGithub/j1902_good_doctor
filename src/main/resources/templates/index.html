@@ -5,6 +5,8 @@
     <title>Title</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="layui/css/layui.css"  media="all">
 </head>
 <style>
@@ -29,17 +31,17 @@
     }
     #gooddoctor{
         position: absolute;
-        top: 880px;
+        top: 950px;
         left: 152px;
     }
     #hospital{
         position: absolute;
-        top: 1450px;
+        top: 1600px;
         left: 152px;
     }
     #bottomdiv{
         position: absolute;
-        top: 2100px;
+        top: 2250px;
     }
     .ul1{
         position: relative;
@@ -103,7 +105,7 @@
                     <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
-                    <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                    <a href="personalCenter"><span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span></a>
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
                 </div>
@@ -114,9 +116,11 @@
     <br>
     <br>
     <div style="width: 100%;height: 60px" align="center">
-        <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
-        <input style="height: 38px;width: 450px" type="text"placeholder="请输入疾病名/药品名"/>
-        <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+        <form action="indexSearch" method="post">
+            <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+            <input name="searchInput" style="height: 38px;width: 450px" type="text" placeholder="请输入疾病名/药品名"/>
+            <button type="submit" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+        </form>
     </div>
 
     <div class="ul1" align="center" style="width: 80%" >
@@ -145,21 +149,9 @@
                 <span style="font-size: 18px;color: #666666">医师讲堂</span>
             </div>
             <br><br>
-            <div style="width: 98%;height: 170px" >
+            <div style="width: 98%;height: 170px" id="teachcoursediv">
 
-                <div style="width: 270px;height: 170px;float: left;margin-left: 17px">
-
-                    <div style="width: 150px;height: 125px;float: left">
-                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
-                    </div>
-                    <div style="width: 120px;height: 125px;float: left">
-                        <span>****10节课</span><br><br>
-                        <span> 某某</span>
-                        <span>主治医师</span><br><br><br>
-                        <span>37人购买</span>
-                    </div>
-                </div>
-                <div style="width: 270px;height: 170px;float: left;margin-left: 17px">
+                <!--<div style="width: 270px;height: 170px;float: left;margin-left: 17px">
 
                     <div style="width: 150px;height: 125px;float: left">
                         <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
@@ -195,12 +187,124 @@
                         <span>37人购买</span>
                     </div>
                 </div>
+                <div style="width: 270px;height: 170px;float: left;margin-left: 17px">
+
+                    <div style="width: 150px;height: 125px;float: left">
+                        <img src="/imgs/user.jpg" style="width: 125px;height: 125px"/>
+                    </div>
+                    <div style="width: 120px;height: 125px;float: left">
+                        <span>****10节课</span><br><br>
+                        <span> 某某</span>
+                        <span>主治医师</span><br><br><br>
+                        <span>37人购买</span>
+                    </div>
+                </div>-->
             </div>
         </div>
     </div>
 
+        <div class="layui-tab layui-tab-card" id="gooddoctor" style="width: 1190px;height: 600px" >
+            <br>
+            <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;推荐医生</span>
+            <br><br><br>
+            <ul class="layui-tab-title" id="ulid">
+                <li class="layui-this"><span  id="dept1">外科</span></li>
+                <li ><span id="dept2">骨科</span></li>
+                <li ><span id="dept3">儿科</span></li>
+                <li ><span id="dept4">皮肤科</span></li>
+                <li ><span id="dept5">中医科</span></li>
+            </ul>
+            <div class="layui-tab-content" style="height: 520px;">
 
-    <div class="layui-tab layui-tab-card" id="gooddoctor" style="width: 80%" >
+                <div class="layui-tab-item layui-show" id="dept1div">
+                    <!-- <div th:each="doctorWai:${doctorsWai}" th:id="${doctorWai.doctorid}"
+                          style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+                         <br>
+                         <img th:src="@{'/doctorimg/'+${doctorWai.avatar}}" style="width: 90px;height: 90px"/><br><br>
+                         <div style="width: 230px">
+                             <span th:text="${doctorWai.relname}"></span> &nbsp;&nbsp;&nbsp;
+                             <span th:text="${doctorWai.jobtitle}">主治医师</span><br><br>
+                             <span th:text="${doctorWai.hpName}"> 西京医院</span><br><br>
+                             <a><span th:text="${doctorWai.answercount}">86</span>个回答</a><br><br>
+                             <div align="left" style="height: auto">
+                                 <span th:text="${doctorWai.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                             </div>
+                         </div>
+                     </div> -->
+
+                 </div>
+
+                <div class="layui-tab-item" id="dept2div">
+                    <div th:each="doctorGu:${doctorsGu}" th:id="${doctorGu.doctorid}"
+                         style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+                        <br>
+                        <img th:src="@{'/doctorimg/'+${doctorGu.avatar}}" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span th:text="${doctorGu.relname}"></span> &nbsp;&nbsp;&nbsp;
+                            <span th:text="${doctorGu.jobtitle}">主治医师</span><br><br>
+                            <span th:text="${doctorGu.hpName}"> 西京医院</span><br><br>
+                            <a><span th:text="${doctorGu.answercount}">86</span>个回答</a><br><br>
+                            <div align="left" style="height: auto">
+                                <span th:text="${doctorGu.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-tab-item" id="dept3div">
+                    <div th:each="doctorEr:${doctorsEr}" th:id="${doctorEr.doctorid}"
+                         style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+                        <br>
+                        <img th:src="@{'/doctorimg/'+${doctorEr.avatar}}" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span th:text="${doctorEr.relname}"></span> &nbsp;&nbsp;&nbsp;
+                            <span th:text="${doctorEr.jobtitle}">主治医师</span><br><br>
+                            <span th:text="${doctorEr.hpName}"> 西京医院</span><br><br>
+                            <a><span th:text="${doctorEr.answercount}">86</span>个回答</a><br><br>
+                            <div align="left" style="height: auto">
+                                <span th:text="${doctorEr.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-tab-item" id="dept4div">
+                    <div th:each="doctorPiFu:${doctorsPiFu}" th:id="${doctorPiFu.doctorid}"
+                         style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+                        <br>
+                        <img th:src="@{'/doctorimg/'+${doctorPiFu.avatar}}" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span th:text="${doctorPiFu.relname}"></span> &nbsp;&nbsp;&nbsp;
+                            <span th:text="${doctorPiFu.jobtitle}">主治医师</span><br><br>
+                            <span th:text="${doctorPiFu.hpName}"> 西京医院</span><br><br>
+                            <a><span th:text="${doctorPiFu.answercount}">86</span>个回答</a><br><br>
+                            <div align="left" style="height: auto">
+                                <span th:text="${doctorPiFu.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-tab-item" id="dept5div">
+                    <div th:each="doctorZhongYi:${doctorsZhongYi}" th:id="${doctorZhongYi.doctorid}"
+                         style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+                        <br>
+                        <img th:src="@{'/doctorimg/'+${doctorZhongYi.avatar}}" style="width: 90px;height: 90px"/><br><br>
+                        <div style="width: 230px">
+                            <span th:text="${doctorZhongYi.relname}"></span> &nbsp;&nbsp;&nbsp;
+                            <span th:text="${doctorZhongYi.jobtitle}">主治医师</span><br><br>
+                            <span th:text="${doctorZhongYi.hpName}"> 西京医院</span><br><br>
+                            <a><span th:text="${doctorZhongYi.answercount}">86</span>个回答</a><br><br>
+                            <div align="left" style="height: auto">
+                                <span th:text="${doctorZhongYi.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <!--<div class="layui-tab layui-tab-card" id="gooddoctor" style="width: 80%" >
         <br>
         <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;推荐医生</span>
         <br><br><br>
@@ -471,7 +575,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="hospital">
         <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;就医推荐</span>
@@ -800,7 +904,7 @@
         <br>
     </div>
 </body>
-<script src="layui/layui.js" charset="utf-8"></script>
+
 <script>
     //轮播图JS
     layui.use(['carousel', 'form'], function(){
@@ -811,31 +915,8 @@
         carousel.render({
             elem: '#bigimg'
             ,arrow: 'always'
-        });
-
-        //改变下时间间隔、动画类型、高度
-        carousel.render({
-            elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
-        });
-
-        //设定各种参数
-        var ins3 = carousel.render({
-            elem: '#test3'
-        });
-        //图片轮播
-        carousel.render({
-            elem: '#test10'
-            ,width: '778px'
-            ,height: '440px'
-            ,interval: 5000
-        });
-
-        //事件
-        carousel.on('change(test4)', function(res){
-            console.log(res)
+            ,width: '1150px'
+            ,height: '350px'
         });
 
         var $ = layui.$, active = {
@@ -885,5 +966,143 @@
             //layer.msg(elem.text());
         });
     });
+
+
+   /* //ajax请求数据
+    $.ajax({
+        type:'post',
+        url:'getCourseaData',
+        datatype:'json',
+        success: function ( data) {
+            
+        }
+    })*/
+
+
+    //ajax请求医师讲堂、就医推荐数据
+    $(function () {
+        var dept1 = $("#dept1").text();
+        var dept2 = $("#dept2").text();
+        var dept3 = $("#dept3").text();
+        var dept4 = $("#dept4").text();
+        var dept5 = $("#dept5").text();
+        $.ajax({
+            type:'post',
+            url:'/getIndexData',
+            datatype:'json',
+            data:{'dept1':dept1,'dept2':dept2,'dept3':dept3,'dept4':dept4,'dept5':dept5 },
+            success :function (data) {
+                var courseData = data.tutorial;
+                var teachcoursediv = document.getElementById("teachcoursediv");
+                for(var i in courseData){
+                    var drdiv = $("<div style='width: 200px;height: 170px;float: left;margin-left: 87px' align='center'></div>")
+                    drdiv.append("<img src='/courseimg/"+courseData[i].courseimg +"' class='physiciantutorial' id='"+courseData[i].courseid+"' name='"+courseData[i].courseid+"' onclick='imgclick(this);' style='width: 125px;height: 125px;cursor: pointer'/>");
+                    drdiv.append("<br><span>"+courseData[i].coursetitle+"</span><br>");
+                    drdiv.append("<span>"+courseData[i].relname+"</span>&nbsp;&nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+courseData[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+courseData[i].coursejoinper+"</span>");
+                    drdiv.append("人购买");
+                    drdiv.appendTo(teachcoursediv);
+
+
+                }
+
+
+                var depts1 = data.string1;
+                var div1 = document.getElementById("dept1div");
+                for(var i in depts1){
+                    //div1.append('<div id="'+depts1[i].doctorid+'" style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" ><br><img src="/doctorimg/'+depts1[i].avatar+'" style="width: 90px;height: 90px"/><br><br><div style="width: 230px"><span> '+depts1[i].relname+'</span> &nbsp;&nbsp;&nbsp;<span>'+depts1[i].jobtitle+'</span><br><br><span>'+depts1[i].hpName+'</span><br><br><a><span">'+depts1[i].answercount+'</span>个回答</a><br><br><div align="left" style="height: auto"><span>'+depts1[i].doctorinfo+'</span></div></div></div>');
+                    //div1.append('<div id="'+depts1[i].doctorid+'"><br><img src="/doctorimg/'+depts1[i].avatar+'"/><br><br><div ><span> '+depts1[i].relname+'</span> &nbsp;&nbsp;&nbsp;<span>'+depts1[i].jobtitle+'</span><br><br><span>'+depts1[i].hpName+'</span><br><br><a><span">'+depts1[i].answercount+'</span>个回答</a><br><br><div ><span>'+depts1[i].doctorinfo+'</span></div></div></div>');
+                    var drdiv = $("<div id='"+depts1[i].doctorid+"' style='margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px' align='center'></div>");
+                    drdiv.append("<br><img  src='/doctorimg/"+depts1[i].avatar +"' style='width: 90px;height: 90px'/><br><br>");
+                    drdiv.append("<span>" + depts1[i].hpName + "</span>");
+                    drdiv.append("<span>"+depts1[i].relname+"</span> &nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+depts1[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+depts1[i].hpName+"</span><br><br>");
+                    drdiv.append("<span>"+depts1[i].answercount+"</span>");
+                    drdiv.append("<a>个回答</a><br><br>");
+                    drdiv.append("<span>"+depts1[i].doctorinfo+"</span>");
+                    drdiv.appendTo(div1);
+                }
+                var depts2 = data.string2;
+                var div2 = document.getElementById("dept2div");
+                for(var i in depts2){
+                    var drdiv = $("<div id='"+depts2[i].doctorid+"' style='margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px' align='center'></div>");
+                    drdiv.append("<br><img  src='/doctorimg/"+depts2[i].avatar +"' style='width: 90px;height: 90px'/><br><br>");
+                    drdiv.append("<span>" + depts2[i].hpName + "</span>");
+                    drdiv.append("<span>"+depts2[i].relname+"</span> &nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+depts2[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+depts2[i].hpName+"</span><br><br>");
+                    drdiv.append("<span>"+depts2[i].answercount+"</span>");
+                    drdiv.append("<a>个回答</a><br><br>");
+                    drdiv.append("<span>"+depts2[i].doctorinfo+"</span>");
+                    drdiv.appendTo(div2);
+                }
+                var depts3 = data.string3;
+                var div3 = document.getElementById("dept3div");
+                for(var i in depts3){
+                    var drdiv = $("<div id='"+depts3[i].doctorid+"' style='margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px' align='center'></div>");
+                    drdiv.append("<br><img  src='/doctorimg/"+depts3[i].avatar +"' style='width: 90px;height: 90px'/><br><br>");
+                    drdiv.append("<span>" + depts3[i].hpName + "</span>");
+                    drdiv.append("<span>"+depts3[i].relname+"</span> &nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+depts3[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+depts3[i].hpName+"</span><br><br>");
+                    drdiv.append("<span>"+depts3[i].answercount+"</span>");
+                    drdiv.append("<a>个回答</a><br><br>");
+                    drdiv.append("<span>"+depts3[i].doctorinfo+"</span>");
+                    drdiv.appendTo(div3);
+                }
+                var depts4 = data.string4;
+                var div4 = document.getElementById("dept4div");
+                for(var i in depts4){
+                    var drdiv = $("<div id='"+depts4[i].doctorid+"' style='margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px' align='center'></div>");
+                    drdiv.append("<br><img  src='/doctorimg/"+depts4[i].avatar +"' style='width: 90px;height: 90px'/><br><br>");
+                    drdiv.append("<span>" + depts4[i].hpName + "</span>");
+                    drdiv.append("<span>"+depts4[i].relname+"</span> &nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+depts4[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+depts4[i].hpName+"</span><br><br>");
+                    drdiv.append("<span>"+depts4[i].answercount+"</span>");
+                    drdiv.append("<a>个回答</a><br><br>");
+                    drdiv.append("<span>"+depts4[i].doctorinfo+"</span>");
+                    drdiv.appendTo(div4);
+                }
+
+                var depts5 = data.string5;
+                var div5 = document.getElementById("dept5div");
+                for(var i in depts5){
+                    var drdiv = $("<div style='margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px' align='center'></div>");
+                    drdiv.append("<br><img  id='"+depts5[i].doctorid+"' src='/doctorimg/"+depts5[i].avatar +"' style='width: 90px;height: 90px'/><br><br>");
+                    drdiv.append("<span>" + depts5[i].hpName + "</span>");
+                    drdiv.append("<span>"+depts5[i].relname+"</span> &nbsp;&nbsp;&nbsp;");
+                    drdiv.append("<span>"+depts5[i].jobtitle+"</span><br><br>");
+                    drdiv.append("<span>"+depts5[i].hpName+"</span><br><br>");
+                    drdiv.append("<span>"+depts5[i].answercount+"</span>");
+                    drdiv.append("<a>个回答</a><br><br>");
+                    drdiv.append("<span>"+depts5[i].doctorinfo+"</span>");
+                    drdiv.appendTo(div5);
+                }
+            }
+        })
+    })
+
+
+    //点击课程图片，查看课程详情
+    //绑定的方法
+    function imgclick(obj){
+        //获取标签id
+        var courseid = $(obj).attr("id");
+        alert(courseid);
+        window.location.href = "onlinecourse?courseid="+courseid;
+    }
+
+    /*$(document).ready(function(){
+        $(document).ready(function(){
+            //jQuery 事件 - bind() 方法
+            $(".physiciantutorial").bind("click",function(){
+                var courseid = $(this).attr("name");alert(courseid);
+                window.location.href = "onlinecourse?courseid="+courseid;
+            });
+        });
+    });*/
 </script>
 </html>

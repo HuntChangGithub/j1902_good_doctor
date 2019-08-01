@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="layer/mobile/need/layer.css"/>
+</head>
+<body style="background-color: #F5F5F5">
+<div style="width: 800px;background-color: white;margin-left: 400px;height: 700px">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this" style="margin-left: 60px">未使用</li>
+            <li style="margin-left: 180px">已使用</li>
+            <li style="margin-left: 200px">已过期</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show" align="center">
+                <img style="margin-top: 150px;width: 121px;height: 90px"src="imgtaozi/youhuiquan.png">
+            </div>
+            <div class="layui-tab-item" align="center">
+                <img style="margin-top: 150px;width: 121px;height: 90px"src="imgtaozi/youhuiquan.png">
+            </div>
+            <div class="layui-tab-item" align="center">
+                <img style="margin-top: 150px;width: 121px;height: 90px" src="imgtaozi/youhuiquan.png">
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="zYs" style="position: fixed;bottom: 0px;margin-left: 400px;width: 400px;height: 60px;background-color: white;border: 1px solid #D3D3D3;border-bottom-left-radius:15px;border-top-left-radius:15px">
+        <img style="margin-left: 160px;margin-top: 25px;width: 75px;height: 20px" src="imgtaozi/zhaoYiSheng.png">
+    </div>
+    <div class="woDe" style="position: fixed;bottom: 0px;margin-left: 800px;width: 400px;height: 60px;background-color: white;border: 1px solid #D3D3D3;border-top-right-radius:15px;border-bottom-right-radius:15px">
+        <img style="margin-top: 25px;margin-left: 160px;width: 75px;height: 20px" src="imgtaozi/woDe.png">
+    </div>
+    <script src="layui/layui.js"></script>
+    <script src="layer/layer.js"></script>
+    <script src="layui/lay/modules/jquery.js"></script>
+    <script>
+    layui.use(['jquery','layer'],function () {
+        var $=layui.$,
+            $=layui.jquery;
+        $(".zYs").click(function () {
+            alert("找医生")
+            window.location.href="seekADoctor"
+        });
+        $(".woDe").click(function () {
+            alert("我的")
+            window.location.href="personalCenter"
+        });
+    });
+    </script>
+    <script>
+        layui.use('element', function(){
+            var $ = layui.jquery
+                ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+            //触发事件
+            var active = {
+                tabAdd: function(){
+                    //新增一个Tab项
+                    element.tabAdd('demo', {
+                        title: '新选项'+ (Math.random()*1000|0) //用于演示
+                        ,content: '内容'+ (Math.random()*1000|0)
+                        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                    })
+                }
+                ,tabDelete: function(othis){
+                    //删除指定Tab项
+                    element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                    othis.addClass('layui-btn-disabled');
+                }
+                ,tabChange: function(){
+                    //切换到指定Tab项
+                    element.tabChange('demo', '22'); //切换到：用户管理
+                }
+            };
+
+            $('.site-demo-active').on('click', function(){
+                var othis = $(this), type = othis.data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+
+            //Hash地址的定位
+            var layid = location.hash.replace(/^#test=/, '');
+            element.tabChange('test', layid);
+
+            element.on('tab(test)', function(elem){
+                location.hash = 'test='+ $(this).attr('lay-id');
+            });
+
+        });
+    </script>
+</body>
+</html>

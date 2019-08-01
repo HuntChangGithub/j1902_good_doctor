@@ -1,34 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-    <div align="center">
-        <img src="imgs/onlinecourse.png" style="width: 770px;height: 440px"/>
-    </div>
-    <div>
-        <span style="font-size: 22px;color: #5FB878">驱蚊液里有「农药」？如何正确选择驱蚊产品</span>
-        <br>
-        ￥&nbsp;&nbsp;&nbsp;<span style="font-size: 24px;color: #FD482C">18</span>
-        <span style="font-size: 18px;color: #5FB878" > 1394</span ><span style="font-size: 18px;color: #5FB878">人参与</span>
-    </div>
-    <div>
-        <span>主讲人：</span>&nbsp;&nbsp;<span>李志量</span>&nbsp;&nbsp;<span>主治医师</span>
-        <br>
-        <span>中国医学科学院皮肤病医院</span>&nbsp;&nbsp;<span>皮肤科</span>
-        <br><br>
-        <span>
-            北京协和医学院皮肤病学博士。 中国医学科学院皮肤病医院·皮肤科·主治医师 擅长湿疹皮炎、荨麻疹、过敏、痤疮（痘痘）、银屑病牛皮癣、癣、灰趾甲、白斑、脱发。
-        </span>
-    </div>
-    <div>
-        <span>课程简介</span>
-        <br><br>
-        <span>【课程说明】</span>
-        <br><br>
+<script>
+    function fetchImg() {
+        var ishidden = document.getElementById("ishidden").innerHTML;
+        var coursebigimg = document.getElementById("coursebigimg");
+        if (ishidden != "" && ishidden != null){
+            coursebigimg.removeAttribute("hidden");
+        }
 
+    }
+</script>
+<body style="background-color: #e6e6e6">
+    <div align="center">
+        <span th:text="${course.coursebigimg}" name="ishidden" hidden></span>
+        <img  id="coursebigimg" th:src="@{'/deptimg/'+${course.coursebigimg}}" hidden style="width: 770px;height: 440px"/>
+    </div>
+    <div align="center">
+
+        <div align="left" style="width: 50%;background-color: white">
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 22px;color: #5FB878" th:text="${course.coursetitle}">驱蚊液里有「农药」？如何正确选择驱蚊产品</span>
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;￥&nbsp;&nbsp;<span style="font-size: 24px;color: #FD482C" th:text="${course.courseprice}">18</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-size: 18px;color: #5FB878"   th:text="${course.coursejoinper}"> 1394</span ><span style="font-size: 18px;color: #5FB878">人参与</span>
+            <br><br>
+        </div>
+
+        <br>
+        <div align="left" style="width: 50%;background-color: white">
+            <br>
+            <div style="float: left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <img th:src="@{'/doctorimg/'+${doctor.avatar}}" style="width: 80px;height: 80px"/>
+            </div>
+            <div style="float: left" >
+                <br>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;主讲人：</span>&nbsp;&nbsp;<span th:text="${doctor.relname}">李志量</span>&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${doctor.jobtitle}">主治医师</span>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span th:text="${doctor.hpName}">中国医学科学院皮肤病医院</span>&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${doctor.depName}">皮肤科</span>
+            </div>
+
+            <br><br><br><br><br>
+            <span style="width: 45%" th:text="${doctor.doctorinfo}" >
+                北京协和医学院皮肤病学博士。 中国医学科学院皮肤病医院·皮肤科·主治医师 擅长湿疹皮炎、荨麻疹、过敏、痤疮（痘痘）、银屑病牛皮癣、癣、灰趾甲、白斑、脱发。
+            </span>
+            <br>
+            <br>
+        </div >
+
+        <br>
+        <div align="left" style="width: 50%;background-color: white">
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>课程简介</span>
+            <br><br>
+            <span style="font-size: large">【课程介绍】</span>
+            <br><br>
+            <span th:text="${course.courseintro}"></span>
+            <br><br>
+            <span style="font-size: large">【适用人群】</span>
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span th:text="${course.coursesuitper}"></span>
+            <br><br>
+        </div>
+
+        <br>
+        <div align="left" style="width: 50%;background-color: white">
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 18px">课程内容</span>
+            <br><br>
+            <div th:each="chapter:${chapters}" style="height: 50px">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span>第 </span><span th:text="${chapter.chapterorder}"></span><span> 节：</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span th:text="${chapter.chaptername}"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div style="float: right">
+                    <span th:text="${chapter.chaptertimes}" ></span><span >"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </div>
+                <br><hr style="solid-color: black">
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

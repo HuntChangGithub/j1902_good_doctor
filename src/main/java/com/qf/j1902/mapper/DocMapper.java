@@ -24,4 +24,6 @@ public interface DocMapper {
     List<Doctor> getDoctorsAllByDepName(String deptname);
     //根据doctorid查一个doctor
     public Doctor getDoctorById(Integer doctorid);
+    //用户进行医生认证
+    public  boolean addDoctor(Doctor doctor);
 }
