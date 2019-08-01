@@ -23,4 +23,6 @@ public interface IllnessServiceH {
     public TIllness findIllnessById(Integer illid);
     //按科室查询并分页
     public JSONObject findIllnessByDepid(Integer page, Integer pageSize,Integer depid);
+    //按百科illname字段模糊查询
+    public List<TIllness> findIllnessLikeillname(String illname);
 }

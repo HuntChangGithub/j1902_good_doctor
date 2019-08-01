@@ -86,7 +86,7 @@ public class IllnessController {
     @RequestMapping(value = "addIllness",method = RequestMethod.POST)
     @ResponseBody
     public String addIllness(TIllness illness){
-        System.out.println(illness);
+        //System.out.println(illness);
         int i = illnessService.addIllness(illness);
         if (i==1){
             return "success";

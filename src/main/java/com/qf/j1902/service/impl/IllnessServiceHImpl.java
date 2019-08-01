@@ -89,4 +89,13 @@ public class IllnessServiceHImpl implements IllnessServiceH{
         json.put("data",illnessList);
         return json;
     }
+
+    @Override
+    public List<TIllness> findIllnessLikeillname(String illname) {
+        TIllnessExample example = new TIllnessExample();
+        TIllnessExample.Criteria criteria = example.createCriteria();
+        criteria.andIllnameLike("%"+illname+"%");
+        List<TIllness> illnessList = illnessMapper.selectByExample(example);
+        return illnessList;
+    }
 }
