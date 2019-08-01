@@ -108,7 +108,7 @@
         </div>
         <div style="margin-top:610px;background-color: #F5F5F5;height: 100px"></div>
         <div style="position: absolute;top: 80px;width: 900px;height:100%;left: 200px;background-color: #FFFFFF;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
-                <ul style="" th:each="doctors:${session.reply}">
+                <ul style="" th:each="doctors:${reply}">
                     <div style="border: 1px solid #D3D3D3;background-color: white; border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
                         <div style="width: 900px;height: 20px;"></div>
                         <div style="margin-top: 50px">
@@ -128,7 +128,7 @@
         </div>
         <div style="position: absolute;top:80px;left: 1130px;background-color: #ffffff;width: 220px;height: 620px">
             <div style="margin-left:65px;margin-top: 30px;font-size: 20px">回答医生</div>
-            <ul th:each="dd:${session.reply}">
+            <ul th:each="dd:${reply}">
                 <div class="weiWei" th:id="${dd.getId()}" style="margin-left: 20px;margin-top: 30px;width: 180px;height: 251px;border: 1px solid #D3D3D3 ;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
                     <img  style="height: 55px;width: 55px;margin-left: 60px;margin-top: 30px;" th:src="${dd.getDoctorsPicture()}"src="imgtaozi/doctor3cc.png">
                     <li  th:text="${dd.getDoctorName()}"style="margin-left: 30px;margin-top: 10px;font-size: 16px">张如卉</li>
@@ -205,8 +205,8 @@
             //后面就跟你平时使用jQuery一样
             $=layui.jquery;
         $(".weiWei").click(function(){
-            var id=$(this).attr("id");
-            window.location.href="doctor?id="+id;
+                var id=$(this).attr("id");
+                window.location.href="doctor?id="+id;
         });
     })
 </script>

@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
-    <link href="taozi/css/common.css" type="text/css" rel="stylesheet">
-    <link href="taozi/css/index.css" type="text/css" rel="stylesheet">
     <style>
 
     </style>
 </head>
 <body style="background-color: #F5F5F5">
     <div style="margin-left: 400px;background-color: white;height: 120px;width: 800px;border: 1px solid #D3D3D3;border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;">
-        <ul th:each="wenti:${session.questions}">
+        <ul th:each="wenti:${questions}">
             <img style="margin-top: 25px;margin-left: 35px;width: 60px;height: 60px" th:src="${wenti.getDoctorsPicture()}" src="imgtaozi/doctor2cc.png">
+            <li style="display: none" id="id" th:id="${wenti.getId()}"></li>
             <li style="position:absolute;left: 510px;top: 20px;font-size: 18px" th:text="${wenti.getDoctorName()}">马冬梅</li>
             <li style="position:absolute;left: 510px;top: 45px;color: #808080;font-size: 14px">副主任医师</li>
             <li style="position:absolute;top: 65px;left: 508px;color: #808080;font-size: 14px" th:text="${wenti.getDepartments()}">科室</li>
@@ -22,31 +21,17 @@
         </ul>
     </div>
     <div style="margin-top:65px;margin-left: 400px;width: 800px; height: 550px;background-color: white;border: 1px solid #D3D3D3;border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;">
-        <form class="shangchuan">
-            <textarea style="height: 271px;width: 800px;font-size: 17px" placeholder="请描述你的年龄,性别,症状及旧证经历,便于医生进行准确的分析,我们会确保你的隐私安全"></textarea>
-            <div style="width: 800px">
-                <div class="img-box full">
-                    <section class=" img-section">
-                        <p class="up-p">上传图片：<span class="up-span">最多可以上传4张图片</span></p>
-                        <div class="z_photo upimg-div clear" >
-                            <section class="z_file fl">
-                                <img src="taozi/img/a11.png" class="add-img">
-                                <input type="file" name="file" id="file" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" multiple />
-                            </section>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </form>
+            <textarea id="concreteProblems" style="height: 271px;width: 800px;font-size: 17px" placeholder="请描述你的年龄,性别,症状及旧证经历,便于医生进行准确的分析,我们会确保你的隐私安全"></textarea>
     </div>
-    <div class="tiJ" style="margin-top: 10px;margin-left: 400px;width: 800px; height: 100px;background-color: white;border: 1px solid #D3D3D3;border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;">
+    <ul th:each="userid:${questions}">
+    <div class="tiJ" th:id="${userid.getId()}" style="margin-top: 10px;margin-left: 400px;width: 800px; height: 100px;background-color: white;border: 1px solid #D3D3D3;border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-left-radius: 8px;border-bottom-right-radius: 8px;">
         <div style="margin-top: 10px;margin-left: 50px;color: #888888">医生将在 24 小时内回复你，若超时未回复，系统将关闭问题，你所支付的费用将会全额退回</div>
         <div style="margin-left: 50px; margin-top: 8px;background-color: #5FB878;height: 45px;width: 700px;color:white;font-size: 18px" align="center">支 付  ¥  199  提问</div>
     </div>
+    </ul>
     <div style="margin-top: 30px;height: 100px;margin-left: 415px;color: #888888" >
       <img style="width: 17px;height: 17px" src="imgtaozi/gantan.png">  注：医生的回答只作为健康咨询类建议，不作为诊断和治疗依据，咨询建议不能代替医生面诊。如不适感严重，请立即就医。
     </div>
-
     <div class="zYs" style="position: fixed;bottom: 0px;margin-left: 400px;width: 400px;height: 60px;background-color: white;border: 1px solid #D3D3D3;border-bottom-left-radius:15px;border-top-left-radius:15px">
         <img style="margin-left: 160px;margin-top: 25px;width: 75px;height: 20px" src="imgtaozi/zhaoYiSheng.png">
     </div>
@@ -57,9 +42,6 @@
 <script src="layui/layui.js"></script>
 <script src="layer/layer.js"></script>
 <script src="layui/lay/modules/jquery.js"></script>
-<script src="taozi/js/jquery-1.8.3.min.js"></script>
-<script src="taozi/js/imgUp.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
     <script>
         layui.use(['jquery','layer'],function () {
            var $=layui.$,
@@ -68,16 +50,19 @@
                window.location.href="seekADoctor"
            })
            $(".woDe").click(function(){
-             window.location.href="personalCenter"
+             window.location.href="gerenzhongxin"
            })
-//           $(".tiJ").click(function () {
-//               var wenti=document.getElementsByClassName("tiwen")
-//               alert(wenti)
-//               alert("提交提问")
-//           })
-           $(".input").change(function () {
-               $(".img").attr("src",URL.createObjectURL($(this)[0].files[0]));
-            });
+           $(".tiJ").click(function () {
+               var concreteProblems=$("#concreteProblems").val();
+               if (concreteProblems==null ||concreteProblems==""){
+                   alert("请输入你的具体的问题")
+                   var id=$(this).attr("id");
+                   window.location.href="questionSubmission?id="+id
+               }else {
+                   window.location.href="gerenzhongxing?concreteProblems="+concreteProblems
+               }
+
+           })
         });
     </script>
 </body>

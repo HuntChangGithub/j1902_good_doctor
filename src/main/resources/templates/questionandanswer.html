@@ -57,10 +57,12 @@
                 </div>
             </div>
         </div>
-        <div style="position:absolute;top: 100px; width: 100%;height: 60px" align="center" >
-            <a href="questionandanswer"><img src="imgs/jxys.jpg" style="width: 120px;height: 60px"></a>
-            <input style="height: 38px;width: 450px" type="text" placeholder="请输入疾病名/药品名"/>
-            <button type="button" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+        <div style="width: 100%;height: 60px" align="center">
+            <form action="indexSearch" method="post">
+                <a href="index"><img  style="width: 120px;height: 60px" src="logo/logo.jpg" /></a>
+                <input name="searchInput" style="height: 38px;width: 450px" type="text" placeholder="请输入疾病名/药品名"/>
+                <button type="submit" style="width: 100px;height: 40px" class="layui-btn">搜索</button>
+            </form>
         </div>
         <div style="position: absolute;top: 185px;left: 400px; font-size: 17px;border-top-right-radius:6px;border-bottom-right-radius:6px;border-bottom-left-radius:6px;border-top-left-radius:6px;">
             <a href="onlinedoctory">在线问诊</a>
@@ -151,7 +153,7 @@
             </div>
             <div style="position: absolute;top: 350px;width: 900px;left: 200px;">
                 <div style="position: absolute;top: -40px;left:30px;font-size: 20px">相关回答</div>
-                    <ul th:each="doctors:${session.doctor}">
+                    <ul th:each="doctors:${doctor}">
                         <div class="cc" th:id="${doctors.getId()}"style="margin-top: 20px;background-color: white;border: 1px solid #D3D3D3; border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
                             <div style="width: 900px;height: 20px;"></div>
                             <div>
