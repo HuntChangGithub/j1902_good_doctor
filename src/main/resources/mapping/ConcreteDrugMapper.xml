@@ -16,6 +16,7 @@
         SELECT * FROM concretedrug
     </select>
     <select id="getConcreteDrugsByKeywords" parameterType="string" resultType="com.qf.j1902.pojo.ConcreteDrug">
-        SELECT * FROM concretedrug WHERE concretedrugName LIKE "%"#{keywords}"%"
+        SELECT * FROM concretedrug WHERE concretedrugName LIKE "%"#{keywords}"%" or indication like "%"#{keywords}"%"
+
     </select>
 </mapper>

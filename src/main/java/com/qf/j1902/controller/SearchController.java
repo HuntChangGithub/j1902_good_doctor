@@ -24,12 +24,14 @@ public class SearchController {
     private ConcreteDrugService concreteDrugService;
 //首页搜索功能
     @RequestMapping(value = "/indexSearch",method = RequestMethod.POST)
-    public String indexSearch(@RequestParam("searchInput") String inputStr, Model model){
-        //将输入结果分别将百科，药品对应的结果返回
-        List<TIllness> illnessList = illnessService.findIllnessLikeillname(inputStr);
-        model.addAttribute("illnessList",illnessList);
-        List<ConcreteDrug> concreteDrugs = concreteDrugService.getConcreteDrugsByKeywords(inputStr);
-        model.addAttribute("concreteDrugs",concreteDrugs);
+    public String indexSearch(@RequestParam(value = "searchInput",defaultValue = "") String inputStr, Model model){
+        if (!inputStr.equals("")){
+            //将输入结果分别将百科，药品对应的结果返回
+            List<TIllness> illnessList = illnessService.findIllnessLikeillname(inputStr);
+            model.addAttribute("illnessList",illnessList);
+            List<ConcreteDrug> concreteDrugs = concreteDrugService.getConcreteDrugsByKeywords(inputStr);
+            model.addAttribute("concreteDrugs",concreteDrugs);
+        }
         return "searchResult";
     }
 }

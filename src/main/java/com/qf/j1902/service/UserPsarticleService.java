@@ -1,5 +1,6 @@
 package com.qf.j1902.service;
 
+import com.qf.j1902.pojo.Healtharticle;
 import com.qf.j1902.pojo.UserPsarticle;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface UserPsarticleService {
     Integer getUserIDbyArticleID(Integer pscienceid);
 
     Integer getArticleIDbyUserID(Integer userid);
+
+    List<Healtharticle> getHealthyArticlesByUserid(Integer userid);
 }

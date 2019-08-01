@@ -82,7 +82,7 @@ public class FamilyDrugController {
     @RequestMapping(value = "serachDrugwu",method = RequestMethod.GET)
     public String serachDrugwu(@RequestParam(defaultValue = "",value = "keywords")String keywords,
                                @RequestParam(defaultValue = "1",value = "pn")Integer pn,Model model){
-        if(StringUtils.isEmpty(keywords)){
+        if(StringUtils.isEmpty(keywords) || keywords.equals("undefined")){
             PageHelper.startPage(pn,3);
             List<ConcreteDrug> concreteDrugs=concreteDrugService.getConcreteDrugsAll();
             PageInfo<ConcreteDrug> pageInfo = new PageInfo<>(concreteDrugs);
