@@ -17,6 +17,28 @@
         position: relative;
         left: 152px;
     }
+    #bigdiv{
+        width: 1000px;
+        background-color:#ffffff;
+        height: auto;
+        border: solid 1px #ffffff;
+
+    }
+    #divaa{
+        margin-top: 20px;
+        margin-left: 20px;
+        height: auto;
+
+    }
+    .smalldiv{
+        padding: 10px;
+        font-size: 10px;
+    }
+
+    .divbb{
+
+        padding: 20px;
+    }
 </style>
 <script>
     //通过判断session的值是否为空，改变五个标签的hidden属性
@@ -106,38 +128,37 @@
 
     <div class="layui-tab layui-tab-card" id="gooddoctor" style="width: 80%;margin-left: 11.2%" >
         <br>
-        <span align="left" style="font-size: 18px;color: #666666">&nbsp;&nbsp;&nbsp;&nbsp;推荐医生</span>
-        <br><br><br>
+        <span style="font-size: 20px;margin-left: 10px">搜索结果</span>
         <ul class="layui-tab-title">
             <li class="layui-this">疾病百科相关</li>
             <li>家庭用药相关</li>
         </ul>
         <div class="layui-tab-content" style="height: 380px;">
             <div class="layui-tab-item layui-show">
-                <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
-                    <div align="center" style="height: 320px;width: 260px">
-                        <br>
-                        <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
-                        <div style="width: 230px">
-                            <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
-                            <span> 西京医院</span><br><br>
-                            <span>86个回答</span><br><br>
-                            <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
-                        </div>
-                    </div>
-                </div>
+                    <ul th:each="list:${illnessList}">
+                        <li style="margin-left: 50px">
+                            <div id="baike" style="margin-top: 30px;width: 65%;background-color: #eeeeee"><br/>
+                                <h3 style="margin-left: 15px"><a th:href="@{'showIllness?illid='+${list.illid}}" th:text="${list.illname}"></a></h3>
+                                <br/>
+                                <span style="margin-top: 30px;margin-left: 30px">简介：</span>
+                                <div style="margin-left: 30px">
+                                    <pre th:text="${list.illduc}"></pre>
+                                </div> <br/>
+                            </div>
+                        </li>
+                    </ul>
             </div>
             <div class="layui-tab-item">
                 <div class="layui-tab-item layui-show">
-                    <div style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb ">
-                        <div align="center" style="height: 320px;width: 260px">
-                            <br>
-                            <img src="/imgs/user.jpg" style="width: 90px;height: 90px"/><br><br>
-                            <div style="width: 230px">
-                                <span>某某&nbsp;&nbsp;&nbsp;主治医师</span><br><br>
-                                <span> 西京医院</span><br><br>
-                                <span>96个回答</span><br><br>
-                                <span >擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                    <div id="bigdiv">
+                        <div id="divaa">
+                            <div class="divbb" th:each="concreteDrug:${concreteDrugs}">
+                                <div class="concreteDrugdiv" th:id="${concreteDrug.getConcretedrugID()}" style="cursor: pointer;font-size:20px" th:text="${concreteDrug.getConcretedrugName()}"></div>
+                                <span style="font-size: 15px;color: #0000FF">生产厂家：</span><div class="smalldiv" th:text="${concreteDrug.getFactoryName()}"></div>
+                                <span style="font-size: 15px;color: #0000FF">商品名：</span><div class="smalldiv" th:text="${concreteDrug.getConcretedrugName()}"></div>
+                                <span style="font-size: 15px;color: #0000FF">成分：</span><div class="smalldiv" th:text="${concreteDrug.getComponent()}"></div>
+                                <span style="font-size: 15px;color: #0000FF">适应症：</span><div class="smalldiv" th:text="${concreteDrug.getIndication()}"></div>
+                                <hr>
                             </div>
                         </div>
                     </div>
@@ -186,6 +207,15 @@
 </body>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script>
+    //导航JS
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            //layer.msg(elem.text());
+        });
+    });
 </script>
 </html>
