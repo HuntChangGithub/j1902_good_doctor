@@ -172,6 +172,11 @@
             window.location.href="serachDrugwu?keywords="+keywords;
         });
 
+        $(window).load(function () {
+            searchSession();
+        });
+
+
     })
 
     //通过判断session的值是否为空，改变五个标签的hidden属性
