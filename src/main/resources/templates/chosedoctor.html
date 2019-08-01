@@ -52,9 +52,9 @@
         </div>
 
         <div th:each="doctor:${doctors}" th:id="${doctor.doctorid}"
-             style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 430px;width: 260px" align="center" >
+             style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 450px;width: 260px" align="center" >
             <br>
-            <img th:src="@{'/doctorimg/'+${doctor.avatar}}" style="width: 90px;height: 90px"/><br><br>
+            <img th:src="@{'/userimg/'+${doctor.avatar}}" style="width: 90px;height: 90px"/><br><br>
             <div style="width: 230px">
                 <span th:text="${doctor.relname}"></span> &nbsp;&nbsp;&nbsp;
                 <span th:text="${doctor.jobtitle}">主治医师</span><br><br>
