@@ -1,5 +1,6 @@
 package com.qf.j1902.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainController {
+    //登录后才可访问的权限注释
+    @RequiresPermissions(value={"authc"})
     @RequestMapping("/main")
     public String mainPage(){
         return "main";
