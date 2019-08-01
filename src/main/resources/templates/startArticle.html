@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐科普 - 丁香医生</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="layui/lay/modules/jquery.js" charset="utf-8"></script>
+    <style>
+
+
+        .loginandreg{
+            position: relative;
+            top: -40px;
+            left: 1000px;
+        }
+        #typeList  :not(:first-child) {
+            margin-top:20px;
+        }
+
+        .panel {
+            border-radius:0;
+        }
+        #bottomdiv{
+            margin-top: -20px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="layui-nav layui-bg-green">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href="http://www.dxy.cn/">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">会议</a></dd>
+                    <dd><a href="">用药助手</a></dd>
+                    <dd><a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div>
+            <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+            <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+        </div>
+    </div>
+</div>
+<div class="container theme-showcase"  role="main">
+    <div class="container" style="width: 1400px;margin-left: -120px">
+        <div class="row clearfix" >
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="collapse navbar-collapse" style="margin-left: 230px" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a rel="nofollow" href="index"><i class="glyphicon glyphicon-home"></i> 首页</a>
+                            </li>
+                            <li  class="active">
+                                <a rel="nofollow" href="javascript:;"><i class="glyphicon glyphicon-th-large"></i> 医学科普</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="mingyi.html:;"><i class="glyphicon glyphicon-edit"></i> 名医问答</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="minecrowdfunding.html"><i class="glyphicon glyphicon-user"></i> 精选专题</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="minecrowdfunding.html"><i class="glyphicon glyphicon-user"></i> 来问医生</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="minecrowdfunding.html"><i class="glyphicon glyphicon-user"></i> 全国医院</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="drugHelper"><i class="glyphicon glyphicon-user"></i> 用药查询</a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="minecrowdfunding.html"><i class="glyphicon glyphicon-user"></i> App下载</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="panel panel-default" >
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <blockquote style="border-left: 5px solid #f60;color:#f60;padding: 0 0 0 20px;">
+                                        <b>
+                                            医学科普文章及发起人信息
+                                        </b>
+                                    </blockquote>
+                                </div>
+                                <div class="col-md-12 column">
+                                    <div class="page-header" style="    border-bottom-style: dashed;">
+                                        <h3>
+                                            文章信息
+                                        </h3>
+                                    </div>
+                                    <form class="form-horizontal" id="addform" action="addArticle" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">分类信息</label>
+                                            <div class="col-sm-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="推荐"> 推荐
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="最新"> 最新
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="一图读懂"> 一图读懂
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="真相"> 真相
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="两性"> 两性
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="肿瘤"> 肿瘤
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="慢病"> 慢病
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">文章标题</label>
+                                            <div class="col-sm-10">
+                                                <input name="pstitle" type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">文章简介</label>
+                                            <div class="col-sm-10">
+                                                <textarea name="psintroduce" class="form-control" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">文章内容</label>
+                                            <div class="col-sm-10">
+                                                <textarea name="pscontent" class="form-control" rows="10"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">文章相关照片</label>
+                                            <div class="col-sm-10">
+                                                <input type="file" name="psimage" id="uploadImage" class="btn btn-primary btn-lg active">上传图片</input>
+                                                <img style="margin-top: 10px;width: 160px;height: 160px" src="" id="psimg">
+                                                <label class="control-label">支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：宽740px</label>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12 column">
+                                    <div class="page-header" style="    border-bottom-style: dashed;">
+                                        <h3>
+                                            作者信息
+                                        </h3>
+                                    </div>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">自我介绍</label>
+                                            <div class="col-sm-10">
+                                                <input name="psAuthor" type="text" class="form-control" placeholder="作者名称">
+                                                <input name="userid" th:value="${userid}" type="hidden" class="form-control" placeholder="作者名称">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">简单自我介绍</label>
+                                            <div class="col-sm-10">
+                                                <textarea name="psAuthorInfo" class="form-control" rows="3" placeholder="介绍你自己或者文章内容"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">联系电话</label>
+                                            <div class="col-sm-10">
+                                                <input name="psAuthorTel" type="text" class="form-control" placeholder="此信息不会显示在项目页面">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="text-align:center;">
+                        <button type="button" id="tijiaoArticle" class="btn  btn-warning btn-lg">提交</button>
+                        <button type="button"  style="margin-left: 15px" id="tijiaoArticle2" class="btn  btn-warning btn-lg">取消</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+<div align="center" id="bottomdiv" style="width: 100%;height: auto;background-color: #e6e6e6">
+    <br><br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+    <br><br>
+    <span style="font-size: 16px;color: #4E5465">Copyright  2000-2019DXY All Rights Reserved</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+    <br><br>
+    <img src="imgs/img2.png">
+    <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+    <br><br>
+    <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+</div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    //提交添加的from表单内容
+   $("#tijiaoArticle").click(function () {
+       var formdata=new FormData($("#addform")[0]);
+       var psAuthor=$("input[name=psAuthor]").val();//作者名字
+       var psAuthorInfo=$("textarea[name=psAuthorInfo]").val();//作者信息
+       var psAuthorTel=$("input[name=psAuthorTel]").val();//作者电话
+       var userid=$("input[name=userid]").val();
+       formdata.append('psAuthor',psAuthor);
+       formdata.append('psAuthorInfo',psAuthorInfo);
+       formdata.append('psAuthorTel',psAuthorTel);
+       formdata.append('userid',userid);
+       $.ajax({
+           async:false,
+           contentType:false,
+           processData:false,
+           url:"addArticle",
+           data:formdata,
+           type:"post",
+           success:function (json) {
+               alert(json.msg);
+           }
+       });
+   });
+   $(function () {
+       $("input[name=psimage]").change(function () {
+           $("#psimg").attr("src",URL.createObjectURL($(this)[0].files[0]));
+       })
+   });
+
+</script>
+</body>
+</html>

@@ -16,6 +16,8 @@ public interface UserService {
 
     //通过用户名查user对象
     public List<User> getUserByName(String username);
-
+    //通过用户id获取角色名
     public String getRoleNameByUid(Integer userid);
+    //修改密码
+    public boolean updateUpw(User user );
 }

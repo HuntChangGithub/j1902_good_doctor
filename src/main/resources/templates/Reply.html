@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>名医问答</title>
     <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css"/>
+    <link rel="stylesheet" href="layer/mobile/need/layer.css"/>
 </head>
 <style>
     .loginandreg{
@@ -47,35 +47,37 @@
 </script>
 <body style="min-width: 1200px;overflow-x: hidden;overflow-y: auto">
 <div>
-    <div class="layui-head">
-        <ul class="layui-nav">
-            <li class="layui-nav-item"><a href="">丁香园</a></li>
-            <li class="layui-nav-item"><a href="">论坛</a></li>
-            <li class="layui-nav-item"><a href="">丁香通</a></li>
-            <li class="layui-nav-item"><a href="">丁香客</a></li>
-            <li class="layui-nav-item"><a href="">医药招聘</a></li>
-            <li class="layui-nav-item"><a href="">文献求助</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">更多</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">会议</a></dd>
-                    <dd><a href="">用药助手</a></dd>
-                    <dd><a href="">丁当铺</a></dd>
-                    <dd><a href="">定香搜索</a></dd>
-                </dl>
-            </li>
-        </ul>
-        <div>
-            <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
-            <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+    <div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+        <div class="ly-inner pg-inner">
+            <ul class="topline-list fl clearfix">
+                <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+                <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+                <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">更多</a>
+                    <dl class="layui-nav-child">
+                        <dd>< a href="">会议</a></dd>
+                        <dd>< a href="">用药助手</a></dd>
+                        <dd>< a href="">叮当铺</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <div>
+                <a class="loginandreg" id="logina" href="login" style="background-color: transparent;">登录</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="rega" href="reg" style="background-color: transparent;">注册</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <span class="loginandreg" id="helloa" style="background-color: transparent;">你好：</span>
+                <span class="loginandreg" id="uname" style="background-color: transparent;" th:text="${session.username}" ></span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a class="loginandreg" id="logouta" href="logout" style="background-color: transparent;">退出</a>
+            </div>
         </div>
     </div>
+
     <div style="position:absolute;top: 100px; width: 100%;height: 60px" align="center" >
         <a href="questionandanswer.html"><img src="imgs/jxys.jpg" style="width: 120px;height: 60px"></a>
         <input style="height: 38px;width: 450px" type="text" placeholder="请输入疾病名/药品名"/>
@@ -96,7 +98,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="familymedication">家庭用药</a>
     </div>
-    <div style="position: absolute;top: 230px;width: 100%;height: 100%; background-color: #F5F5F5">
+    <div style="position: absolute;top: 230px;width: 100%;height: 650px; background-color: #F5F5F5">
         <div style="position: relative;left: 200px;top: 20px">
             <a href="index">首页</a>
             &nbsp;&nbsp;
@@ -104,36 +106,85 @@
             &nbsp;&nbsp;
             <a href="#">科室</a>
         </div>
-        <div style="position: absolute;top: 80px;width: 900px;height:100%;left: 200px;background-color: #FFFFFF">
-            <div style="position: absolute;top: 100px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px"></div>
-            <div style="position: absolute;top: 150px;left: 30px;box-shadow:darkgrey 0px 0px 30px ;width: 840px;height: 300px">
-                <div style="position: absolute;top: 20px;left: 10px">
-                    <img style="width: 50px;height: 50px" src="imgs/wenti.png"/>
-                    具体的提问
+        <div style="margin-top:610px;background-color: #F5F5F5;height: 100px"></div>
+        <div style="position: absolute;top: 80px;width: 900px;height:100%;left: 200px;background-color: #FFFFFF;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                <ul style="" th:each="doctors:${session.reply}">
+                    <div style="border: 1px solid #D3D3D3;background-color: white; border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                        <div style="width: 900px;height: 20px;"></div>
+                        <div style="margin-top: 50px">
+                            &nbsp;&nbsp;&nbsp;提问时间：<li style="margin-left: 80px;margin-top: -17px" th:text="${doctors.getQuestionTime()}"></li>
+                            <img style="width: 50px;height: 50px;margin-top: 20px;margin-left: 10px" src="imgtaozi/wentu.png">
+                            <li style="margin-left: 70px;margin-top: -43px;letter-spacing: 5px;line-height: 30px" th:text="${doctors.getConcreteProblems()}"></li>
+                        </div>
+                        <div style="background-color:#F8F8FF ;margin-top: 100px">
+                            <div style="width: 900px;height: 20px;"></div>
+                            &nbsp;&nbsp;&nbsp;回答时间：<li style="margin-left: 80px;margin-top: -17px" th:text="${doctors.getResponseTime()}"></li>
+                            <img style="width: 50px;height: 50px;margin-top: 20px;margin-left: 10px" th:src="${doctors.getDoctorsPicture()}" src="imgtaozi/doctor6.png">
+                            <li style="margin-left: 70px;margin-top: -50px;letter-spacing: 5px;line-height: 30px" th:text="${doctors.getQuestionResponse()}"></li>
+                        </div>
+                        <div style="background-color: #F8F8FF ;height: 20px"></div>
+                    </div>
+                </ul>
+        </div>
+        <div style="position: absolute;top:80px;left: 1130px;background-color: #ffffff;width: 220px;height: 620px">
+            <div style="margin-left:65px;margin-top: 30px;font-size: 20px">回答医生</div>
+            <ul th:each="dd:${session.reply}">
+                <div class="weiWei" th:id="${dd.getId()}" style="margin-left: 20px;margin-top: 30px;width: 180px;height: 251px;border: 1px solid #D3D3D3 ;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                    <img  style="height: 55px;width: 55px;margin-left: 60px;margin-top: 30px;" th:src="${dd.getDoctorsPicture()}"src="imgtaozi/doctor3cc.png">
+                    <li  th:text="${dd.getDoctorName()}"style="margin-left: 30px;margin-top: 10px;font-size: 16px">张如卉</li>
+                    <li style="margin-left: 85px;margin-top: -20px;font-size: 16px">主治医师</li>
+                    <li th:text="${dd.getHospital()}" style="margin-left: 40px;margin-top: 7px;font-size: 13px;color:#808080 ">浙江大学附属第一...</li>
+                    <li th:text="${dd.getDepartments()}" style="margin-left: 50px;margin-top: 7px;font-size: 13px;color: #808080 ">全科</li>
+                    <img style="margin-left: 15px;margin-top: 10px;width: 150px;height: 25px" src="imgtaozi/xia.png">
+                    <p style="margin-left: 65px;margin-top: 10px;font-size: 17px;color: #5FB878">提问</p>
                 </div>
-                <div style="position: absolute;top: 150px;left: 10px">
-                    <img style="width: 50px;height: 50px" src="imgs/yisheng.jpg">
-                    医生的回复
+            </ul>
+            <br>
+            <div style="margin-left: 20px;margin-top: 20px;width: 180px;height: 230px;border: 1px solid #D3D3D3 ;border-top-right-radius:15px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-top-left-radius:15px;">
+                <div style="font-size: 20px;margin-left: 35px;margin-top: 10px">TA的回答</div>
+                <div style="margin-left: 20px;margin-top: 10px;font-size: 13px;color: #808080">六月份体检做了肿瘤12项检查。查出胃癌抗原CA72–4指标偏高，为44.60。参考值是0-10（U/ml）。从网上查了一些内容，有一些说没有问题，同时说这个指标只是辅助指标。但是今天拿到体检报告之后上面说这个是糖链抗原72-4偏高，是胃癌的首选标...
                 </div>
             </div>
         </div>
-        <a href="doctor">
-            <div style="position: absolute;top:80px;left: 1130px;background-color: #ffffff;width: 220px;height: 360px  ">
-                <div style="position: absolute;left: 30px;top: 25px">
-                    <img src="imgs/hushi.jpg" style="width: 150px;height: 100px">
-                </div>
-                <div style="position: absolute;left: 45px;top: 130px">
-                    <ul style="line-height: 30px">
-                        <li style="margin-left: 20px">桃子医生</li>
-                        <li>海南省妇幼保健院</li>
-                        <li style="margin-left: 25px">小儿眼科</li>
-                    </ul>
-                </div>
-                <div style="position: absolute;left: 10px;top: 220px;font-size: 15px;color: #9F9F9F">眼科专家，擅长小儿眼科、激光治疗近视、斜视、黑影、眼痛、眼痒、磨眼、流泪、眼皮长包、眨眼频繁。</div>
-                <a href="doctor" style="position: absolute;left: 85px;top: 300px;font-size: 17px; color: #5FB878">提问</a>
-            </div>
         </a>
     </div>
+</div>
+<div align="center"  style="margin-top:900px;width: 100%;height: auto;background-color: #e6e6e6">
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">版权声明</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">作者编委</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香医生</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">丁香诊所</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">投稿邮箱 doctor@dxy.com</a>
+    <br><br>
+    <span style="font-size: 16px;color: #4E5465">Copyright © 2000-2019DXY All Rights Reserved</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙B2-20070219-5</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">浙卫(03)网审[2015]&nbsp;&nbsp;048号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">医疗器械网络销售备案表编号：（浙杭）网械企备字[2018]第00246号</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">第二类医疗器械经营备案凭证编号：浙杭食药监械经营备20153170号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">网络文化经营许可证：浙网文[2018]11330-875号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">食品许可证编号：JY13301080010985</a>
+    <br><br>
+    <a href="" style="font-size: 14px;color: #4E5465">出版物经营许可证：新出发滨字第0064号</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" style="font-size: 14px;color: #4E5465">人力资源许可证编号：330101000525</a>
+    <br><br>
+    <img src="imgs/img2.png">
+    <a href="" style="font-size: 14px;color: #4E5465">浙公网安备 33010802004205号</a>
+    <br><br>
+    <img src="imgs/img1.jpg" style="height: 35px;width: 35px"/>
+    <br>
+    <br>
 </div>
 <script src="layui/layui.js"></script>
 <script src="layer/layer.js"></script>
@@ -147,31 +198,17 @@
             //console.log(elem)
             layer.msg(elem.text());
         });
+
     });
-</script>
-<script>
-    layui.use('flow', function(){
-        var flow = layui.flow;
-
-        flow.load({
-            elem: '#LAY_demo1' //流加载容器
-            ,scrollElem: '#LAY_demo1' //滚动条所在元素，一般不用填，此处只是演示需要。
-            ,done: function(page, next){ //执行下一页的回调
-
-                //模拟数据插入
-                setTimeout(function(){
-                    var lis = [];
-                    for(var i = 0; i < 8; i++){
-                        lis.push('<li>'+ ( (page-1)*8 + i + 1 ) +'</li>')
-                    }
-
-                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                    next(lis.join(''), page < 10); //假设总页数为 10
-                }, 500);
-            }
+    layui.use(['jquery', 'layer'], function(){
+        var $ = layui.$ ,//重点处
+            //后面就跟你平时使用jQuery一样
+            $=layui.jquery;
+        $(".weiWei").click(function(){
+            var id=$(this).attr("id");
+            window.location.href="doctor?id="+id;
         });
-    });
+    })
 </script>
 </body>
 </html>

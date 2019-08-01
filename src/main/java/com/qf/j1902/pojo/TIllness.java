@@ -1,5 +1,8 @@
 package com.qf.j1902.pojo;
 
+import lombok.Data;
+
+@Data
 public class TIllness {
     private Integer illid;
 

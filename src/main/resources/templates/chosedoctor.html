@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+</head>
+<style>
+    #bigdiv{
+        position: relative;
+        left: 152px;
+    }
+    #deptname{
+        position: relative;
+        top: 30px;
+        left: 60px;
+    }
+</style>
+
+<body>
+<div class="layui-nav layui-bg-green" style="width: 100%;height: 50px;">
+    <div class="ly-inner pg-inner">
+        <ul class="topline-list fl clearfix">
+            <li class="layui-nav-item"><a target="_blank" href=" ">丁香园</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://bbs.dxy.cn">论坛</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.biomart.cn/">丁香通</a> </li>
+            <li class="layui-nav-item"><a target="_blank" href="http://i.dxy.cn/">丁香客</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://www.jobmd.cn/">医药招聘</a></li>
+            <li class="layui-nav-item"><a target="_blank" href="http://paper.pubmed.cn/">文献求助</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd>< a href="">会议</a></dd>
+                    <dd>< a href="">用药助手</a></dd>
+                    <dd>< a href="">叮当铺</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+</div>
+    <div style="float: left; width: 80%"  id="bigdiv">
+        <br>
+        <br>
+        <a href="index" style="font-size: 18px;color: #5FB878">返回首页</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="onlinedoctory" style="font-size: 18px;color: #1E9FFF">返回上一页</a>
+        <br>
+        <div id="deptname" style="height: 50px">
+            <span style="font-size: 18px" th:text="${deptname}"></span><span style="font-size: 18px">：医生列表</span>
+        </div>
+
+        <div th:each="doctor:${doctors}" th:id="${doctor.doctorid}"
+             style="margin-left: 25px;float: left;margin-top: 30px ; border:1px solid #e8e9eb;height: 450px;width: 260px" align="center" >
+            <br>
+            <img th:src="@{'/userimg/'+${doctor.avatar}}" style="width: 90px;height: 90px"/><br><br>
+            <div style="width: 230px">
+                <span th:text="${doctor.relname}"></span> &nbsp;&nbsp;&nbsp;
+                <span th:text="${doctor.jobtitle}">主治医师</span><br><br>
+                <span th:text="${doctor.hpName}"> 西京医院</span><br><br>
+                <a><span th:text="${doctor.answercount}">86</span>个回答</a><br><br>
+                <div align="left" style="height: auto">
+                    <span th:text="${doctor.doctorinfo}">擅长各类胃肠功能紊乱，腹痛, 乙肝，肝硬化，急慢性胰腺炎，消化性溃疡及胆道疾病诊断与治疗</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

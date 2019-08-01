@@ -6,11 +6,15 @@ spring:
       url: jdbc:mysql://localhost:3306/forthproject?characterEncoding=utf-8&serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password:
+      password: 123456
   application:
     name: demo-service
+  servlet:
+         multipart:
+           max-file-size: 30MB
   thymeleaf:
     cache: false
+
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
@@ -23,3 +27,5 @@ pagehelper:
   helper-dialect: mysql
   support-methods-arguments: true
   reasonable: true
+solr:
+  baseUrl: http://localhost:8080/solr

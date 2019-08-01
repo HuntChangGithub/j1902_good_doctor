@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qf.j1902.mapper.CourseMapper" >
+
+  <select id="getCourses" resultType="com.qf.j1902.vo.DoctorTutorial">
+    SELECT * FROM course c, doctor t WHERE c.doctorid = t.doctorid AND c.coursestatus = 1 order by c.coursejoinper limit 0,4
+  </select>
+  <select id="fetchCourseById" resultType="Course">
+    SELECT * FROM course WHERE courseid = #{courseid}
+  </select>
+</mapper>

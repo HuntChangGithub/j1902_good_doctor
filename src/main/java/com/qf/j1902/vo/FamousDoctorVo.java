@@ -16,6 +16,9 @@ public class FamousDoctorVo {
     private Timestamp responseTime;//具体回复时间
     private String userQuestionsID;//用户提问表编码
     private String doctorsPicture;//医生图片
+    private String hospitalAddress;//医院地址
+    private String congYeNianXian;//从业年限
+    private String hospital;//医院名称
     //private Integer id;//编码
     private String concreteProblems;//具体提问
     private Timestamp questionTime;//提问时间
