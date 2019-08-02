@@ -70,6 +70,21 @@
     <!--#{id}, #{name}, #{funkyNumber}, #{roundingMode}-->
     <!--)-->
     <!--</insert>-->
-
+    <select id="getPermsByName" parameterType="string" resultType="com.qf.j1902.pojo.TPermission">
+        select
+        p.*
+        FROM
+        user  u,
+        t_shiro_user  ur,
+        t_role  r,
+        t_role_permission rp,
+        t_permission p
+        where
+        u.userid = ur.user_id
+        and ur.role_id = r.role_id
+        and r.role_id = rp.role_id
+        and rp.per_id = p.per_id
+        and u.username = #{username}
+    </select>
 
 </mapper>

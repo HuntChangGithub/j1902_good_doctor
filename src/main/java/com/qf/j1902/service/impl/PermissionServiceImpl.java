@@ -1,12 +1,15 @@
 package com.qf.j1902.service.impl;
 
 import com.qf.j1902.mapper.PermissionMapper;
+import com.qf.j1902.pojo.TPermission;
 import com.qf.j1902.service.PermissionService;
 import com.qf.j1902.vo.PermissionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @auther mengyuan
@@ -34,5 +37,15 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public List<PermissionVo> getAllPerByRoleId(Integer roleid) {
         return permissionMapper.getAllPerByRoleId(roleid);
+    }
+
+    @Override
+    public Set<TPermission> getPermsByName(String principal) {
+        Set<TPermission> perms = new HashSet<>();
+        List<TPermission> permsByName = permissionMapper.getPermsByName(principal);
+        for (TPermission perm: permsByName  ) {
+            perms.add(perm);
+        }
+        return perms;
     }
 }

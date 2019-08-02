@@ -424,7 +424,7 @@ public class UserController {
     }
     //申请完成，重定向返回申请页面    jobtitle
     //登录后才可访问的权限注释
-    @RequiresPermissions(value={"authc"})
+    //@RequiresPermissions(value={"authc"})
     @RequestMapping(value = "/referDoctor" , method = RequestMethod.POST)
     public String toReferDoctor(@RequestParam("relname")String relname ,
                                 @RequestParam("hospatalid")String hospatalid ,

@@ -42,12 +42,12 @@
         doctor d
 
         set
-        d.depName=#{doctor.depName},
-        d.jobtitle=#{doctor.jobtitle},
-        d.doctorinfo=#{doctor.doctorinfo},
-        d.hpName=#{doctor.hpName},
+        d.depName=#{depName},
+        d.jobtitle=#{jobtitle},
+        d.doctorinfo=#{doctorinfo},
+        d.hpName=#{hpName},
         where
-        d.doctorid=#{doctor.doctorid}
+        d.doctorid=#{doctorid}
     </update>
     <select id="getDoctorsAllByDepName" parameterType="string" resultType="Doctor">
         SELECT * FROM doctor WHERE depName=#{string} order by answercount desc

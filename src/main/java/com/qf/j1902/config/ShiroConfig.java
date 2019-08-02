@@ -35,10 +35,10 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean (@Qualifier("securityManager") DefaultWebSecurityManager securityManager){
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
-        factoryBean.setLoginUrl("/index,/login,/reg,/project,/projects");
+        factoryBean.setLoginUrl("/index,/login,/reg");
         factoryBean.setUnauthorizedUrl("unauth");
         Map<String ,String> map = new HashMap<>();
-        //map.put("/member","authc");//只有登录后才可访问
+        //map.put("/personalCenter","authc");//只有登录后才可访问
         factoryBean.setFilterChainDefinitionMap(map);
         return factoryBean;
     }
