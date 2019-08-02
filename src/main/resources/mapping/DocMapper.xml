@@ -39,17 +39,15 @@
 
     <update id="UpDocById" parameterType="com.qf.j1902.pojo.Doctor">
         update
-        doctor d,
-        user u
+        doctor d
+
         set
-        u.telphone=#{doctor.telphone},
         d.depName=#{doctor.depName},
         d.jobtitle=#{doctor.jobtitle},
         d.doctorinfo=#{doctor.doctorinfo},
         d.hpName=#{doctor.hpName},
         where
         d.doctorid=#{doctor.doctorid}
-        and d.username=#{doctor.username}
     </update>
     <select id="getDoctorsAllByDepName" parameterType="string" resultType="Doctor">
         SELECT * FROM doctor WHERE depName=#{string} order by answercount desc
