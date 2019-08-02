@@ -17,12 +17,12 @@
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
         <th lay-data="{field:'doctorid',  sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'username', }">用户名</th>
-        <th lay-data="{field:'telphone', }">电话</th>
-        <th lay-data="{field:'hpid', }">医院</th>
-        <th lay-data="{field:'depid',  sort: true}">科室</th>
-        <th lay-data="{field:'jobtitle', }">职称</th>
+        <th lay-data="{field:'username'}">用户名</th>
+        <th lay-data="{field:'hpName'}">医院</th>
+        <th lay-data="{field:'depName',  sort: true}">科室</th>
+        <th lay-data="{field:'jobtitle' }">职称</th>
         <th lay-data="{field:'doctorinfo',  sort: true}">医生信息</th>
+        <th lay-data="{field:'answercount',  sort: true}">医生信息</th>
         <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>
@@ -83,8 +83,8 @@
                         body.find("#username").val(data.username);
                         body.find("#doctorid").val(data.doctorid);
                         body.find("#telphone").val(data.telphone);
-                        body.find("#hpid").val(data.hpid);
-                        body.find("#depid").val(data.depid);
+                        body.find("#hpName").val(data.hpName);
+                        body.find("#depName").val(data.depName);
                         body.find("#jobtitle").val(data.jobtitle);
                         body.find("#doctorinfo").val(data.doctorinfo);
 

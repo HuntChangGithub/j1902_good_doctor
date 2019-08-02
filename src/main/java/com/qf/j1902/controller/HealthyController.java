@@ -337,4 +337,5 @@ public class HealthyController {
             model.addAttribute("pageInfo", p);
             return "solrsearch";
     }
+
 }

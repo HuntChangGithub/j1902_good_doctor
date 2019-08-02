@@ -184,7 +184,7 @@ public class UserController {
                     if (subject.isAuthenticated()) {
                         if (roleName.equals("doctor") || roleName.equals("member")) {
                             session.setAttribute("username", userInfo.getUsername());
-                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login")) {
+                            if (substring.equals("/") || substring.equals("/logout") || substring.equals("/regsuccess") || substring.equals("/reg") || substring.equals("/login") || substring.equals("/doreg")) {
                                 return "index";
                             } else {
                                 return "redirect:" + substring;
@@ -220,7 +220,7 @@ public class UserController {
     }
     //前往个人中心
     //登录后才可访问的权限注释
-    @RequiresPermissions(value={"authc"})
+    //@RequiresPermissions(value={"authc"})
     @RequestMapping(value = "personalCenter" , method = RequestMethod.GET)
     public String topPrsonalCenter(HttpSession session , Model model){
         String username = (String) session.getAttribute("username");
@@ -236,7 +236,7 @@ public class UserController {
     }
     //修改密码   oldupassword  newupassword
     //登录后才可访问的权限注释
-    @RequiresPermissions(value={"authc"})
+    //@RequiresPermissions(value={"authc"})
     @RequestMapping(value = "/updateUpw" , method = RequestMethod.GET)
     @ResponseBody
     public MsgResult updateUpw(@RequestParam(value = "newupassword")String newupassword ,
@@ -282,8 +282,6 @@ public class UserController {
         return msgResult;
     }
     //修改头像
-    //登录后才可访问的权限注释
-    @RequiresPermissions(value={"authc"})
     @RequestMapping(value = "/updateAvatar" , method = RequestMethod.POST)
     @ResponseBody
     public JSONObject updateAvatar(@RequestParam("file")MultipartFile file, HttpSession session)throws IOException {
@@ -334,7 +332,7 @@ public class UserController {
     }
     //前往个人订阅
     //登录后才可访问的权限注释
-    @RequiresPermissions(value={"authc"})
+    //@RequiresPermissions(value={"authc"})
     @RequestMapping(value = "mySubscription" , method = RequestMethod.GET)
     public String toMySubscription(HttpSession session , Model model){
         String username = (String) session.getAttribute("username");
@@ -347,6 +345,8 @@ public class UserController {
         return "mySubscription";
     }
     //前往进行医师资格认证
+    //登录后才可访问的权限注释
+    //@RequiresPermissions(value={"authc"})
     @RequestMapping(value = "doctorApplication" , method = RequestMethod.GET)
     public String toDoctorApplication(HttpSession session , Model model){
         String username = (String) session.getAttribute("username");
