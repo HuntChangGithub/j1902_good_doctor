@@ -7,15 +7,17 @@
     <select id="getAllDocDealInfo" resultType="com.qf.j1902.vo.DocDealInfo">
     SELECT
         doctorid,
-        username,
+        doctor.username,
         telphone,
-        depid,
-        hpid,
+        depName,
+        hpName,
+        doctor.avatar,
         certificateimg,
-        diplomaimg,
+        idcard,
         jobtitle,
         doctorinfo,
-        if_valid
+        if_valid,
+        answercount
     FROM
     user ,
     doctor
